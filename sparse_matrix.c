@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <emmintrin.h>
+#include <immintrin.h>
 #include "sparse_matrix.h"
 
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
