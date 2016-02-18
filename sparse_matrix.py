@@ -1,4 +1,6 @@
 from collections import defaultdict
+from itertools import combinations
+
 
 def scale_row(row1, a, row2):
 	"""
@@ -76,13 +78,12 @@ class smatrix:
 					add_row(B_row, B[row], B_row)
 				scale_row(B_row, v, B_row)
 				add_row(B_row, C[i], C[i])
-				print C[i]
 
 	def serializeToFile(self, file_name):
-		row = self.num_rows;
-		col = self.num_cols;
-		rank = self.rank;
-		matrix = self.matrix;
+		row = self.num_rows
+		col = self.num_cols
+		rank = self.rank
+		matrix = self.matrix
 		with open(file_name, 'w') as fw:
 			fw.write("%d %d %d\n"%(row, col, rank))
 
@@ -96,3 +97,102 @@ class smatrix:
 					fw.write("%d %d\n"%(i, len(b_rows)))
 					for row in b_rows:
 						fw.write("%d \n"%row)
+
+
+	def _get_i_j_set_of_sparse_matrix(self, value):
+		"""
+		SparseMatrixMultiplication the dense matrix A, with B, and store the result in C
+		>>> m = [[1,1,1], [2,2,2], [1,1,3]]
+		>>> s = smatrix(m)
+		>>> i_j_set = s._get_i_j_set_of_sparse_matrix(1)
+		>>> i_j_set[0]
+		set([0, 1, 2])
+		>>> i_j_set[2]
+		set([0, 1])
+		"""
+		row = self.num_rows
+		col = self.num_cols
+		i_j_pairs = self.matrix[value]
+		i_j_set = defaultdict(set)
+		for i, j in i_j_pairs:
+			i_j_set[i].add(j)
+		return i_j_set 
+
+	def get_optimized_i_j_set(self, value, min):
+		"""
+		>>> m = [[1,2,1,1,1,1], [2,2,1,1,1,1], [1,2,2,2,2,2]]
+		>>> s = smatrix(m)
+		>>> l = s.get_optimized_i_j_set(1, 2)
+		>>> (set([0,1]), set([2,3,4,5])) in l
+		True
+		>>> (set([0,2]), set([0])) in l
+		True
+		"""
+		i_j_set = self._get_i_j_set_of_sparse_matrix(value)
+		# convert the set to a list
+		i_j_list = []
+		for i, j in i_j_set.iteritems():
+			i_j_list.append((set([i]), j))
+		
+		# iteratively merge the redundancies
+		while True:
+			for (ai, aj), (bi, bj) in combinations(i_j_list, 2):
+				similar_values = aj.intersection(bj)
+				
+				if len(similar_values) == len(aj) and len(similar_values) == len(bj):
+					i_j_list.remove((ai, aj))
+					i_j_list.remove((bi, bj))
+					i_j_list.append((ai.union(bi), aj))
+					stop_iteration = False
+					break
+
+				if len(similar_values) >= min:
+					stop_iteration = False	# some change is still taken place, proceed to next iteration
+					i_j_list.remove((ai, aj))
+					i_j_list.remove((bi, bj))
+					new_aj = aj.difference(similar_values)
+					new_bj = bj.difference(similar_values)
+					if new_aj:
+						i_j_list.append((ai, new_aj))
+					if new_bj:
+						i_j_list.append((bi, new_bj))
+					i_j_list.append((ai.union(bi), similar_values))
+					break
+				else:
+					continue
+			if stop_iteration:
+				break
+			else:
+				stop_iteration = True
+				continue
+		return i_j_list
+
+
+
+def get_i_j_list_cost(i_j_list, minimum):
+	"""
+	>>> i_j_list = [(set([0,2]), set([0]))]
+	>>> get_i_j_list_cost(i_j_list, 2)
+	7
+	>>> i_j_list = {1: set([0])}
+	>>> get_i_j_list_cost(i_j_list, 2)
+	5
+	"""
+
+	cost = 0
+	if type(i_j_list) is dict:
+		print "is dict \n"
+		for (i, j) in i_j_list.iteritems():
+			i_ = 1
+			j_ = len(j)
+			cost += j_ + (j_ / minimum) * 2 + 2 * i_
+			if i_ % 8:
+				cost += 2
+	else:		
+		for (i, j) in i_j_list:
+			i_ = len(i)
+			j_ = len(j)
+			cost += j_ + (j_ / minimum) * 2 + 2 * i_
+			if i_ % 8:
+				cost += 2
+	return cost
