@@ -29,7 +29,6 @@ typedef struct SparseMatrix{
 }SparseMatrix;
 
 
-
 SparseMatrix* init_SparseMatrix(const char* file_name);
 
 void SparseMatrixMultiplication(int M, int N, int K,
@@ -37,8 +36,6 @@ void SparseMatrixMultiplication(int M, int N, int K,
 			  Dtype* B, int incRowB,
 			  Dtype* C, int incRowC);
 
-void accumulate_rows(const i_j_pairs pairs,
-					 Dtype* B, int ncol, int incRowB,
-					 Dtype* buffer);
+void accumulate_rows_and_scale_to(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dtype scaling_factor, Dtype* destination_row);
 
 #endif

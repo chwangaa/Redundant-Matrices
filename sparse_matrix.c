@@ -85,17 +85,6 @@ Scaler* getScalers(SparseMatrix* m){
 	return m->scalers;
 }
 
-void scaleRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
-	__m256 scalar_ = _mm256_set1_ps(scaler);
-	for(int i = 0; i < n; i+=8){
-		__m256 As = _mm256_load_ps(A+i);
-		__m256 Bs = _mm256_load_ps(B+i);
-		__m256 Ms = _mm256_mul_ps(As, scalar_);
-		Ms += Bs;
-		_mm256_store_ps(B+i, Ms);
-	}
-	return;
-}
 
 void ScaleMatrixTo(Scaler s,
 				   Dtype* B, int nrow, int ncol, int incRowB,
@@ -105,15 +94,13 @@ void ScaleMatrixTo(Scaler s,
 	int number_of_i = s.num_i_value;
 	i_j_pairs* pairs = s.pairs;
 	Dtype scaling_factor = s.value;
-	Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
+	// Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
 	for(int i = 0; i < number_of_i; i++){
 		i_j_pairs p = pairs[i];
 		int destination_row_number = p.i_value;
 		Dtype* destination_row = &C[destination_row_number*incRowC];
-		accumulate_rows(p, B, ncol, incRowB, buffer);
-		scaleRow(ncol, scaling_factor, buffer, destination_row);
+		accumulate_rows_and_scale_to(p, B, ncol, incRowB, scaling_factor, destination_row);
 	}
-	_mm_free(buffer);
 }
 
 void SparseMatrixMultiplication(int M, int N, int K,
