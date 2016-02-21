@@ -114,7 +114,7 @@ void test_german_conv3(){
 
 
 void test_cifar_conv1(){
-	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_round2");
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse");
 	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
@@ -131,7 +131,7 @@ void test_cifar_conv1(){
 	assert(B);
 	assert(C);
 	fprintf(stderr, "load the test input image \n");
-	load_matrix("cifar_conv1_test_input.txt", K, N, B);
+	load_matrix("test_inputs/cifar_conv1_test_input.txt", K, N, B);
 	
 	for(int i = 0; i < M; i++){
 		for(int j = 0; j < N; j++){
@@ -215,5 +215,6 @@ void test_cifar_conv3(){
 }
 
 int main(int argc, char** argv){
-	test_german_conv2();
+	// test_german_conv2();
+	test_cifar_conv1();
 }

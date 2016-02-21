@@ -5,6 +5,9 @@
 #include <immintrin.h>
 #include "sparse_matrix.h"
 
+static Dtype matrix_buffer[400*1600] __attribute__((aligned(0x1000)));
+static Dtype buffer[1600] __attribute__((aligned(0x1000)));
+
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
 	assert(fin != NULL);
 	int num_i_values;
@@ -179,13 +182,13 @@ void ScaleMatrixTo(Scaler s,
 
 	// initialize a matrix buffer
 	assert(incRowB == N);
-	Dtype* matrix_buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N, 32);
+	// Dtype* matrix_buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N, 32);
 	int* i_values = s.i_values;
 	int num_rows_write_to = s.num_rows_write_to;
 	initialize_matrix_buffer(matrix_buffer, num_rows_write_to, i_values, N);
 
 	// initialize a column buffer
-	Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
+	// Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
 	i_j_pairs* pairs = s.pairs;
 	// accumulate rows
 	for(int i = 0; i < s.num_pairs; i++){
@@ -198,9 +201,9 @@ void ScaleMatrixTo(Scaler s,
 	Dtype scaling_factor = s.value;
 	scale_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
 	// free the column buffer
-	_mm_free(buffer);
+	// _mm_free(buffer);
 	// free the matrix buffer
-	_mm_free(matrix_buffer);
+	// _mm_free(matrix_buffer);
 }
 
 void SparseMatrixMultiplication(int M, int N, int K,
