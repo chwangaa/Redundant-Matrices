@@ -214,17 +214,17 @@ void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, i
 }
 
 void accumulate_rows(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dtype* buffer){
-	int num_j = pairs.num_of_pairs;
+	int num_j = pairs.num_j_values;
 	
 	// js stores the row numbers
 	int* js = pairs.j_values;
 	// initialize a buffer
-	for(int i = 0; i < ncol; i++){
-		buffer[i] = 0;
+	__m256 zeros_ = _mm256_set1_ps(0);
+	for(int i = 0; i < ncol; i+=8){
+		_mm256_store_ps(&buffer[i], zeros_);
 	}
 
 	int i = 0;
-	
 	// unrolling factor of 8, each time, accumulate 8 rows	
 	int remaining_rows = num_j % 8;
 	int num_accumulated_rows = num_j - remaining_rows;

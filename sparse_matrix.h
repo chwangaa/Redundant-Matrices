@@ -10,14 +10,17 @@ typedef float Dtype;
 #define FLOAT
 
 typedef struct i_j_pairs{
-	int i_value;
-	int num_of_pairs;
+	int* i_values;
+	int num_i_values;
+	int num_j_values;
 	int* j_values;
 }i_j_pairs;
 
 typedef struct Scaler{
 	Dtype value;
-	int num_i_value;
+	int num_pairs;
+	int num_rows_write_to;
+	int* i_values;
 	i_j_pairs* pairs;
 }Scaler;
 

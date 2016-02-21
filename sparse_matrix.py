@@ -79,7 +79,7 @@ class smatrix:
 				scale_row(B_row, v, B_row)
 				add_row(B_row, C[i], C[i])
 
-	def serializeToFile(self, file_name):
+	def serializeToFile(self, file_name, num=4):
 		row = self.num_rows
 		col = self.num_cols
 		rank = self.rank
@@ -87,17 +87,32 @@ class smatrix:
 		with open(file_name, 'w') as fw:
 			fw.write("%d %d %d\n"%(row, col, rank))
 
-			for v, indices in matrix.iteritems():
-				dic = defaultdict(list)
-				for (i, j) in indices:
-					dic[i].append(j)
-				num_i = len(dic)
-				fw.write("%f %d\n"%(v, num_i))
-				for i, b_rows in dic.iteritems():
-					fw.write("%d %d\n"%(i, len(b_rows)))
-					for row in b_rows:
-						fw.write("%d \n"%row)
-
+			for v in matrix.keys():
+				i_j_set_list = self.get_optimized_i_j_set(v, num)
+				num_i_j_set = len(i_j_set_list)
+				fw.write("%f %d \n"%(v, num_i_j_set))
+				# construct the union of all i set
+				i_set = i_j_set_list[0][0]
+				for i_j_set in i_j_set_list:
+					i_set = i_set.union(i_j_set[0])
+				
+				fw.write("%d "%len(i_set))
+				for i in i_set:
+					fw.write("%d "%i)
+				fw.write("\n")
+				
+				for i_j_set in i_j_set_list:
+					
+					fw.write("%d "%len(i_j_set[0]))
+					for i in i_j_set[0]:
+						fw.write("%d "%i)
+					fw.write("\n")
+					
+					fw.write("%d "%len(i_j_set[1]))
+					for j in i_j_set[1]:
+						fw.write("%d "%j)
+					fw.write("\n")
+			
 
 	def _get_i_j_set_of_sparse_matrix(self, value):
 		"""
@@ -136,6 +151,7 @@ class smatrix:
 		
 		# iteratively merge the redundancies
 		while True:
+			stop_iteration = True
 			for (ai, aj), (bi, bj) in combinations(i_j_list, 2):
 				similar_values = aj.intersection(bj)
 				
@@ -163,7 +179,6 @@ class smatrix:
 			if stop_iteration:
 				break
 			else:
-				stop_iteration = True
 				continue
 		return i_j_list
 
@@ -181,7 +196,6 @@ def get_i_j_list_cost(i_j_list, minimum):
 
 	cost = 0
 	if type(i_j_list) is dict:
-		print "is dict \n"
 		for (i, j) in i_j_list.iteritems():
 			i_ = 1
 			j_ = len(j)

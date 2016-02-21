@@ -7,35 +7,60 @@
 
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
 	assert(fin != NULL);
-	int i_value;
-	int num_of_pairs;
-	fscanf(fin, "%d %d", &i_value, &num_of_pairs);
-	pair->i_value = i_value;
-	pair->num_of_pairs = num_of_pairs;
-	int* j_values = (int*)malloc(sizeof(int)*num_of_pairs);
+	int num_i_values;
+	int num_j_values;
 	
-	for(int i = 0; i < num_of_pairs; i++){
+	fscanf(fin, "%d ", &num_i_values);
+	int* i_values = (int*)malloc(sizeof(int)*num_i_values);
+	for(int i = 0; i < num_i_values; i++){
+		int temp;
+		fscanf(fin, "%d", &temp);
+		i_values[i] = temp;
+	}
+
+
+	fscanf(fin, "%d ", &num_j_values);
+	int* j_values = (int*)malloc(sizeof(int)*num_j_values);
+	for(int i = 0; i < num_j_values; i++){
 		int temp;
 		fscanf(fin, "%d", &temp);
 		j_values[i] = temp;
 	}
+
+	pair->i_values = i_values;
 	pair->j_values = j_values;
+	pair->num_i_values = num_i_values;
+	pair->num_j_values = num_j_values;
 }
 
 static void readInNewScaler(FILE* fin, Scaler* new_s){
 	assert(fin != NULL);
 	Dtype scaler_value;
-	int num_i_value;
-	fscanf(fin, "%f %d", &scaler_value, &num_i_value);
+	int num_pairs;
+	int num_rows_write_to;
+	fscanf(fin, "%f %d %d", &scaler_value, &num_pairs, &num_rows_write_to);
+	// fprintf(stderr, "the scaler has the value %f and the number of pairs is %d \n", scaler_value, num_pairs);
+	// fprintf(stderr, "the number of rows write to is %d \n", num_rows_write_to);
 
-	i_j_pairs* pairs = (i_j_pairs*)malloc(sizeof(i_j_pairs)*num_i_value);
-	for(int i = 0; i < num_i_value; i++){
+	// read in all the i values
+	int* union_i_values = (int*)malloc(sizeof(int)*num_rows_write_to);
+	for(int i = 0; i < num_rows_write_to; i++){
+		int temp;
+		fscanf(fin, "%d", &temp);
+		union_i_values[i] = temp;
+	}
+	new_s->i_values = union_i_values;
+
+
+	// read in each set of i_j_pairs
+	i_j_pairs* pairs = (i_j_pairs*)malloc(sizeof(i_j_pairs)*num_pairs);
+	for(int i = 0; i < num_pairs; i++){
 		readInNewPair(fin, &pairs[i]);
 	}
 	new_s->pairs = pairs;
 	new_s->value = scaler_value;
-	// fprintf(stderr, "the scaler read is %f \n", scaler_value);
-	new_s->num_i_value = num_i_value;
+	new_s->num_pairs = num_pairs;
+	new_s->num_rows_write_to = num_rows_write_to;
 }
 
 SparseMatrix* init_SparseMatrix(const char* file_name){
@@ -51,13 +76,14 @@ SparseMatrix* init_SparseMatrix(const char* file_name){
 	Scaler* scalers = (Scaler*)malloc(sizeof(Scaler)*rank);
 	
 	for(int i = 0; i < rank; i++){
+		// fprintf(stderr, "read the # %d scaler \n", i);
 		readInNewScaler(fin, &scalers[i]);
 	}
 	matrix->rank = rank;
 	matrix->scalers = scalers;
 	matrix->col = col;
 	matrix->row = row;
-	// fprintf(stderr, "sparse matrix initialized \n");
+	fprintf(stderr, "sparse matrix initialized \n");
 	return matrix;
 }
 
@@ -99,23 +125,82 @@ void scaleRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
 	return;
 }
 
+void set_row_to_zero(Dtype* row, int length){
+	__m256 zeros_ = _mm256_set1_ps(0);
+	for(int i = 0; i < length; i+=8){
+		_mm256_store_ps(&row[i], zeros_);
+	}
+}
+
+void initialize_matrix_buffer(Dtype* buffer, int num_rows_to_set, int* rows_to_set, int incRow){
+	for(int i = 0; i < num_rows_to_set; i++){
+		int row_number = rows_to_set[i];
+		Dtype* row = &buffer[row_number*incRow];
+		set_row_to_zero(row, incRow);
+	}
+}
+
+void add_row_to_row(Dtype* source, Dtype* destination, int length){
+	for(int i = 0; i < length; i+=8){
+		__m256 r1 = _mm256_load_ps(source+i);
+		__m256 r2 = _mm256_load_ps(destination+i);
+		r1 = r1 + r2;			
+		_mm256_store_ps(&destination[i], r1);
+	}
+}
+
+void add_row_to_rows(const i_j_pairs pairs, Dtype* buffer, Dtype* matrix_buffer, int incRow){
+	int num_i = pairs.num_i_values;
+	int* is = pairs.i_values;
+	for(int i = 0; i < num_i; i++){
+		int r1 = is[i];
+		Dtype* destination_row = &matrix_buffer[r1*incRow];
+		add_row_to_row(buffer, destination_row, incRow);
+	}
+}
+
+void scale_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
+
+	assert(scaling_factor != 0);
+	for(int i = 0; i < num_rows_write_to; i++){
+		int row_n = i_values[i];
+		Dtype* source_row = &matrix_buffer[row_n*incRowC];
+		Dtype* destination_row = &C[row_n*incRowC];
+		scaleRow(incRowC, scaling_factor, source_row, destination_row);
+	}
+}
+
+
 void ScaleMatrixTo(Scaler s,
 				   Dtype* B, int nrow, int ncol, int incRowB,
 				   Dtype* C, int M, int N, int incRowC){
 
 	
-	int number_of_i = s.num_i_value;
-	i_j_pairs* pairs = s.pairs;
-	Dtype scaling_factor = s.value;
+
+	// initialize a matrix buffer
+	assert(incRowB == N);
+	Dtype* matrix_buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N, 32);
+	int* i_values = s.i_values;
+	int num_rows_write_to = s.num_rows_write_to;
+	initialize_matrix_buffer(matrix_buffer, num_rows_write_to, i_values, N);
+
+	// initialize a column buffer
 	Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
-	for(int i = 0; i < number_of_i; i++){
+	i_j_pairs* pairs = s.pairs;
+	// accumulate rows
+	for(int i = 0; i < s.num_pairs; i++){
 		i_j_pairs p = pairs[i];
-		int destination_row_number = p.i_value;
-		Dtype* destination_row = &C[destination_row_number*incRowC];
 		accumulate_rows(p, B, ncol, incRowB, buffer);
-		scaleRow(ncol, scaling_factor, buffer, destination_row);
+		add_row_to_rows(p, buffer, matrix_buffer, incRowB);
 	}
+
+	// scaling
+	Dtype scaling_factor = s.value;
+	scale_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
+	// free the column buffer
 	_mm_free(buffer);
+	// free the matrix buffer
+	_mm_free(matrix_buffer);
 }
 
 void SparseMatrixMultiplication(int M, int N, int K,
@@ -130,9 +215,9 @@ void SparseMatrixMultiplication(int M, int N, int K,
 	Scaler* scalers = getScalers(A);
 	for(int i = 0; i < rank; i++){
 		Scaler s = scalers[i];
-		if(s.value < 0.0001 && s.value > -0.0001){
+		if(s.value == 0.0){
 			continue;
-		} 
+		}
 		ScaleMatrixTo(s,
 					B, K, N, incRowB,
 					C, M, N, incRowC);
