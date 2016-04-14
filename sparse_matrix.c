@@ -86,7 +86,7 @@ SparseMatrix* init_SparseMatrix(const char* file_name){
 	matrix->scalers = scalers;
 	matrix->col = col;
 	matrix->row = row;
-	fprintf(stderr, "sparse matrix initialized \n");
+	// fprintf(stderr, "sparse matrix initialized \n");
 	return matrix;
 }
 

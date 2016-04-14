@@ -13,9 +13,9 @@ void *aligned_malloc_(int ALIGN, long size) {
     return ptr;
 }
 
-void test_german_conv2(){
+double test_german_conv2(){
 	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv2_sparse");
-	fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
 	// fprintf(stderr, "the number of distinct values are %d \n", matrix->rank);
@@ -43,7 +43,8 @@ void test_german_conv2(){
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
 	uint64_t end_time = timestamp_us();
 	double m_second = (double)(end_time-start_time)/1000.0;
-	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+	return m_second;
+	//fprintf(stderr, "time elapsed is %lf \n", m_second);	
 }
 
 void test_german_conv1(){
@@ -215,6 +216,10 @@ void test_cifar_conv3(){
 }
 
 int main(int argc, char** argv){
-	test_german_conv2();
+	double accum = 0;
+	for(int i = 0; i < 1000; i++){
+		accum += test_german_conv2();
+	}
+	fprintf(stderr, "time elapsed is %lf \n", accum / 1000);
 	// test_cifar_conv1();
 }
