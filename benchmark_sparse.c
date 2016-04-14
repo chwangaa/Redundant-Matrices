@@ -215,6 +215,6 @@ void test_cifar_conv3(){
 }
 
 int main(int argc, char** argv){
-	// test_german_conv2();
-	test_cifar_conv1();
+	test_german_conv2();
+	// test_cifar_conv1();
 }
