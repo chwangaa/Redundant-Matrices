@@ -4,7 +4,7 @@
 #include "sparse_matrix.h"
 
 
-void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -40,7 +40,7 @@ void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -70,7 +70,7 @@ void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -97,7 +97,7 @@ void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -121,7 +121,7 @@ void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -142,7 +142,7 @@ void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -160,7 +160,7 @@ void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	register Dtype* B1_row = &B[r1*incRowB];
@@ -174,7 +174,7 @@ void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	register Dtype* B1_row = &B[r1*incRowB];
 	for(int j = 0; j < ncol; j+=8){
@@ -185,7 +185,7 @@ void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	switch(num_rows){
 		case 7:
 			accumulate_7_row(js, B, ncol, incRowB, buffer);

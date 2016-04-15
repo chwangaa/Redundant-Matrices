@@ -38,6 +38,12 @@ double test_german_conv2(){
 		}
 	}
 
+	for(int i = 0; i < K; i++){
+		for(int j = 0; j < N; j++){
+			B[i*incRowB+j] = (float)rand() / rand();
+		}
+	}
+
 	uint64_t start_time = timestamp_us();
 	assert(((unsigned long)B & 31) == 0);
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
@@ -217,9 +223,9 @@ void test_cifar_conv3(){
 
 int main(int argc, char** argv){
 	double accum = 0;
-	for(int i = 0; i < 1000; i++){
+	for(int i = 0; i < 1; i++){
 		accum += test_german_conv2();
 	}
-	fprintf(stderr, "time elapsed is %lf \n", accum / 1000);
+	// fprintf(stderr, "time elapsed is %lf \n", accum / 100);
 	// test_cifar_conv1();
 }
