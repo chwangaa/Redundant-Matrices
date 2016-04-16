@@ -4,7 +4,7 @@
 #include "sparse_matrix.h"
 
 
-void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -22,8 +22,19 @@ void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	Dtype* B7_row = &B[r7*incRowB];
 	Dtype* B8_row = &B[r8*incRowB];		
 
+	int j = 0;
+	int ncol_parallel = ncol - ncol % 32;
 
-	for(int j = 0; j < ncol; j+=8){
+	for(; j < ncol_parallel; j+=32){
+		_mm_prefetch(B1_row+j+32, 0);
+		_mm_prefetch(B2_row+j+32, 0);
+		_mm_prefetch(B3_row+j+32, 0);
+		_mm_prefetch(B4_row+j+32, 0);
+		_mm_prefetch(B5_row+j+32, 0);
+		_mm_prefetch(B6_row+j+32, 0);
+		_mm_prefetch(B7_row+j+32, 0);
+		_mm_prefetch(B8_row+j+32, 0);
+
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
 		__m256 r3 = _mm256_load_ps(B3_row+j);
@@ -35,12 +46,69 @@ void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
 		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;
-		__m256 result;
+		_mm256_store_ps(&buffer[j], temp);
+		
+		// j+=8;
+		r1 = _mm256_load_ps(B1_row+j+8);
+		r2 = _mm256_load_ps(B2_row+j+8);
+		r3 = _mm256_load_ps(B3_row+j+8);
+		r4 = _mm256_load_ps(B4_row+j+8);
+		r5 = _mm256_load_ps(B5_row+j+8);
+		r6 = _mm256_load_ps(B6_row+j+8);
+		r7 = _mm256_load_ps(B7_row+j+8);
+		r8 = _mm256_load_ps(B8_row+j+8);
+
+		temp = _mm256_load_ps(&buffer[j+8]);
+		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;
+		_mm256_store_ps(&buffer[j+8], temp);
+
+		// j+=8;
+		r1 = _mm256_load_ps(B1_row+j+16);
+		r2 = _mm256_load_ps(B2_row+j+16);
+		r3 = _mm256_load_ps(B3_row+j+16);
+		r4 = _mm256_load_ps(B4_row+j+16);
+		r5 = _mm256_load_ps(B5_row+j+16);
+		r6 = _mm256_load_ps(B6_row+j+16);
+		r7 = _mm256_load_ps(B7_row+j+16);
+		r8 = _mm256_load_ps(B8_row+j+16);
+
+		temp = _mm256_load_ps(&buffer[j+16]);
+		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;
+		_mm256_store_ps(&buffer[j+16], temp);
+
+		// j+=8;
+		r1 = _mm256_load_ps(B1_row+j+24);
+		r2 = _mm256_load_ps(B2_row+j+24);
+		r3 = _mm256_load_ps(B3_row+j+24);
+		r4 = _mm256_load_ps(B4_row+j+24);
+		r5 = _mm256_load_ps(B5_row+j+24);
+		r6 = _mm256_load_ps(B6_row+j+24);
+		r7 = _mm256_load_ps(B7_row+j+24);
+		r8 = _mm256_load_ps(B8_row+j+24);
+
+		temp = _mm256_load_ps(&buffer[j+24]);
+		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;
+		_mm256_store_ps(&buffer[j+24], temp);			
+	}
+
+	for(;j < ncol;j+=8){
+		__m256 r1 = _mm256_load_ps(B1_row+j);
+		__m256 r2 = _mm256_load_ps(B2_row+j);
+		__m256 r3 = _mm256_load_ps(B3_row+j);
+		__m256 r4 = _mm256_load_ps(B4_row+j);
+		__m256 r5 = _mm256_load_ps(B5_row+j);
+		__m256 r6 = _mm256_load_ps(B6_row+j);
+		__m256 r7 = _mm256_load_ps(B7_row+j);
+		__m256 r8 = _mm256_load_ps(B8_row+j);
+
+		__m256 temp = _mm256_load_ps(&buffer[j]);
+		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7+r8;			
 		_mm256_store_ps(&buffer[j], temp);
 	}
+
 }
 
-void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -70,7 +138,7 @@ void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -97,7 +165,7 @@ void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -121,7 +189,7 @@ void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -142,7 +210,7 @@ void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -160,7 +228,7 @@ void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	int r2 = js[1];
 	register Dtype* B1_row = &B[r1*incRowB];
@@ -174,7 +242,7 @@ void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	register Dtype* B1_row = &B[r1*incRowB];
 	for(int j = 0; j < ncol; j+=8){
@@ -185,7 +253,7 @@ void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buf
 	}
 }
 
-void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	switch(num_rows){
 		case 7:
 			accumulate_7_row(js, B, ncol, incRowB, buffer);

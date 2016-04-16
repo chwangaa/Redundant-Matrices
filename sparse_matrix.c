@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include "sparse_matrix.h"
+#include <immintrin.h>
 
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
 	assert(fin != NULL);
