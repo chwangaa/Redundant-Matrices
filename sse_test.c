@@ -19,13 +19,13 @@ int main(){
 	float* buffer = (float*)_mm_malloc(sizeof(float)*SIZE, 32);
 	for(int i = 0; i < ncol; i++){
 		B1_row[i] = i;
-		B2_row[i] = i*2;
-		B3_row[i] = i*3;
-		B4_row[i] = i*4;
-		B5_row[i] = i*5;
-		B6_row[i] = i*6;
-		B7_row[i] = i*7;
-		B8_row[i] = i*8;
+		B2_row[i] = i;
+		B3_row[i] = i;
+		B4_row[i] = i;
+		B5_row[i] = i;
+		B6_row[i] = i;
+		B7_row[i] = i;
+		B8_row[i] = i;
 		buffer[i] = 0;
 	}
 	// fprintf(stderr, "values loaded \n");
@@ -91,7 +91,6 @@ int main(){
 	  //   : "cc", "memory", "r15", "r14", "r13", "r12", "r11", "r10"
 	  // );
 
-	  int STEP_SIZE = 8;
 	  __asm__ __volatile__
 	  (
 	  	"movq %0, %%r15 \n\t" // r15 correspond to row_1
@@ -102,40 +101,35 @@ int main(){
 	    "movq %5, %%r10 \n\t" // r10 correspond to row_4
 	    "movq %6, %%r9 \n\t" // r9 correspond to row_4
 	    "movq %7, %%r8 \n\t" // r8 correspond to row_4
+	    "movq %8, %%rdi \n\t" // rdi stores the buffer address
+	    "movq $0, %%rsi \n\t" // rsi counts the current offset
+	    
 	    "loop:"
 	    // "movq %%rbx, %%r15 \n\t"
-	    "vmovaps (%%r15), %%ymm0 \n\t"
-	    "vmovaps (%%r14), %%ymm1 \n\t"
-	    "vmovaps (%%r13), %%ymm2 \n\t"
-	    "vmovaps (%%r12), %%ymm3 \n\t"
-	    "vmovaps (%%r11), %%ymm4 \n\t"
-	    "vmovaps (%%r10), %%ymm5 \n\t"
-	    "vmovaps (%%r9), %%ymm6 \n\t"
-	    "vmovaps (%%r8), %%ymm7 \n\t"
+	    "vmovaps (%%r15, %%rsi, 4), %%ymm0 \n\t"
+	    "vmovaps (%%r14, %%rsi, 4), %%ymm1 \n\t"
+	    "vmovaps (%%r13, %%rsi, 4), %%ymm2 \n\t"
+	    "vmovaps (%%r12, %%rsi, 4), %%ymm3 \n\t"
+	    "vmovaps (%%r11, %%rsi, 4), %%ymm4 \n\t"
+	    "vmovaps (%%r10, %%rsi, 4), %%ymm5 \n\t"
+	    "vmovaps (%%r9, %%rsi, 4), %%ymm6 \n\t"
+	    "vmovaps (%%r8, %%rsi, 4), %%ymm7 \n\t"
+	    "vmovaps (%%rdi, %%rsi, 4), %%ymm8 \n\t"
 
 	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
-	    "vmovaps (%%rdx), %%ymm1 \n\t"
 	    "vaddps %%ymm2, %%ymm3, %%ymm2 \n\t"
 	    "vaddps %%ymm4, %%ymm5, %%ymm4 \n\t"
 	    "vaddps %%ymm6, %%ymm7, %%ymm6 \n\t"
-	    
 	    "vaddps %%ymm0, %%ymm2, %%ymm0 \n\t"
 	    "vaddps %%ymm4, %%ymm6, %%ymm4 \n\t"
 	    
 	    "vaddps %%ymm0, %%ymm4, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
+	    "vaddps %%ymm0, %%ymm8, %%ymm0 \n\t"
 	    
-	    "vmovaps %%ymm0, (%%rdx) \n\t"
-	    "leaq (%%r15, %%rcx, 4), %%r15;"
-	    "leaq (%%r14, %%rcx, 4), %%r14;"
-	    "leaq (%%r13, %%rcx, 4), %%r13;"
-	    "leaq (%%r12, %%rcx, 4), %%r12;"
-	    "leaq (%%r11, %%rcx, 4), %%r11;"
-	    "leaq (%%r10, %%rcx, 4), %%r10;"
-	    "leaq (%%r9, %%rcx, 4), %%r9;"
-	    "leaq (%%r8, %%rcx, 4), %%r8;"
-	    "leaq (%%rdx, %%rcx, 4), %%rdx;"
-	    "cmpq %%r15, %%rax;"
+	    "vmovaps %%ymm0, (%%rdi, %%rsi, 4) \n\t"
+	    // "addq      $32,     %%r15    \n\t"  // B1_row += 8;
+	    "addq      $8,     %%rsi \n\t"
+	    "cmpq %%rsi, %%rax;"
 	    "jg loop;"
 	    : // no output
 	    : "m" (B1_row),
@@ -146,15 +140,14 @@ int main(){
 	      "m" (B6_row),
 	      "m" (B7_row),
 	      "m" (B8_row),
-	      "d" (buffer),
-	      "a" (B1_row + ncol),
-	      "c" (STEP_SIZE)
+	      "m" (buffer),
+	      "a" (128)
 	      // "d" (SOME_VALUE)
-	    : "cc", "memory","r15", "r14", "r13", "r12", "r11", "r10", "r9", "r8"
+	    : "rdi", "rsi","r15", "r14", "r13", "r12", "r11", "r10", "r9", "r8"
 	  );
 
 	  for(int i = 0; i < ncol; i++){
-	  	fprintf(stderr, "%.2f \n", buffer[i]);
+	  	fprintf(stderr, "%.2f ", buffer[i]);
 	  }
 	// fprintf(stderr, "values loaded to vector \n");
 	// v4si b = {5,6,7,8};

@@ -18,6 +18,10 @@ benchmark_sparse: accumulate_row.o sparse.o benchmark_sparse.c
 	gcc -std=c99 -g -O3 -msse -mavx sparse.o accumulate_row.o benchmark_sparse.c -o build/benchmark_sparse
 
 
+sse:
+	gcc -std=c99 -g -O3 -msse -mavx sse_test.c -o build/sse_test
+
+
 test: sparse_test
 	./build/sparse_test
 
