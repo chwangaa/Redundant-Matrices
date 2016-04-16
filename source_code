@@ -1,0 +1,2911 @@
+
+./build/benchmark_sparse:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000400680 <_init>:
+  400680:	48 83 ec 08          	sub    $0x8,%rsp
+  400684:	48 8b 05 6d 39 20 00 	mov    0x20396d(%rip),%rax        # 603ff8 <_DYNAMIC+0x1d0>
+  40068b:	48 85 c0             	test   %rax,%rax
+  40068e:	74 05                	je     400695 <_init+0x15>
+  400690:	e8 8b 00 00 00       	callq  400720 <__gmon_start__@plt>
+  400695:	48 83 c4 08          	add    $0x8,%rsp
+  400699:	c3                   	retq   
+
+Disassembly of section .plt:
+
+00000000004006a0 <free@plt-0x10>:
+  4006a0:	ff 35 62 39 20 00    	pushq  0x203962(%rip)        # 604008 <_GLOBAL_OFFSET_TABLE_+0x8>
+  4006a6:	ff 25 64 39 20 00    	jmpq   *0x203964(%rip)        # 604010 <_GLOBAL_OFFSET_TABLE_+0x10>
+  4006ac:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000004006b0 <free@plt>:
+  4006b0:	ff 25 62 39 20 00    	jmpq   *0x203962(%rip)        # 604018 <_GLOBAL_OFFSET_TABLE_+0x18>
+  4006b6:	68 00 00 00 00       	pushq  $0x0
+  4006bb:	e9 e0 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+00000000004006c0 <__isoc99_fscanf@plt>:
+  4006c0:	ff 25 5a 39 20 00    	jmpq   *0x20395a(%rip)        # 604020 <_GLOBAL_OFFSET_TABLE_+0x20>
+  4006c6:	68 01 00 00 00       	pushq  $0x1
+  4006cb:	e9 d0 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+00000000004006d0 <fclose@plt>:
+  4006d0:	ff 25 52 39 20 00    	jmpq   *0x203952(%rip)        # 604028 <_GLOBAL_OFFSET_TABLE_+0x28>
+  4006d6:	68 02 00 00 00       	pushq  $0x2
+  4006db:	e9 c0 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+00000000004006e0 <gettimeofday@plt>:
+  4006e0:	ff 25 4a 39 20 00    	jmpq   *0x20394a(%rip)        # 604030 <_GLOBAL_OFFSET_TABLE_+0x30>
+  4006e6:	68 03 00 00 00       	pushq  $0x3
+  4006eb:	e9 b0 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+00000000004006f0 <__assert_fail@plt>:
+  4006f0:	ff 25 42 39 20 00    	jmpq   *0x203942(%rip)        # 604038 <_GLOBAL_OFFSET_TABLE_+0x38>
+  4006f6:	68 04 00 00 00       	pushq  $0x4
+  4006fb:	e9 a0 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400700 <memset@plt>:
+  400700:	ff 25 3a 39 20 00    	jmpq   *0x20393a(%rip)        # 604040 <_GLOBAL_OFFSET_TABLE_+0x40>
+  400706:	68 05 00 00 00       	pushq  $0x5
+  40070b:	e9 90 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400710 <__libc_start_main@plt>:
+  400710:	ff 25 32 39 20 00    	jmpq   *0x203932(%rip)        # 604048 <_GLOBAL_OFFSET_TABLE_+0x48>
+  400716:	68 06 00 00 00       	pushq  $0x6
+  40071b:	e9 80 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400720 <__gmon_start__@plt>:
+  400720:	ff 25 2a 39 20 00    	jmpq   *0x20392a(%rip)        # 604050 <_GLOBAL_OFFSET_TABLE_+0x50>
+  400726:	68 07 00 00 00       	pushq  $0x7
+  40072b:	e9 70 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400730 <malloc@plt>:
+  400730:	ff 25 22 39 20 00    	jmpq   *0x203922(%rip)        # 604058 <_GLOBAL_OFFSET_TABLE_+0x58>
+  400736:	68 08 00 00 00       	pushq  $0x8
+  40073b:	e9 60 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400740 <fopen@plt>:
+  400740:	ff 25 1a 39 20 00    	jmpq   *0x20391a(%rip)        # 604060 <_GLOBAL_OFFSET_TABLE_+0x60>
+  400746:	68 09 00 00 00       	pushq  $0x9
+  40074b:	e9 50 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400750 <__fprintf_chk@plt>:
+  400750:	ff 25 12 39 20 00    	jmpq   *0x203912(%rip)        # 604068 <_GLOBAL_OFFSET_TABLE_+0x68>
+  400756:	68 0a 00 00 00       	pushq  $0xa
+  40075b:	e9 40 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+0000000000400760 <posix_memalign@plt>:
+  400760:	ff 25 0a 39 20 00    	jmpq   *0x20390a(%rip)        # 604070 <_GLOBAL_OFFSET_TABLE_+0x70>
+  400766:	68 0b 00 00 00       	pushq  $0xb
+  40076b:	e9 30 ff ff ff       	jmpq   4006a0 <_init+0x20>
+
+Disassembly of section .text:
+
+0000000000400770 <main>:
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+int main(int argc, char** argv){
+  400770:	48 83 ec 08          	sub    $0x8,%rsp
+	test_german_conv2();
+  400774:	31 c0                	xor    %eax,%eax
+  400776:	e8 a5 0d 00 00       	callq  401520 <test_german_conv2>
+  40077b:	31 c0                	xor    %eax,%eax
+  40077d:	48 83 c4 08          	add    $0x8,%rsp
+  400781:	c3                   	retq   
+
+0000000000400782 <_start>:
+  400782:	31 ed                	xor    %ebp,%ebp
+  400784:	49 89 d1             	mov    %rdx,%r9
+  400787:	5e                   	pop    %rsi
+  400788:	48 89 e2             	mov    %rsp,%rdx
+  40078b:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+  40078f:	50                   	push   %rax
+  400790:	54                   	push   %rsp
+  400791:	49 c7 c0 a0 26 40 00 	mov    $0x4026a0,%r8
+  400798:	48 c7 c1 30 26 40 00 	mov    $0x402630,%rcx
+  40079f:	48 c7 c7 70 07 40 00 	mov    $0x400770,%rdi
+  4007a6:	e8 65 ff ff ff       	callq  400710 <__libc_start_main@plt>
+  4007ab:	f4                   	hlt    
+  4007ac:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000004007b0 <deregister_tm_clones>:
+  4007b0:	b8 8f 40 60 00       	mov    $0x60408f,%eax
+  4007b5:	55                   	push   %rbp
+  4007b6:	48 2d 88 40 60 00    	sub    $0x604088,%rax
+  4007bc:	48 83 f8 0e          	cmp    $0xe,%rax
+  4007c0:	48 89 e5             	mov    %rsp,%rbp
+  4007c3:	77 02                	ja     4007c7 <deregister_tm_clones+0x17>
+  4007c5:	5d                   	pop    %rbp
+  4007c6:	c3                   	retq   
+  4007c7:	b8 00 00 00 00       	mov    $0x0,%eax
+  4007cc:	48 85 c0             	test   %rax,%rax
+  4007cf:	74 f4                	je     4007c5 <deregister_tm_clones+0x15>
+  4007d1:	5d                   	pop    %rbp
+  4007d2:	bf 88 40 60 00       	mov    $0x604088,%edi
+  4007d7:	ff e0                	jmpq   *%rax
+  4007d9:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+00000000004007e0 <register_tm_clones>:
+  4007e0:	b8 88 40 60 00       	mov    $0x604088,%eax
+  4007e5:	55                   	push   %rbp
+  4007e6:	48 2d 88 40 60 00    	sub    $0x604088,%rax
+  4007ec:	48 c1 f8 03          	sar    $0x3,%rax
+  4007f0:	48 89 e5             	mov    %rsp,%rbp
+  4007f3:	48 89 c2             	mov    %rax,%rdx
+  4007f6:	48 c1 ea 3f          	shr    $0x3f,%rdx
+  4007fa:	48 01 d0             	add    %rdx,%rax
+  4007fd:	48 d1 f8             	sar    %rax
+  400800:	75 02                	jne    400804 <register_tm_clones+0x24>
+  400802:	5d                   	pop    %rbp
+  400803:	c3                   	retq   
+  400804:	ba 00 00 00 00       	mov    $0x0,%edx
+  400809:	48 85 d2             	test   %rdx,%rdx
+  40080c:	74 f4                	je     400802 <register_tm_clones+0x22>
+  40080e:	5d                   	pop    %rbp
+  40080f:	48 89 c6             	mov    %rax,%rsi
+  400812:	bf 88 40 60 00       	mov    $0x604088,%edi
+  400817:	ff e2                	jmpq   *%rdx
+  400819:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000400820 <__do_global_dtors_aux>:
+  400820:	80 3d 69 38 20 00 00 	cmpb   $0x0,0x203869(%rip)        # 604090 <completed.6973>
+  400827:	75 11                	jne    40083a <__do_global_dtors_aux+0x1a>
+  400829:	55                   	push   %rbp
+  40082a:	48 89 e5             	mov    %rsp,%rbp
+  40082d:	e8 7e ff ff ff       	callq  4007b0 <deregister_tm_clones>
+  400832:	5d                   	pop    %rbp
+  400833:	c6 05 56 38 20 00 01 	movb   $0x1,0x203856(%rip)        # 604090 <completed.6973>
+  40083a:	f3 c3                	repz retq 
+  40083c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000400840 <frame_dummy>:
+  400840:	48 83 3d d8 35 20 00 	cmpq   $0x0,0x2035d8(%rip)        # 603e20 <__JCR_END__>
+  400847:	00 
+  400848:	74 1e                	je     400868 <frame_dummy+0x28>
+  40084a:	b8 00 00 00 00       	mov    $0x0,%eax
+  40084f:	48 85 c0             	test   %rax,%rax
+  400852:	74 14                	je     400868 <frame_dummy+0x28>
+  400854:	55                   	push   %rbp
+  400855:	bf 20 3e 60 00       	mov    $0x603e20,%edi
+  40085a:	48 89 e5             	mov    %rsp,%rbp
+  40085d:	ff d0                	callq  *%rax
+  40085f:	5d                   	pop    %rbp
+  400860:	e9 7b ff ff ff       	jmpq   4007e0 <register_tm_clones>
+  400865:	0f 1f 00             	nopl   (%rax)
+  400868:	e9 73 ff ff ff       	jmpq   4007e0 <register_tm_clones>
+  40086d:	0f 1f 00             	nopl   (%rax)
+
+0000000000400870 <init_SparseMatrix>:
+  400870:	55                   	push   %rbp
+  400871:	be b4 26 40 00       	mov    $0x4026b4,%esi
+  400876:	48 89 e5             	mov    %rsp,%rbp
+  400879:	41 57                	push   %r15
+  40087b:	41 56                	push   %r14
+  40087d:	41 55                	push   %r13
+  40087f:	41 54                	push   %r12
+  400881:	53                   	push   %rbx
+  400882:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  400886:	48 81 ec 10 01 00 00 	sub    $0x110,%rsp
+  40088d:	e8 ae fe ff ff       	callq  400740 <fopen@plt>
+  400892:	48 85 c0             	test   %rax,%rax
+  400895:	48 89 c3             	mov    %rax,%rbx
+  400898:	0f 84 c4 01 00 00    	je     400a62 <init_SparseMatrix+0x1f2>
+  40089e:	48 8d 4c 24 70       	lea    0x70(%rsp),%rcx
+  4008a3:	4c 8d 44 24 30       	lea    0x30(%rsp),%r8
+  4008a8:	48 8d 54 24 50       	lea    0x50(%rsp),%rdx
+  4008ad:	be d9 26 40 00       	mov    $0x4026d9,%esi
+  4008b2:	48 89 c7             	mov    %rax,%rdi
+  4008b5:	31 c0                	xor    %eax,%eax
+  4008b7:	e8 04 fe ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+  4008bc:	bf 18 00 00 00       	mov    $0x18,%edi
+  4008c1:	e8 6a fe ff ff       	callq  400730 <malloc@plt>
+  4008c6:	48 63 7c 24 30       	movslq 0x30(%rsp),%rdi
+  4008cb:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  4008d0:	48 c1 e7 04          	shl    $0x4,%rdi
+  4008d4:	e8 57 fe ff ff       	callq  400730 <malloc@plt>
+  4008d9:	48 89 c1             	mov    %rax,%rcx
+  4008dc:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  4008e1:	8b 44 24 30          	mov    0x30(%rsp),%eax
+  4008e5:	85 c0                	test   %eax,%eax
+  4008e7:	0f 8e 45 01 00 00    	jle    400a32 <init_SparseMatrix+0x1c2>
+  4008ed:	48 89 4c 24 20       	mov    %rcx,0x20(%rsp)
+  4008f2:	c7 44 24 28 00 00 00 	movl   $0x0,0x28(%rsp)
+  4008f9:	00 
+  4008fa:	48 8d 8c 24 b0 00 00 	lea    0xb0(%rsp),%rcx
+  400901:	00 
+  400902:	48 8d 94 24 90 00 00 	lea    0x90(%rsp),%rdx
+  400909:	00 
+  40090a:	be e2 26 40 00       	mov    $0x4026e2,%esi
+  40090f:	48 89 df             	mov    %rbx,%rdi
+  400912:	31 c0                	xor    %eax,%eax
+  400914:	e8 a7 fd ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+  400919:	48 63 bc 24 b0 00 00 	movslq 0xb0(%rsp),%rdi
+  400920:	00 
+  400921:	48 c1 e7 04          	shl    $0x4,%rdi
+  400925:	e8 06 fe ff ff       	callq  400730 <malloc@plt>
+  40092a:	49 89 c4             	mov    %rax,%r12
+  40092d:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  400932:	8b 84 24 b0 00 00 00 	mov    0xb0(%rsp),%eax
+  400939:	85 c0                	test   %eax,%eax
+  40093b:	0f 8e ba 00 00 00    	jle    4009fb <init_SparseMatrix+0x18b>
+  400941:	c7 44 24 2c 00 00 00 	movl   $0x0,0x2c(%rsp)
+  400948:	00 
+  400949:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  400950:	48 8d 8c 24 f0 00 00 	lea    0xf0(%rsp),%rcx
+  400957:	00 
+  400958:	48 8d 94 24 d0 00 00 	lea    0xd0(%rsp),%rdx
+  40095f:	00 
+  400960:	be dc 26 40 00       	mov    $0x4026dc,%esi
+  400965:	48 89 df             	mov    %rbx,%rdi
+  400968:	31 c0                	xor    %eax,%eax
+  40096a:	45 31 ff             	xor    %r15d,%r15d
+  40096d:	e8 4e fd ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+  400972:	48 63 bc 24 f0 00 00 	movslq 0xf0(%rsp),%rdi
+  400979:	00 
+  40097a:	8b 84 24 d0 00 00 00 	mov    0xd0(%rsp),%eax
+  400981:	41 89 04 24          	mov    %eax,(%r12)
+  400985:	41 89 7c 24 04       	mov    %edi,0x4(%r12)
+  40098a:	48 c1 e7 02          	shl    $0x2,%rdi
+  40098e:	e8 9d fd ff ff       	callq  400730 <malloc@plt>
+  400993:	49 89 c6             	mov    %rax,%r14
+  400996:	49 89 c5             	mov    %rax,%r13
+  400999:	8b 84 24 f0 00 00 00 	mov    0xf0(%rsp),%eax
+  4009a0:	85 c0                	test   %eax,%eax
+  4009a2:	7e 38                	jle    4009dc <init_SparseMatrix+0x16c>
+  4009a4:	0f 1f 40 00          	nopl   0x0(%rax)
+  4009a8:	48 8d 94 24 0c 01 00 	lea    0x10c(%rsp),%rdx
+  4009af:	00 
+  4009b0:	31 c0                	xor    %eax,%eax
+  4009b2:	be df 26 40 00       	mov    $0x4026df,%esi
+  4009b7:	48 89 df             	mov    %rbx,%rdi
+  4009ba:	41 83 c7 01          	add    $0x1,%r15d
+  4009be:	49 83 c5 04          	add    $0x4,%r13
+  4009c2:	e8 f9 fc ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+  4009c7:	8b 84 24 0c 01 00 00 	mov    0x10c(%rsp),%eax
+  4009ce:	41 89 45 fc          	mov    %eax,-0x4(%r13)
+  4009d2:	44 3b bc 24 f0 00 00 	cmp    0xf0(%rsp),%r15d
+  4009d9:	00 
+  4009da:	7c cc                	jl     4009a8 <init_SparseMatrix+0x138>
+  4009dc:	83 44 24 2c 01       	addl   $0x1,0x2c(%rsp)
+  4009e1:	4d 89 74 24 08       	mov    %r14,0x8(%r12)
+  4009e6:	49 83 c4 10          	add    $0x10,%r12
+  4009ea:	8b 84 24 b0 00 00 00 	mov    0xb0(%rsp),%eax
+  4009f1:	39 44 24 2c          	cmp    %eax,0x2c(%rsp)
+  4009f5:	0f 8c 55 ff ff ff    	jl     400950 <init_SparseMatrix+0xe0>
+  4009fb:	48 8b 4c 24 20       	mov    0x20(%rsp),%rcx
+  400a00:	83 44 24 28 01       	addl   $0x1,0x28(%rsp)
+  400a05:	48 83 44 24 20 10    	addq   $0x10,0x20(%rsp)
+  400a0b:	48 8b 74 24 18       	mov    0x18(%rsp),%rsi
+  400a10:	c5 fa 10 84 24 90 00 	vmovss 0x90(%rsp),%xmm0
+  400a17:	00 00 
+  400a19:	89 41 04             	mov    %eax,0x4(%rcx)
+  400a1c:	c5 fa 11 01          	vmovss %xmm0,(%rcx)
+  400a20:	8b 44 24 30          	mov    0x30(%rsp),%eax
+  400a24:	3b 44 24 28          	cmp    0x28(%rsp),%eax
+  400a28:	48 89 71 08          	mov    %rsi,0x8(%rcx)
+  400a2c:	0f 8f c8 fe ff ff    	jg     4008fa <init_SparseMatrix+0x8a>
+  400a32:	48 8b 4c 24 10       	mov    0x10(%rsp),%rcx
+  400a37:	89 01                	mov    %eax,(%rcx)
+  400a39:	48 8b 44 24 08       	mov    0x8(%rsp),%rax
+  400a3e:	48 89 41 10          	mov    %rax,0x10(%rcx)
+  400a42:	8b 44 24 70          	mov    0x70(%rsp),%eax
+  400a46:	89 41 04             	mov    %eax,0x4(%rcx)
+  400a49:	8b 44 24 50          	mov    0x50(%rsp),%eax
+  400a4d:	89 41 08             	mov    %eax,0x8(%rcx)
+  400a50:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  400a54:	48 89 c8             	mov    %rcx,%rax
+  400a57:	5b                   	pop    %rbx
+  400a58:	41 5c                	pop    %r12
+  400a5a:	41 5d                	pop    %r13
+  400a5c:	41 5e                	pop    %r14
+  400a5e:	41 5f                	pop    %r15
+  400a60:	5d                   	pop    %rbp
+  400a61:	c3                   	retq   
+  400a62:	b9 60 27 40 00       	mov    $0x402760,%ecx
+  400a67:	ba 2a 00 00 00       	mov    $0x2a,%edx
+  400a6c:	be b6 26 40 00       	mov    $0x4026b6,%esi
+  400a71:	bf c6 26 40 00       	mov    $0x4026c6,%edi
+  400a76:	e8 75 fc ff ff       	callq  4006f0 <__assert_fail@plt>
+  400a7b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000400a80 <isInMatrix>:
+  400a80:	8b 0f                	mov    (%rdi),%ecx
+  400a82:	48 8b 57 10          	mov    0x10(%rdi),%rdx
+  400a86:	85 c9                	test   %ecx,%ecx
+  400a88:	7e 1f                	jle    400aa9 <isInMatrix+0x29>
+  400a8a:	c5 f8 2e 02          	vucomiss (%rdx),%xmm0
+  400a8e:	7b 28                	jnp    400ab8 <isInMatrix+0x38>
+  400a90:	31 c0                	xor    %eax,%eax
+  400a92:	eb 0e                	jmp    400aa2 <isInMatrix+0x22>
+  400a94:	0f 1f 40 00          	nopl   0x0(%rax)
+  400a98:	48 83 c2 10          	add    $0x10,%rdx
+  400a9c:	c5 f8 2e 02          	vucomiss (%rdx),%xmm0
+  400aa0:	7b 0e                	jnp    400ab0 <isInMatrix+0x30>
+  400aa2:	83 c0 01             	add    $0x1,%eax
+  400aa5:	39 c8                	cmp    %ecx,%eax
+  400aa7:	75 ef                	jne    400a98 <isInMatrix+0x18>
+  400aa9:	31 c0                	xor    %eax,%eax
+  400aab:	c3                   	retq   
+  400aac:	0f 1f 40 00          	nopl   0x0(%rax)
+  400ab0:	75 f0                	jne    400aa2 <isInMatrix+0x22>
+  400ab2:	b8 01 00 00 00       	mov    $0x1,%eax
+  400ab7:	c3                   	retq   
+  400ab8:	75 d6                	jne    400a90 <isInMatrix+0x10>
+  400aba:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  400ac0:	eb f0                	jmp    400ab2 <isInMatrix+0x32>
+  400ac2:	66 66 66 66 66 2e 0f 	data32 data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  400ac9:	1f 84 00 00 00 00 00 
+
+0000000000400ad0 <getNumberOfCol>:
+  400ad0:	8b 47 04             	mov    0x4(%rdi),%eax
+  400ad3:	c3                   	retq   
+  400ad4:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  400adb:	00 00 00 00 00 
+
+0000000000400ae0 <getNumberOfRow>:
+  400ae0:	8b 47 08             	mov    0x8(%rdi),%eax
+  400ae3:	c3                   	retq   
+  400ae4:	66 66 66 2e 0f 1f 84 	data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  400aeb:	00 00 00 00 00 
+
+0000000000400af0 <getNumberOfDistinctElement>:
+  400af0:	8b 07                	mov    (%rdi),%eax
+  400af2:	c3                   	retq   
+  400af3:	66 66 66 66 2e 0f 1f 	data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  400afa:	84 00 00 00 00 00 
+
+0000000000400b00 <getScalers>:
+  400b00:	48 8b 47 10          	mov    0x10(%rdi),%rax
+  400b04:	c3                   	retq   
+  400b05:	66 66 2e 0f 1f 84 00 	data32 nopw %cs:0x0(%rax,%rax,1)
+  400b0c:	00 00 00 00 
+
+0000000000400b10 <scaleRow>:
+  400b10:	c5 f8 c6 c0 00       	vshufps $0x0,%xmm0,%xmm0,%xmm0
+  400b15:	85 ff                	test   %edi,%edi
+  400b17:	c4 e3 7d 18 c0 01    	vinsertf128 $0x1,%xmm0,%ymm0,%ymm0
+  400b1d:	7e 29                	jle    400b48 <scaleRow+0x38>
+  400b1f:	8d 4f ff             	lea    -0x1(%rdi),%ecx
+  400b22:	31 c0                	xor    %eax,%eax
+  400b24:	c1 e9 03             	shr    $0x3,%ecx
+  400b27:	48 83 c1 01          	add    $0x1,%rcx
+  400b2b:	48 c1 e1 05          	shl    $0x5,%rcx
+  400b2f:	90                   	nop
+  400b30:	c5 fc 59 0c 06       	vmulps (%rsi,%rax,1),%ymm0,%ymm1
+  400b35:	c5 f4 58 0c 02       	vaddps (%rdx,%rax,1),%ymm1,%ymm1
+  400b3a:	c5 fc 29 0c 02       	vmovaps %ymm1,(%rdx,%rax,1)
+  400b3f:	48 83 c0 20          	add    $0x20,%rax
+  400b43:	48 39 c8             	cmp    %rcx,%rax
+  400b46:	75 e8                	jne    400b30 <scaleRow+0x20>
+  400b48:	c5 f8 77             	vzeroupper 
+  400b4b:	c3                   	retq   
+  400b4c:	0f 1f 40 00          	nopl   0x0(%rax)
+
+0000000000400b50 <ScaleMatrixTo>:
+  400b50:	55                   	push   %rbp
+  400b51:	48 89 e5             	mov    %rsp,%rbp
+  400b54:	41 57                	push   %r15
+  400b56:	49 89 ff             	mov    %rdi,%r15
+  400b59:	49 c1 ff 20          	sar    $0x20,%r15
+  400b5d:	41 56                	push   %r14
+  400b5f:	41 55                	push   %r13
+  400b61:	41 54                	push   %r12
+  400b63:	45 89 c4             	mov    %r8d,%r12d
+  400b66:	53                   	push   %rbx
+  400b67:	48 89 f3             	mov    %rsi,%rbx
+  400b6a:	be 20 00 00 00       	mov    $0x20,%esi
+  400b6f:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  400b73:	48 83 ec 60          	sub    $0x60,%rsp
+  400b77:	48 89 54 24 30       	mov    %rdx,0x30(%rsp)
+  400b7c:	89 7c 24 38          	mov    %edi,0x38(%rsp)
+  400b80:	49 63 d0             	movslq %r8d,%rdx
+  400b83:	48 8d 7c 24 40       	lea    0x40(%rsp),%rdi
+  400b88:	48 c1 e2 02          	shl    $0x2,%rdx
+  400b8c:	44 89 4c 24 2c       	mov    %r9d,0x2c(%rsp)
+  400b91:	e8 ca fb ff ff       	callq  400760 <posix_memalign@plt>
+  400b96:	85 c0                	test   %eax,%eax
+  400b98:	0f 85 d0 00 00 00    	jne    400c6e <ScaleMatrixTo+0x11e>
+  400b9e:	4c 8b 74 24 40       	mov    0x40(%rsp),%r14
+  400ba3:	45 85 ff             	test   %r15d,%r15d
+  400ba6:	0f 8e ab 00 00 00    	jle    400c57 <ScaleMatrixTo+0x107>
+  400bac:	41 8d 57 ff          	lea    -0x1(%r15),%edx
+  400bb0:	c4 e2 7d 18 4c 24 38 	vbroadcastss 0x38(%rsp),%ymm1
+  400bb7:	49 89 dd             	mov    %rbx,%r13
+  400bba:	48 c1 e2 04          	shl    $0x4,%rdx
+  400bbe:	c5 fc 29 0c 24       	vmovaps %ymm1,(%rsp)
+  400bc3:	48 8d 44 13 10       	lea    0x10(%rbx,%rdx,1),%rax
+  400bc8:	41 8d 54 24 ff       	lea    -0x1(%r12),%edx
+  400bcd:	c1 ea 03             	shr    $0x3,%edx
+  400bd0:	48 89 44 24 38       	mov    %rax,0x38(%rsp)
+  400bd5:	4c 8d 7a 01          	lea    0x1(%rdx),%r15
+  400bd9:	49 c1 e7 05          	shl    $0x5,%r15
+  400bdd:	c5 f8 77             	vzeroupper 
+  400be0:	41 8b 55 00          	mov    0x0(%r13),%edx
+  400be4:	8b 4d 28             	mov    0x28(%rbp),%ecx
+  400be7:	48 bf 00 00 00 00 ff 	movabs $0xffffffff00000000,%rdi
+  400bee:	ff ff ff 
+  400bf1:	49 23 7d 00          	and    0x0(%r13),%rdi
+  400bf5:	48 8b 45 10          	mov    0x10(%rbp),%rax
+  400bf9:	4d 89 f1             	mov    %r14,%r9
+  400bfc:	49 8b 75 08          	mov    0x8(%r13),%rsi
+  400c00:	44 8b 44 24 2c       	mov    0x2c(%rsp),%r8d
+  400c05:	0f af ca             	imul   %edx,%ecx
+  400c08:	48 09 d7             	or     %rdx,%rdi
+  400c0b:	48 8b 54 24 30       	mov    0x30(%rsp),%rdx
+  400c10:	48 63 c9             	movslq %ecx,%rcx
+  400c13:	48 8d 1c 88          	lea    (%rax,%rcx,4),%rbx
+  400c17:	44 89 e1             	mov    %r12d,%ecx
+  400c1a:	e8 91 02 00 00       	callq  400eb0 <accumulate_rows>
+  400c1f:	31 d2                	xor    %edx,%edx
+  400c21:	45 85 e4             	test   %r12d,%r12d
+  400c24:	7e 26                	jle    400c4c <ScaleMatrixTo+0xfc>
+  400c26:	c5 fc 28 0c 24       	vmovaps (%rsp),%ymm1
+  400c2b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  400c30:	c4 c1 74 59 04 16    	vmulps (%r14,%rdx,1),%ymm1,%ymm0
+  400c36:	c5 fc 58 04 13       	vaddps (%rbx,%rdx,1),%ymm0,%ymm0
+  400c3b:	c5 fc 29 04 13       	vmovaps %ymm0,(%rbx,%rdx,1)
+  400c40:	48 83 c2 20          	add    $0x20,%rdx
+  400c44:	4c 39 fa             	cmp    %r15,%rdx
+  400c47:	75 e7                	jne    400c30 <ScaleMatrixTo+0xe0>
+  400c49:	c5 f8 77             	vzeroupper 
+  400c4c:	49 83 c5 10          	add    $0x10,%r13
+  400c50:	4c 3b 6c 24 38       	cmp    0x38(%rsp),%r13
+  400c55:	75 89                	jne    400be0 <ScaleMatrixTo+0x90>
+  400c57:	4c 89 f7             	mov    %r14,%rdi
+  400c5a:	e8 51 fa ff ff       	callq  4006b0 <free@plt>
+  400c5f:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  400c63:	5b                   	pop    %rbx
+  400c64:	41 5c                	pop    %r12
+  400c66:	41 5d                	pop    %r13
+  400c68:	41 5e                	pop    %r14
+  400c6a:	41 5f                	pop    %r15
+  400c6c:	5d                   	pop    %rbp
+  400c6d:	c3                   	retq   
+  400c6e:	45 31 f6             	xor    %r14d,%r14d
+  400c71:	e9 2d ff ff ff       	jmpq   400ba3 <ScaleMatrixTo+0x53>
+  400c76:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  400c7d:	00 00 00 
+
+0000000000400c80 <SparseMatrixMultiplication>:
+  400c80:	55                   	push   %rbp
+  400c81:	48 89 e5             	mov    %rsp,%rbp
+  400c84:	41 57                	push   %r15
+  400c86:	41 56                	push   %r14
+  400c88:	41 55                	push   %r13
+  400c8a:	41 54                	push   %r12
+  400c8c:	53                   	push   %rbx
+  400c8d:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  400c91:	48 83 ec 70          	sub    $0x70,%rsp
+  400c95:	4c 89 44 24 40       	mov    %r8,0x40(%rsp)
+  400c9a:	41 83 e0 1f          	and    $0x1f,%r8d
+  400c9e:	44 89 4c 24 3c       	mov    %r9d,0x3c(%rsp)
+  400ca3:	0f 85 b2 01 00 00    	jne    400e5b <SparseMatrixMultiplication+0x1db>
+  400ca9:	3b 79 08             	cmp    0x8(%rcx),%edi
+  400cac:	0f 85 c2 01 00 00    	jne    400e74 <SparseMatrixMultiplication+0x1f4>
+  400cb2:	3b 51 04             	cmp    0x4(%rcx),%edx
+  400cb5:	0f 85 d2 01 00 00    	jne    400e8d <SparseMatrixMultiplication+0x20d>
+  400cbb:	8b 01                	mov    (%rcx),%eax
+  400cbd:	48 8b 51 10          	mov    0x10(%rcx),%rdx
+  400cc1:	85 c0                	test   %eax,%eax
+  400cc3:	0f 8e 7b 01 00 00    	jle    400e44 <SparseMatrixMultiplication+0x1c4>
+  400cc9:	83 e8 01             	sub    $0x1,%eax
+  400ccc:	41 89 f4             	mov    %esi,%r12d
+  400ccf:	48 63 ce             	movslq %esi,%rcx
+  400cd2:	48 c1 e0 04          	shl    $0x4,%rax
+  400cd6:	48 8d 34 8d 00 00 00 	lea    0x0(,%rcx,4),%rsi
+  400cdd:	00 
+  400cde:	48 89 54 24 30       	mov    %rdx,0x30(%rsp)
+  400ce3:	48 8d 44 02 10       	lea    0x10(%rdx,%rax,1),%rax
+  400ce8:	48 89 34 24          	mov    %rsi,(%rsp)
+  400cec:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+  400cf1:	41 8d 44 24 ff       	lea    -0x1(%r12),%eax
+  400cf6:	c1 e8 03             	shr    $0x3,%eax
+  400cf9:	4c 8d 78 01          	lea    0x1(%rax),%r15
+  400cfd:	49 c1 e7 05          	shl    $0x5,%r15
+  400d01:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  400d08:	48 8b 44 24 30       	mov    0x30(%rsp),%rax
+  400d0d:	c5 fb 10 15 63 1a 00 	vmovsd 0x1a63(%rip),%xmm2        # 402778 <__PRETTY_FUNCTION__.6066+0x18>
+  400d14:	00 
+  400d15:	c5 fa 10 08          	vmovss (%rax),%xmm1
+  400d19:	8b 58 04             	mov    0x4(%rax),%ebx
+  400d1c:	c5 f0 14 c9          	vunpcklps %xmm1,%xmm1,%xmm1
+  400d20:	4c 8b 68 08          	mov    0x8(%rax),%r13
+  400d24:	c5 f8 5a c1          	vcvtps2pd %xmm1,%xmm0
+  400d28:	c5 f9 2e d0          	vucomisd %xmm0,%xmm2
+  400d2c:	76 0e                	jbe    400d3c <SparseMatrixMultiplication+0xbc>
+  400d2e:	c5 f9 2e 05 4a 1a 00 	vucomisd 0x1a4a(%rip),%xmm0        # 402780 <__PRETTY_FUNCTION__.6066+0x20>
+  400d35:	00 
+  400d36:	0f 87 f2 00 00 00    	ja     400e2e <SparseMatrixMultiplication+0x1ae>
+  400d3c:	48 8b 14 24          	mov    (%rsp),%rdx
+  400d40:	48 8d 7c 24 50       	lea    0x50(%rsp),%rdi
+  400d45:	be 20 00 00 00       	mov    $0x20,%esi
+  400d4a:	c5 fa 11 4c 24 48    	vmovss %xmm1,0x48(%rsp)
+  400d50:	e8 0b fa ff ff       	callq  400760 <posix_memalign@plt>
+  400d55:	85 c0                	test   %eax,%eax
+  400d57:	c5 fa 10 4c 24 48    	vmovss 0x48(%rsp),%xmm1
+  400d5d:	0f 85 f0 00 00 00    	jne    400e53 <SparseMatrixMultiplication+0x1d3>
+  400d63:	4c 8b 74 24 50       	mov    0x50(%rsp),%r14
+  400d68:	85 db                	test   %ebx,%ebx
+  400d6a:	0f 8e b6 00 00 00    	jle    400e26 <SparseMatrixMultiplication+0x1a6>
+  400d70:	8d 53 ff             	lea    -0x1(%rbx),%edx
+  400d73:	c5 f0 c6 c9 00       	vshufps $0x0,%xmm1,%xmm1,%xmm1
+  400d78:	48 c1 e2 04          	shl    $0x4,%rdx
+  400d7c:	49 8d 44 15 10       	lea    0x10(%r13,%rdx,1),%rax
+  400d81:	c4 e3 75 18 c9 01    	vinsertf128 $0x1,%xmm1,%ymm1,%ymm1
+  400d87:	48 89 44 24 48       	mov    %rax,0x48(%rsp)
+  400d8c:	4c 89 f8             	mov    %r15,%rax
+  400d8f:	4d 89 ef             	mov    %r13,%r15
+  400d92:	4d 89 f5             	mov    %r14,%r13
+  400d95:	49 89 c6             	mov    %rax,%r14
+  400d98:	c5 fc 29 4c 24 10    	vmovaps %ymm1,0x10(%rsp)
+  400d9e:	c5 f8 77             	vzeroupper 
+  400da1:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  400da8:	41 8b 17             	mov    (%r15),%edx
+  400dab:	48 bf 00 00 00 00 ff 	movabs $0xffffffff00000000,%rdi
+  400db2:	ff ff ff 
+  400db5:	4d 89 e9             	mov    %r13,%r9
+  400db8:	8b 4d 18             	mov    0x18(%rbp),%ecx
+  400dbb:	49 23 3f             	and    (%r15),%rdi
+  400dbe:	48 8b 45 10          	mov    0x10(%rbp),%rax
+  400dc2:	49 8b 77 08          	mov    0x8(%r15),%rsi
+  400dc6:	44 8b 44 24 3c       	mov    0x3c(%rsp),%r8d
+  400dcb:	0f af ca             	imul   %edx,%ecx
+  400dce:	48 09 d7             	or     %rdx,%rdi
+  400dd1:	48 8b 54 24 40       	mov    0x40(%rsp),%rdx
+  400dd6:	48 63 c9             	movslq %ecx,%rcx
+  400dd9:	48 8d 1c 88          	lea    (%rax,%rcx,4),%rbx
+  400ddd:	44 89 e1             	mov    %r12d,%ecx
+  400de0:	e8 cb 00 00 00       	callq  400eb0 <accumulate_rows>
+  400de5:	31 d2                	xor    %edx,%edx
+  400de7:	45 85 e4             	test   %r12d,%r12d
+  400dea:	7e 29                	jle    400e15 <SparseMatrixMultiplication+0x195>
+  400dec:	c5 fc 28 4c 24 10    	vmovaps 0x10(%rsp),%ymm1
+  400df2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  400df8:	c4 c1 74 59 44 15 00 	vmulps 0x0(%r13,%rdx,1),%ymm1,%ymm0
+  400dff:	c5 fc 58 04 13       	vaddps (%rbx,%rdx,1),%ymm0,%ymm0
+  400e04:	c5 fc 29 04 13       	vmovaps %ymm0,(%rbx,%rdx,1)
+  400e09:	48 83 c2 20          	add    $0x20,%rdx
+  400e0d:	4c 39 f2             	cmp    %r14,%rdx
+  400e10:	75 e6                	jne    400df8 <SparseMatrixMultiplication+0x178>
+  400e12:	c5 f8 77             	vzeroupper 
+  400e15:	49 83 c7 10          	add    $0x10,%r15
+  400e19:	4c 3b 7c 24 48       	cmp    0x48(%rsp),%r15
+  400e1e:	75 88                	jne    400da8 <SparseMatrixMultiplication+0x128>
+  400e20:	4d 89 f7             	mov    %r14,%r15
+  400e23:	4d 89 ee             	mov    %r13,%r14
+  400e26:	4c 89 f7             	mov    %r14,%rdi
+  400e29:	e8 82 f8 ff ff       	callq  4006b0 <free@plt>
+  400e2e:	48 83 44 24 30 10    	addq   $0x10,0x30(%rsp)
+  400e34:	48 8b 44 24 08       	mov    0x8(%rsp),%rax
+  400e39:	48 39 44 24 30       	cmp    %rax,0x30(%rsp)
+  400e3e:	0f 85 c4 fe ff ff    	jne    400d08 <SparseMatrixMultiplication+0x88>
+  400e44:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  400e48:	5b                   	pop    %rbx
+  400e49:	41 5c                	pop    %r12
+  400e4b:	41 5d                	pop    %r13
+  400e4d:	41 5e                	pop    %r14
+  400e4f:	41 5f                	pop    %r15
+  400e51:	5d                   	pop    %rbp
+  400e52:	c3                   	retq   
+  400e53:	45 31 f6             	xor    %r14d,%r14d
+  400e56:	e9 0d ff ff ff       	jmpq   400d68 <SparseMatrixMultiplication+0xe8>
+  400e5b:	b9 40 27 40 00       	mov    $0x402740,%ecx
+  400e60:	ba 7c 00 00 00       	mov    $0x7c,%edx
+  400e65:	be b6 26 40 00       	mov    $0x4026b6,%esi
+  400e6a:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  400e6f:	e8 7c f8 ff ff       	callq  4006f0 <__assert_fail@plt>
+  400e74:	b9 40 27 40 00       	mov    $0x402740,%ecx
+  400e79:	ba 7d 00 00 00       	mov    $0x7d,%edx
+  400e7e:	be b6 26 40 00       	mov    $0x4026b6,%esi
+  400e83:	bf 05 27 40 00       	mov    $0x402705,%edi
+  400e88:	e8 63 f8 ff ff       	callq  4006f0 <__assert_fail@plt>
+  400e8d:	b9 40 27 40 00       	mov    $0x402740,%ecx
+  400e92:	ba 7e 00 00 00       	mov    $0x7e,%edx
+  400e97:	be b6 26 40 00       	mov    $0x4026b6,%esi
+  400e9c:	bf 1c 27 40 00       	mov    $0x40271c,%edi
+  400ea1:	e8 4a f8 ff ff       	callq  4006f0 <__assert_fail@plt>
+  400ea6:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  400ead:	00 00 00 
+
+0000000000400eb0 <accumulate_rows>:
+  400eb0:	55                   	push   %rbp
+  400eb1:	89 c8                	mov    %ecx,%eax
+  400eb3:	48 89 e5             	mov    %rsp,%rbp
+  400eb6:	41 57                	push   %r15
+  400eb8:	41 56                	push   %r14
+  400eba:	41 55                	push   %r13
+  400ebc:	41 54                	push   %r12
+  400ebe:	49 89 fc             	mov    %rdi,%r12
+  400ec1:	49 c1 fc 20          	sar    $0x20,%r12
+  400ec5:	53                   	push   %rbx
+  400ec6:	48 89 d3             	mov    %rdx,%rbx
+  400ec9:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  400ecd:	48 81 ec 50 01 00 00 	sub    $0x150,%rsp
+  400ed4:	85 c0                	test   %eax,%eax
+  400ed6:	89 4c 24 14          	mov    %ecx,0x14(%rsp)
+  400eda:	48 89 74 24 08       	mov    %rsi,0x8(%rsp)
+  400edf:	44 89 c1             	mov    %r8d,%ecx
+  400ee2:	4c 89 4c 24 28       	mov    %r9,0x28(%rsp)
+  400ee7:	7e 1c                	jle    400f05 <accumulate_rows+0x55>
+  400ee9:	48 63 54 24 14       	movslq 0x14(%rsp),%rdx
+  400eee:	4c 89 cf             	mov    %r9,%rdi
+  400ef1:	31 f6                	xor    %esi,%esi
+  400ef3:	44 89 44 24 20       	mov    %r8d,0x20(%rsp)
+  400ef8:	48 c1 e2 02          	shl    $0x2,%rdx
+  400efc:	e8 ff f7 ff ff       	callq  400700 <memset@plt>
+  400f01:	8b 4c 24 20          	mov    0x20(%rsp),%ecx
+  400f05:	44 89 e0             	mov    %r12d,%eax
+  400f08:	c1 f8 1f             	sar    $0x1f,%eax
+  400f0b:	c1 e8 1d             	shr    $0x1d,%eax
+  400f0e:	42 8d 34 20          	lea    (%rax,%r12,1),%esi
+  400f12:	89 74 24 1c          	mov    %esi,0x1c(%rsp)
+  400f16:	83 64 24 1c 07       	andl   $0x7,0x1c(%rsp)
+  400f1b:	29 44 24 1c          	sub    %eax,0x1c(%rsp)
+  400f1f:	31 c0                	xor    %eax,%eax
+  400f21:	44 2b 64 24 1c       	sub    0x1c(%rsp),%r12d
+  400f26:	45 85 e4             	test   %r12d,%r12d
+  400f29:	0f 8e ac 01 00 00    	jle    4010db <loop+0x7e>
+  400f2f:	41 8d 74 24 ff       	lea    -0x1(%r12),%esi
+  400f34:	48 8b 7c 24 08       	mov    0x8(%rsp),%rdi
+  400f39:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  400f3d:	89 74 24 18          	mov    %esi,0x18(%rsp)
+  400f41:	c1 6c 24 18 03       	shrl   $0x3,0x18(%rsp)
+  400f46:	8b 74 24 18          	mov    0x18(%rsp),%esi
+  400f4a:	c1 e0 02             	shl    $0x2,%eax
+  400f4d:	48 89 fa             	mov    %rdi,%rdx
+  400f50:	48 c1 e6 05          	shl    $0x5,%rsi
+  400f54:	48 8d 74 37 20       	lea    0x20(%rdi,%rsi,1),%rsi
+  400f59:	48 89 74 24 20       	mov    %rsi,0x20(%rsp)
+  400f5e:	66 90                	xchg   %ax,%ax
+  400f60:	48 8b 7c 24 28       	mov    0x28(%rsp),%rdi
+  400f65:	44 8b 62 04          	mov    0x4(%rdx),%r12d
+  400f69:	44 8b 5a 08          	mov    0x8(%rdx),%r11d
+  400f6d:	44 8b 52 0c          	mov    0xc(%rdx),%r10d
+  400f71:	44 8b 4a 10          	mov    0x10(%rdx),%r9d
+  400f75:	44 8b 42 14          	mov    0x14(%rdx),%r8d
+  400f79:	48 89 7c 24 30       	mov    %rdi,0x30(%rsp)
+  400f7e:	8b 72 1c             	mov    0x1c(%rdx),%esi
+  400f81:	8b 7a 18             	mov    0x18(%rdx),%edi
+  400f84:	44 8b 2a             	mov    (%rdx),%r13d
+  400f87:	44 0f af e1          	imul   %ecx,%r12d
+  400f8b:	44 0f af d9          	imul   %ecx,%r11d
+  400f8f:	4d 63 e4             	movslq %r12d,%r12
+  400f92:	44 0f af e9          	imul   %ecx,%r13d
+  400f96:	4d 63 db             	movslq %r11d,%r11
+  400f99:	4e 8d 24 a3          	lea    (%rbx,%r12,4),%r12
+  400f9d:	44 0f af d1          	imul   %ecx,%r10d
+  400fa1:	4e 8d 1c 9b          	lea    (%rbx,%r11,4),%r11
+  400fa5:	4c 89 64 24 70       	mov    %r12,0x70(%rsp)
+  400faa:	4d 63 ed             	movslq %r13d,%r13
+  400fad:	4c 89 9c 24 90 00 00 	mov    %r11,0x90(%rsp)
+  400fb4:	00 
+  400fb5:	44 0f af c9          	imul   %ecx,%r9d
+  400fb9:	4d 63 d2             	movslq %r10d,%r10
+  400fbc:	4e 8d 2c ab          	lea    (%rbx,%r13,4),%r13
+  400fc0:	44 0f af c1          	imul   %ecx,%r8d
+  400fc4:	4e 8d 14 93          	lea    (%rbx,%r10,4),%r10
+  400fc8:	4c 89 6c 24 50       	mov    %r13,0x50(%rsp)
+  400fcd:	4d 63 c9             	movslq %r9d,%r9
+  400fd0:	4c 89 94 24 b0 00 00 	mov    %r10,0xb0(%rsp)
+  400fd7:	00 
+  400fd8:	0f af f9             	imul   %ecx,%edi
+  400fdb:	4d 63 c0             	movslq %r8d,%r8
+  400fde:	4e 8d 0c 8b          	lea    (%rbx,%r9,4),%r9
+  400fe2:	0f af f1             	imul   %ecx,%esi
+  400fe5:	4e 8d 04 83          	lea    (%rbx,%r8,4),%r8
+  400fe9:	4c 89 8c 24 d0 00 00 	mov    %r9,0xd0(%rsp)
+  400ff0:	00 
+  400ff1:	48 63 ff             	movslq %edi,%rdi
+  400ff4:	4c 89 84 24 f0 00 00 	mov    %r8,0xf0(%rsp)
+  400ffb:	00 
+  400ffc:	48 63 f6             	movslq %esi,%rsi
+  400fff:	48 8d 3c bb          	lea    (%rbx,%rdi,4),%rdi
+  401003:	48 8d 34 b3          	lea    (%rbx,%rsi,4),%rsi
+  401007:	48 89 bc 24 10 01 00 	mov    %rdi,0x110(%rsp)
+  40100e:	00 
+  40100f:	48 89 b4 24 30 01 00 	mov    %rsi,0x130(%rsp)
+  401016:	00 
+  401017:	4c 8b 7c 24 50       	mov    0x50(%rsp),%r15
+  40101c:	4c 8b 74 24 70       	mov    0x70(%rsp),%r14
+  401021:	4c 8b ac 24 90 00 00 	mov    0x90(%rsp),%r13
+  401028:	00 
+  401029:	4c 8b a4 24 b0 00 00 	mov    0xb0(%rsp),%r12
+  401030:	00 
+  401031:	4c 8b 9c 24 d0 00 00 	mov    0xd0(%rsp),%r11
+  401038:	00 
+  401039:	4c 8b 94 24 f0 00 00 	mov    0xf0(%rsp),%r10
+  401040:	00 
+  401041:	4c 8b 8c 24 10 01 00 	mov    0x110(%rsp),%r9
+  401048:	00 
+  401049:	4c 8b 84 24 30 01 00 	mov    0x130(%rsp),%r8
+  401050:	00 
+  401051:	48 8b 7c 24 30       	mov    0x30(%rsp),%rdi
+  401056:	48 c7 c6 00 00 00 00 	mov    $0x0,%rsi
+
+000000000040105d <loop>:
+  40105d:	c4 c1 7c 28 04 37    	vmovaps (%r15,%rsi,1),%ymm0
+  401063:	c4 c1 7c 28 0c 36    	vmovaps (%r14,%rsi,1),%ymm1
+  401069:	c4 c1 7c 28 54 35 00 	vmovaps 0x0(%r13,%rsi,1),%ymm2
+  401070:	c4 c1 7c 28 1c 34    	vmovaps (%r12,%rsi,1),%ymm3
+  401076:	c4 c1 7c 28 24 33    	vmovaps (%r11,%rsi,1),%ymm4
+  40107c:	c4 c1 7c 28 2c 32    	vmovaps (%r10,%rsi,1),%ymm5
+  401082:	c4 c1 7c 28 34 31    	vmovaps (%r9,%rsi,1),%ymm6
+  401088:	c4 c1 7c 28 3c 30    	vmovaps (%r8,%rsi,1),%ymm7
+  40108e:	c5 7c 28 04 37       	vmovaps (%rdi,%rsi,1),%ymm8
+  401093:	c5 f4 58 c0          	vaddps %ymm0,%ymm1,%ymm0
+  401097:	c5 e4 58 d2          	vaddps %ymm2,%ymm3,%ymm2
+  40109b:	c5 d4 58 e4          	vaddps %ymm4,%ymm5,%ymm4
+  40109f:	c5 c4 58 f6          	vaddps %ymm6,%ymm7,%ymm6
+  4010a3:	c5 ec 58 c0          	vaddps %ymm0,%ymm2,%ymm0
+  4010a7:	c5 cc 58 e4          	vaddps %ymm4,%ymm6,%ymm4
+  4010ab:	c5 dc 58 c0          	vaddps %ymm0,%ymm4,%ymm0
+  4010af:	c5 bc 58 c0          	vaddps %ymm0,%ymm8,%ymm0
+  4010b3:	c5 fc 29 04 37       	vmovaps %ymm0,(%rdi,%rsi,1)
+  4010b8:	48 83 c6 20          	add    $0x20,%rsi
+  4010bc:	48 39 f0             	cmp    %rsi,%rax
+  4010bf:	7f 9c                	jg     40105d <loop>
+  4010c1:	48 83 c2 20          	add    $0x20,%rdx
+  4010c5:	48 3b 54 24 20       	cmp    0x20(%rsp),%rdx
+  4010ca:	0f 85 90 fe ff ff    	jne    400f60 <accumulate_rows+0xb0>
+  4010d0:	8b 44 24 18          	mov    0x18(%rsp),%eax
+  4010d4:	8d 04 c5 08 00 00 00 	lea    0x8(,%rax,8),%eax
+  4010db:	8b 54 24 1c          	mov    0x1c(%rsp),%edx
+  4010df:	85 d2                	test   %edx,%edx
+  4010e1:	75 15                	jne    4010f8 <loop+0x9b>
+  4010e3:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  4010e7:	5b                   	pop    %rbx
+  4010e8:	41 5c                	pop    %r12
+  4010ea:	41 5d                	pop    %r13
+  4010ec:	41 5e                	pop    %r14
+  4010ee:	41 5f                	pop    %r15
+  4010f0:	5d                   	pop    %rbp
+  4010f1:	c3                   	retq   
+  4010f2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4010f8:	48 8b 74 24 08       	mov    0x8(%rsp),%rsi
+  4010fd:	48 98                	cltq   
+  4010ff:	48 8d 04 86          	lea    (%rsi,%rax,4),%rax
+  401103:	8b 74 24 1c          	mov    0x1c(%rsp),%esi
+  401107:	83 fe 07             	cmp    $0x7,%esi
+  40110a:	0f 87 c3 03 00 00    	ja     4014d3 <loop+0x476>
+  401110:	89 f2                	mov    %esi,%edx
+  401112:	ff 24 d5 a0 27 40 00 	jmpq   *0x4027a0(,%rdx,8)
+  401119:	8b 10                	mov    (%rax),%edx
+  40111b:	0f af d1             	imul   %ecx,%edx
+  40111e:	48 63 d2             	movslq %edx,%rdx
+  401121:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  401125:	8b 50 04             	mov    0x4(%rax),%edx
+  401128:	0f af d1             	imul   %ecx,%edx
+  40112b:	48 63 d2             	movslq %edx,%rdx
+  40112e:	48 8d 3c 93          	lea    (%rbx,%rdx,4),%rdi
+  401132:	8b 50 08             	mov    0x8(%rax),%edx
+  401135:	0f af d1             	imul   %ecx,%edx
+  401138:	48 63 d2             	movslq %edx,%rdx
+  40113b:	4c 8d 04 93          	lea    (%rbx,%rdx,4),%r8
+  40113f:	8b 50 0c             	mov    0xc(%rax),%edx
+  401142:	0f af d1             	imul   %ecx,%edx
+  401145:	48 63 d2             	movslq %edx,%rdx
+  401148:	4c 8d 0c 93          	lea    (%rbx,%rdx,4),%r9
+  40114c:	8b 50 10             	mov    0x10(%rax),%edx
+  40114f:	0f af d1             	imul   %ecx,%edx
+  401152:	48 63 d2             	movslq %edx,%rdx
+  401155:	4c 8d 14 93          	lea    (%rbx,%rdx,4),%r10
+  401159:	8b 50 14             	mov    0x14(%rax),%edx
+  40115c:	0f af d1             	imul   %ecx,%edx
+  40115f:	0f af 48 18          	imul   0x18(%rax),%ecx
+  401163:	48 63 d2             	movslq %edx,%rdx
+  401166:	4c 8d 1c 93          	lea    (%rbx,%rdx,4),%r11
+  40116a:	48 63 c1             	movslq %ecx,%rax
+  40116d:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  401171:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  401175:	85 c0                	test   %eax,%eax
+  401177:	0f 8e 66 ff ff ff    	jle    4010e3 <loop+0x86>
+  40117d:	83 e8 01             	sub    $0x1,%eax
+  401180:	48 8b 5c 24 28       	mov    0x28(%rsp),%rbx
+  401185:	c1 e8 03             	shr    $0x3,%eax
+  401188:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  40118c:	31 c0                	xor    %eax,%eax
+  40118e:	48 c1 e2 05          	shl    $0x5,%rdx
+  401192:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  401198:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  40119d:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  4011a2:	c4 c1 7c 58 04 00    	vaddps (%r8,%rax,1),%ymm0,%ymm0
+  4011a8:	c4 c1 7c 58 04 01    	vaddps (%r9,%rax,1),%ymm0,%ymm0
+  4011ae:	c4 c1 7c 58 04 02    	vaddps (%r10,%rax,1),%ymm0,%ymm0
+  4011b4:	c4 c1 7c 58 04 03    	vaddps (%r11,%rax,1),%ymm0,%ymm0
+  4011ba:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  4011bf:	c5 fc 58 04 03       	vaddps (%rbx,%rax,1),%ymm0,%ymm0
+  4011c4:	c5 fc 29 04 03       	vmovaps %ymm0,(%rbx,%rax,1)
+  4011c9:	48 83 c0 20          	add    $0x20,%rax
+  4011cd:	48 39 d0             	cmp    %rdx,%rax
+  4011d0:	75 c6                	jne    401198 <loop+0x13b>
+  4011d2:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4011d8:	c5 f8 77             	vzeroupper 
+  4011db:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  4011df:	5b                   	pop    %rbx
+  4011e0:	41 5c                	pop    %r12
+  4011e2:	41 5d                	pop    %r13
+  4011e4:	41 5e                	pop    %r14
+  4011e6:	41 5f                	pop    %r15
+  4011e8:	5d                   	pop    %rbp
+  4011e9:	c3                   	retq   
+  4011ea:	0f af 08             	imul   (%rax),%ecx
+  4011ed:	48 63 c1             	movslq %ecx,%rax
+  4011f0:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  4011f4:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  4011f8:	85 c0                	test   %eax,%eax
+  4011fa:	0f 8e e3 fe ff ff    	jle    4010e3 <loop+0x86>
+  401200:	83 e8 01             	sub    $0x1,%eax
+  401203:	48 8b 74 24 28       	mov    0x28(%rsp),%rsi
+  401208:	c1 e8 03             	shr    $0x3,%eax
+  40120b:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  40120f:	31 c0                	xor    %eax,%eax
+  401211:	48 c1 e2 05          	shl    $0x5,%rdx
+  401215:	0f 1f 00             	nopl   (%rax)
+  401218:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  40121d:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  401222:	c5 fc 29 04 06       	vmovaps %ymm0,(%rsi,%rax,1)
+  401227:	48 83 c0 20          	add    $0x20,%rax
+  40122b:	48 39 d0             	cmp    %rdx,%rax
+  40122e:	75 e8                	jne    401218 <loop+0x1bb>
+  401230:	eb a6                	jmp    4011d8 <loop+0x17b>
+  401232:	8b 10                	mov    (%rax),%edx
+  401234:	0f af d1             	imul   %ecx,%edx
+  401237:	0f af 48 04          	imul   0x4(%rax),%ecx
+  40123b:	48 63 d2             	movslq %edx,%rdx
+  40123e:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  401242:	48 63 c1             	movslq %ecx,%rax
+  401245:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  401249:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  40124d:	85 c0                	test   %eax,%eax
+  40124f:	0f 8e 8e fe ff ff    	jle    4010e3 <loop+0x86>
+  401255:	83 e8 01             	sub    $0x1,%eax
+  401258:	48 8b 7c 24 28       	mov    0x28(%rsp),%rdi
+  40125d:	c1 e8 03             	shr    $0x3,%eax
+  401260:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  401264:	31 c0                	xor    %eax,%eax
+  401266:	48 c1 e2 05          	shl    $0x5,%rdx
+  40126a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  401270:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  401275:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  40127a:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  40127f:	c5 fc 29 04 07       	vmovaps %ymm0,(%rdi,%rax,1)
+  401284:	48 83 c0 20          	add    $0x20,%rax
+  401288:	48 39 d0             	cmp    %rdx,%rax
+  40128b:	75 e3                	jne    401270 <loop+0x213>
+  40128d:	e9 46 ff ff ff       	jmpq   4011d8 <loop+0x17b>
+  401292:	8b 10                	mov    (%rax),%edx
+  401294:	0f af d1             	imul   %ecx,%edx
+  401297:	48 63 d2             	movslq %edx,%rdx
+  40129a:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  40129e:	8b 50 04             	mov    0x4(%rax),%edx
+  4012a1:	0f af d1             	imul   %ecx,%edx
+  4012a4:	0f af 48 08          	imul   0x8(%rax),%ecx
+  4012a8:	48 63 d2             	movslq %edx,%rdx
+  4012ab:	48 8d 3c 93          	lea    (%rbx,%rdx,4),%rdi
+  4012af:	48 63 c1             	movslq %ecx,%rax
+  4012b2:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  4012b6:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  4012ba:	85 c0                	test   %eax,%eax
+  4012bc:	0f 8e 21 fe ff ff    	jle    4010e3 <loop+0x86>
+  4012c2:	83 e8 01             	sub    $0x1,%eax
+  4012c5:	4c 8b 44 24 28       	mov    0x28(%rsp),%r8
+  4012ca:	c1 e8 03             	shr    $0x3,%eax
+  4012cd:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  4012d1:	31 c0                	xor    %eax,%eax
+  4012d3:	48 c1 e2 05          	shl    $0x5,%rdx
+  4012d7:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+  4012de:	00 00 
+  4012e0:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  4012e5:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  4012ea:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  4012ef:	c4 c1 7c 58 04 00    	vaddps (%r8,%rax,1),%ymm0,%ymm0
+  4012f5:	c4 c1 7c 29 04 00    	vmovaps %ymm0,(%r8,%rax,1)
+  4012fb:	48 83 c0 20          	add    $0x20,%rax
+  4012ff:	48 39 d0             	cmp    %rdx,%rax
+  401302:	75 dc                	jne    4012e0 <loop+0x283>
+  401304:	e9 cf fe ff ff       	jmpq   4011d8 <loop+0x17b>
+  401309:	8b 10                	mov    (%rax),%edx
+  40130b:	0f af d1             	imul   %ecx,%edx
+  40130e:	48 63 d2             	movslq %edx,%rdx
+  401311:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  401315:	8b 50 04             	mov    0x4(%rax),%edx
+  401318:	0f af d1             	imul   %ecx,%edx
+  40131b:	48 63 d2             	movslq %edx,%rdx
+  40131e:	48 8d 3c 93          	lea    (%rbx,%rdx,4),%rdi
+  401322:	8b 50 08             	mov    0x8(%rax),%edx
+  401325:	0f af d1             	imul   %ecx,%edx
+  401328:	0f af 48 0c          	imul   0xc(%rax),%ecx
+  40132c:	48 63 d2             	movslq %edx,%rdx
+  40132f:	4c 8d 04 93          	lea    (%rbx,%rdx,4),%r8
+  401333:	48 63 c1             	movslq %ecx,%rax
+  401336:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  40133a:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  40133e:	85 c0                	test   %eax,%eax
+  401340:	0f 8e 9d fd ff ff    	jle    4010e3 <loop+0x86>
+  401346:	83 e8 01             	sub    $0x1,%eax
+  401349:	4c 8b 4c 24 28       	mov    0x28(%rsp),%r9
+  40134e:	c1 e8 03             	shr    $0x3,%eax
+  401351:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  401355:	31 c0                	xor    %eax,%eax
+  401357:	48 c1 e2 05          	shl    $0x5,%rdx
+  40135b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  401360:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  401365:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  40136a:	c4 c1 7c 58 04 00    	vaddps (%r8,%rax,1),%ymm0,%ymm0
+  401370:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  401375:	c4 c1 7c 58 04 01    	vaddps (%r9,%rax,1),%ymm0,%ymm0
+  40137b:	c4 c1 7c 29 04 01    	vmovaps %ymm0,(%r9,%rax,1)
+  401381:	48 83 c0 20          	add    $0x20,%rax
+  401385:	48 39 d0             	cmp    %rdx,%rax
+  401388:	75 d6                	jne    401360 <loop+0x303>
+  40138a:	e9 49 fe ff ff       	jmpq   4011d8 <loop+0x17b>
+  40138f:	8b 10                	mov    (%rax),%edx
+  401391:	0f af d1             	imul   %ecx,%edx
+  401394:	48 63 d2             	movslq %edx,%rdx
+  401397:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  40139b:	8b 50 04             	mov    0x4(%rax),%edx
+  40139e:	0f af d1             	imul   %ecx,%edx
+  4013a1:	48 63 d2             	movslq %edx,%rdx
+  4013a4:	48 8d 3c 93          	lea    (%rbx,%rdx,4),%rdi
+  4013a8:	8b 50 08             	mov    0x8(%rax),%edx
+  4013ab:	0f af d1             	imul   %ecx,%edx
+  4013ae:	48 63 d2             	movslq %edx,%rdx
+  4013b1:	4c 8d 04 93          	lea    (%rbx,%rdx,4),%r8
+  4013b5:	8b 50 0c             	mov    0xc(%rax),%edx
+  4013b8:	0f af d1             	imul   %ecx,%edx
+  4013bb:	0f af 48 10          	imul   0x10(%rax),%ecx
+  4013bf:	48 63 d2             	movslq %edx,%rdx
+  4013c2:	4c 8d 0c 93          	lea    (%rbx,%rdx,4),%r9
+  4013c6:	48 63 c1             	movslq %ecx,%rax
+  4013c9:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  4013cd:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  4013d1:	85 c0                	test   %eax,%eax
+  4013d3:	0f 8e 0a fd ff ff    	jle    4010e3 <loop+0x86>
+  4013d9:	83 e8 01             	sub    $0x1,%eax
+  4013dc:	4c 8b 54 24 28       	mov    0x28(%rsp),%r10
+  4013e1:	c1 e8 03             	shr    $0x3,%eax
+  4013e4:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  4013e8:	31 c0                	xor    %eax,%eax
+  4013ea:	48 c1 e2 05          	shl    $0x5,%rdx
+  4013ee:	66 90                	xchg   %ax,%ax
+  4013f0:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  4013f5:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  4013fa:	c4 c1 7c 58 04 00    	vaddps (%r8,%rax,1),%ymm0,%ymm0
+  401400:	c4 c1 7c 58 04 01    	vaddps (%r9,%rax,1),%ymm0,%ymm0
+  401406:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  40140b:	c4 c1 7c 58 04 02    	vaddps (%r10,%rax,1),%ymm0,%ymm0
+  401411:	c4 c1 7c 29 04 02    	vmovaps %ymm0,(%r10,%rax,1)
+  401417:	48 83 c0 20          	add    $0x20,%rax
+  40141b:	48 39 d0             	cmp    %rdx,%rax
+  40141e:	75 d0                	jne    4013f0 <loop+0x393>
+  401420:	e9 b3 fd ff ff       	jmpq   4011d8 <loop+0x17b>
+  401425:	8b 10                	mov    (%rax),%edx
+  401427:	0f af d1             	imul   %ecx,%edx
+  40142a:	48 63 d2             	movslq %edx,%rdx
+  40142d:	48 8d 34 93          	lea    (%rbx,%rdx,4),%rsi
+  401431:	8b 50 04             	mov    0x4(%rax),%edx
+  401434:	0f af d1             	imul   %ecx,%edx
+  401437:	48 63 d2             	movslq %edx,%rdx
+  40143a:	48 8d 3c 93          	lea    (%rbx,%rdx,4),%rdi
+  40143e:	8b 50 08             	mov    0x8(%rax),%edx
+  401441:	0f af d1             	imul   %ecx,%edx
+  401444:	48 63 d2             	movslq %edx,%rdx
+  401447:	4c 8d 04 93          	lea    (%rbx,%rdx,4),%r8
+  40144b:	8b 50 0c             	mov    0xc(%rax),%edx
+  40144e:	0f af d1             	imul   %ecx,%edx
+  401451:	48 63 d2             	movslq %edx,%rdx
+  401454:	4c 8d 0c 93          	lea    (%rbx,%rdx,4),%r9
+  401458:	8b 50 10             	mov    0x10(%rax),%edx
+  40145b:	0f af d1             	imul   %ecx,%edx
+  40145e:	0f af 48 14          	imul   0x14(%rax),%ecx
+  401462:	48 63 d2             	movslq %edx,%rdx
+  401465:	4c 8d 14 93          	lea    (%rbx,%rdx,4),%r10
+  401469:	48 63 c1             	movslq %ecx,%rax
+  40146c:	48 8d 0c 83          	lea    (%rbx,%rax,4),%rcx
+  401470:	8b 44 24 14          	mov    0x14(%rsp),%eax
+  401474:	85 c0                	test   %eax,%eax
+  401476:	0f 8e 67 fc ff ff    	jle    4010e3 <loop+0x86>
+  40147c:	83 e8 01             	sub    $0x1,%eax
+  40147f:	4c 8b 5c 24 28       	mov    0x28(%rsp),%r11
+  401484:	c1 e8 03             	shr    $0x3,%eax
+  401487:	48 8d 50 01          	lea    0x1(%rax),%rdx
+  40148b:	31 c0                	xor    %eax,%eax
+  40148d:	48 c1 e2 05          	shl    $0x5,%rdx
+  401491:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  401498:	c5 fc 28 04 06       	vmovaps (%rsi,%rax,1),%ymm0
+  40149d:	c5 fc 58 04 07       	vaddps (%rdi,%rax,1),%ymm0,%ymm0
+  4014a2:	c4 c1 7c 58 04 00    	vaddps (%r8,%rax,1),%ymm0,%ymm0
+  4014a8:	c4 c1 7c 58 04 01    	vaddps (%r9,%rax,1),%ymm0,%ymm0
+  4014ae:	c4 c1 7c 58 04 02    	vaddps (%r10,%rax,1),%ymm0,%ymm0
+  4014b4:	c5 fc 58 04 01       	vaddps (%rcx,%rax,1),%ymm0,%ymm0
+  4014b9:	c4 c1 7c 58 04 03    	vaddps (%r11,%rax,1),%ymm0,%ymm0
+  4014bf:	c4 c1 7c 29 04 03    	vmovaps %ymm0,(%r11,%rax,1)
+  4014c5:	48 83 c0 20          	add    $0x20,%rax
+  4014c9:	48 39 d0             	cmp    %rdx,%rax
+  4014cc:	75 ca                	jne    401498 <loop+0x43b>
+  4014ce:	e9 05 fd ff ff       	jmpq   4011d8 <loop+0x17b>
+  4014d3:	b9 e0 27 40 00       	mov    $0x4027e0,%ecx
+  4014d8:	ba fe 00 00 00       	mov    $0xfe,%edx
+  4014dd:	be 88 27 40 00       	mov    $0x402788,%esi
+  4014e2:	bf 03 27 40 00       	mov    $0x402703,%edi
+  4014e7:	e8 04 f2 ff ff       	callq  4006f0 <__assert_fail@plt>
+  4014ec:	0f 1f 40 00          	nopl   0x0(%rax)
+
+00000000004014f0 <aligned_malloc_>:
+#include <assert.h>
+#include <malloc.h>
+#include <immintrin.h>
+#include "sparse_util.h"
+
+void *aligned_malloc_(int ALIGN, long size) {
+  4014f0:	55                   	push   %rbp
+    void *mem = malloc(size+ALIGN+sizeof(void*));
+  4014f1:	48 63 ef             	movslq %edi,%rbp
+#include <assert.h>
+#include <malloc.h>
+#include <immintrin.h>
+#include "sparse_util.h"
+
+void *aligned_malloc_(int ALIGN, long size) {
+  4014f4:	53                   	push   %rbx
+  4014f5:	89 fb                	mov    %edi,%ebx
+    void *mem = malloc(size+ALIGN+sizeof(void*));
+  4014f7:	48 8d 7c 2e 08       	lea    0x8(%rsi,%rbp,1),%rdi
+    void **ptr = (void**)((uintptr_t)(mem+ALIGN+sizeof(void*)) & ~(ALIGN-1));
+  4014fc:	f7 db                	neg    %ebx
+#include <assert.h>
+#include <malloc.h>
+#include <immintrin.h>
+#include "sparse_util.h"
+
+void *aligned_malloc_(int ALIGN, long size) {
+  4014fe:	48 83 ec 08          	sub    $0x8,%rsp
+    void *mem = malloc(size+ALIGN+sizeof(void*));
+    void **ptr = (void**)((uintptr_t)(mem+ALIGN+sizeof(void*)) & ~(ALIGN-1));
+  401502:	48 63 db             	movslq %ebx,%rbx
+#include <malloc.h>
+#include <immintrin.h>
+#include "sparse_util.h"
+
+void *aligned_malloc_(int ALIGN, long size) {
+    void *mem = malloc(size+ALIGN+sizeof(void*));
+  401505:	e8 26 f2 ff ff       	callq  400730 <malloc@plt>
+    void **ptr = (void**)((uintptr_t)(mem+ALIGN+sizeof(void*)) & ~(ALIGN-1));
+  40150a:	48 8d 54 28 08       	lea    0x8(%rax,%rbp,1),%rdx
+  40150f:	48 21 da             	and    %rbx,%rdx
+    ptr[-1] = mem;
+  401512:	48 89 42 f8          	mov    %rax,-0x8(%rdx)
+    return ptr;
+}
+  401516:	48 83 c4 08          	add    $0x8,%rsp
+  40151a:	48 89 d0             	mov    %rdx,%rax
+  40151d:	5b                   	pop    %rbx
+  40151e:	5d                   	pop    %rbp
+  40151f:	c3                   	retq   
+
+0000000000401520 <test_german_conv2>:
+
+void test_german_conv2(){
+  401520:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv2_sparse");
+  401521:	bf fd 27 40 00       	mov    $0x4027fd,%edi
+    void **ptr = (void**)((uintptr_t)(mem+ALIGN+sizeof(void*)) & ~(ALIGN-1));
+    ptr[-1] = mem;
+    return ptr;
+}
+
+void test_german_conv2(){
+  401526:	48 89 e5             	mov    %rsp,%rbp
+  401529:	41 56                	push   %r14
+  40152b:	41 55                	push   %r13
+  40152d:	41 54                	push   %r12
+  40152f:	53                   	push   %rbx
+  401530:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  401534:	48 83 ec 30          	sub    $0x30,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv2_sparse");
+  401538:	e8 33 f3 ff ff       	callq  400870 <init_SparseMatrix>
+
+# ifdef __va_arg_pack
+__fortify_function int
+fprintf (FILE *__restrict __stream, const char *__restrict __fmt, ...)
+{
+  return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,
+  40153d:	48 8b 3d 44 2b 20 00 	mov    0x202b44(%rip),%rdi        # 604088 <__TMC_END__>
+  401544:	8b 08                	mov    (%rax),%ecx
+  401546:	ba f8 28 40 00       	mov    $0x4028f8,%edx
+  40154b:	be 01 00 00 00       	mov    $0x1,%esi
+  401550:	48 89 c3             	mov    %rax,%rbx
+  401553:	31 c0                	xor    %eax,%eax
+  401555:	e8 f6 f1 ff ff       	callq  400750 <__fprintf_chk@plt>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  40155a:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  40155f:	ba 00 10 27 00       	mov    $0x271000,%edx
+  401564:	be 20 00 00 00       	mov    $0x20,%esi
+  401569:	e8 f2 f1 ff ff       	callq  400760 <posix_memalign@plt>
+  40156e:	85 c0                	test   %eax,%eax
+  401570:	0f 85 da 02 00 00    	jne    401850 <test_german_conv2+0x330>
+    return ptr;
+  401576:	4c 8b 64 24 10       	mov    0x10(%rsp),%r12
+  40157b:	4d 89 e6             	mov    %r12,%r14
+  40157e:	41 83 e6 1f          	and    $0x1f,%r14d
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401582:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401587:	ba 80 a9 03 00       	mov    $0x3a980,%edx
+  40158c:	be 20 00 00 00       	mov    $0x20,%esi
+  401591:	e8 ca f1 ff ff       	callq  400760 <posix_memalign@plt>
+  401596:	85 c0                	test   %eax,%eax
+  401598:	0f 85 aa 02 00 00    	jne    401848 <test_german_conv2+0x328>
+    return ptr;
+  40159e:	4c 8b 6c 24 10       	mov    0x10(%rsp),%r13
+	int K = 1600;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  4015a3:	4d 85 f6             	test   %r14,%r14
+  4015a6:	0f 85 83 02 00 00    	jne    40182f <test_german_conv2+0x30f>
+	assert(((unsigned long)C & 31) == 0);
+  4015ac:	41 f6 c5 1f          	test   $0x1f,%r13b
+  4015b0:	0f 85 60 02 00 00    	jne    401816 <test_german_conv2+0x2f6>
+	assert(B);
+  4015b6:	4d 85 e4             	test   %r12,%r12
+  4015b9:	0f 84 0e 02 00 00    	je     4017cd <test_german_conv2+0x2ad>
+	assert(C);
+  4015bf:	4d 85 ed             	test   %r13,%r13
+  4015c2:	0f 84 ec 01 00 00    	je     4017b4 <test_german_conv2+0x294>
+  4015c8:	31 f6                	xor    %esi,%esi
+  4015ca:	31 c0                	xor    %eax,%eax
+  4015cc:	eb 4e                	jmp    40161c <test_german_conv2+0xfc>
+  4015ce:	66 90                	xchg   %ax,%ax
+  4015d0:	40 f6 c7 02          	test   $0x2,%dil
+  4015d4:	75 6a                	jne    401640 <test_german_conv2+0x120>
+  4015d6:	40 f6 c7 04          	test   $0x4,%dil
+  4015da:	75 7c                	jne    401658 <test_german_conv2+0x138>
+  4015dc:	89 d1                	mov    %edx,%ecx
+  4015de:	c1 e9 03             	shr    $0x3,%ecx
+  4015e1:	f6 c2 04             	test   $0x4,%dl
+  4015e4:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  4015e7:	74 0a                	je     4015f3 <test_german_conv2+0xd3>
+  4015e9:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  4015ef:	48 83 c7 04          	add    $0x4,%rdi
+  4015f3:	f6 c2 02             	test   $0x2,%dl
+  4015f6:	74 0c                	je     401604 <test_german_conv2+0xe4>
+  4015f8:	45 31 c9             	xor    %r9d,%r9d
+  4015fb:	48 83 c7 02          	add    $0x2,%rdi
+  4015ff:	66 44 89 4f fe       	mov    %r9w,-0x2(%rdi)
+  401604:	83 e2 01             	and    $0x1,%edx
+  401607:	74 03                	je     40160c <test_german_conv2+0xec>
+  401609:	c6 07 00             	movb   $0x0,(%rdi)
+  40160c:	48 81 c6 40 06 00 00 	add    $0x640,%rsi
+	
+	for(int i = 0; i < M; i++){
+  401613:	48 81 fe 80 a9 03 00 	cmp    $0x3a980,%rsi
+  40161a:	74 4e                	je     40166a <test_german_conv2+0x14a>
+  40161c:	49 8d 4c 35 00       	lea    0x0(%r13,%rsi,1),%rcx
+  401621:	ba 40 06 00 00       	mov    $0x640,%edx
+  401626:	f6 c1 01             	test   $0x1,%cl
+  401629:	48 89 cf             	mov    %rcx,%rdi
+  40162c:	74 a2                	je     4015d0 <test_german_conv2+0xb0>
+  40162e:	48 83 c7 01          	add    $0x1,%rdi
+  401632:	c6 01 00             	movb   $0x0,(%rcx)
+  401635:	b2 3f                	mov    $0x3f,%dl
+  401637:	40 f6 c7 02          	test   $0x2,%dil
+  40163b:	74 99                	je     4015d6 <test_german_conv2+0xb6>
+  40163d:	0f 1f 00             	nopl   (%rax)
+  401640:	45 31 d2             	xor    %r10d,%r10d
+  401643:	48 83 c7 02          	add    $0x2,%rdi
+  401647:	83 ea 02             	sub    $0x2,%edx
+  40164a:	66 44 89 57 fe       	mov    %r10w,-0x2(%rdi)
+  40164f:	40 f6 c7 04          	test   $0x4,%dil
+  401653:	74 87                	je     4015dc <test_german_conv2+0xbc>
+  401655:	0f 1f 00             	nopl   (%rax)
+  401658:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  40165e:	83 ea 04             	sub    $0x4,%edx
+  401661:	48 83 c7 04          	add    $0x4,%rdi
+  401665:	e9 72 ff ff ff       	jmpq   4015dc <test_german_conv2+0xbc>
+  40166a:	31 f6                	xor    %esi,%esi
+  40166c:	31 c0                	xor    %eax,%eax
+  40166e:	eb 4a                	jmp    4016ba <test_german_conv2+0x19a>
+  401670:	40 f6 c7 02          	test   $0x2,%dil
+  401674:	75 6a                	jne    4016e0 <test_german_conv2+0x1c0>
+  401676:	40 f6 c7 04          	test   $0x4,%dil
+  40167a:	75 7c                	jne    4016f8 <test_german_conv2+0x1d8>
+  40167c:	89 d1                	mov    %edx,%ecx
+  40167e:	c1 e9 03             	shr    $0x3,%ecx
+  401681:	f6 c2 04             	test   $0x4,%dl
+  401684:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  401687:	74 0a                	je     401693 <test_german_conv2+0x173>
+  401689:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  40168f:	48 83 c7 04          	add    $0x4,%rdi
+  401693:	f6 c2 02             	test   $0x2,%dl
+  401696:	74 0a                	je     4016a2 <test_german_conv2+0x182>
+  401698:	31 c9                	xor    %ecx,%ecx
+  40169a:	48 83 c7 02          	add    $0x2,%rdi
+  40169e:	66 89 4f fe          	mov    %cx,-0x2(%rdi)
+  4016a2:	83 e2 01             	and    $0x1,%edx
+  4016a5:	74 03                	je     4016aa <test_german_conv2+0x18a>
+  4016a7:	c6 07 00             	movb   $0x0,(%rdi)
+  4016aa:	48 81 c6 40 06 00 00 	add    $0x640,%rsi
+			C[i*incRowC+j] = 0;
+			
+		}
+	}
+
+	for(int i = 0; i < K; i++){
+  4016b1:	48 81 fe 00 10 27 00 	cmp    $0x271000,%rsi
+  4016b8:	74 50                	je     40170a <test_german_conv2+0x1ea>
+  4016ba:	4a 8d 0c 26          	lea    (%rsi,%r12,1),%rcx
+  4016be:	ba 40 06 00 00       	mov    $0x640,%edx
+  4016c3:	f6 c1 01             	test   $0x1,%cl
+  4016c6:	48 89 cf             	mov    %rcx,%rdi
+  4016c9:	74 a5                	je     401670 <test_german_conv2+0x150>
+  4016cb:	48 83 c7 01          	add    $0x1,%rdi
+  4016cf:	c6 01 00             	movb   $0x0,(%rcx)
+  4016d2:	b2 3f                	mov    $0x3f,%dl
+  4016d4:	40 f6 c7 02          	test   $0x2,%dil
+  4016d8:	74 9c                	je     401676 <test_german_conv2+0x156>
+  4016da:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+  4016e0:	45 31 c0             	xor    %r8d,%r8d
+  4016e3:	48 83 c7 02          	add    $0x2,%rdi
+  4016e7:	83 ea 02             	sub    $0x2,%edx
+  4016ea:	66 44 89 47 fe       	mov    %r8w,-0x2(%rdi)
+  4016ef:	40 f6 c7 04          	test   $0x4,%dil
+  4016f3:	74 87                	je     40167c <test_german_conv2+0x15c>
+  4016f5:	0f 1f 00             	nopl   (%rax)
+  4016f8:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  4016fe:	83 ea 04             	sub    $0x4,%edx
+  401701:	48 83 c7 04          	add    $0x4,%rdi
+  401705:	e9 72 ff ff ff       	jmpq   40167c <test_german_conv2+0x15c>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  40170a:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  40170f:	31 f6                	xor    %esi,%esi
+  401711:	e8 ca ef ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401716:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  40171b:	4c 69 f2 40 42 0f 00 	imul   $0xf4240,%rdx,%r14
+  401722:	4c 03 74 24 18       	add    0x18(%rsp),%r14
+			B[i*incRowB+j] = 0;
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  401727:	41 f6 c4 1f          	test   $0x1f,%r12b
+  40172b:	0f 85 cc 00 00 00    	jne    4017fd <test_german_conv2+0x2dd>
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  401731:	41 b9 90 01 00 00    	mov    $0x190,%r9d
+  401737:	4d 89 e0             	mov    %r12,%r8
+  40173a:	48 89 d9             	mov    %rbx,%rcx
+  40173d:	ba 40 06 00 00       	mov    $0x640,%edx
+  401742:	be 90 01 00 00       	mov    $0x190,%esi
+  401747:	bf 96 00 00 00       	mov    $0x96,%edi
+  40174c:	c7 44 24 08 90 01 00 	movl   $0x190,0x8(%rsp)
+  401753:	00 
+  401754:	4c 89 2c 24          	mov    %r13,(%rsp)
+  401758:	e8 23 f5 ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  40175d:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401762:	31 f6                	xor    %esi,%esi
+  401764:	e8 77 ef ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401769:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  40176e:	48 69 c0 40 42 0f 00 	imul   $0xf4240,%rax,%rax
+  401775:	48 03 44 24 18       	add    0x18(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  40177a:	4c 29 f0             	sub    %r14,%rax
+  40177d:	78 67                	js     4017e6 <test_german_conv2+0x2c6>
+  40177f:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  401784:	c5 fb 5e 05 1c 13 00 	vdivsd 0x131c(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  40178b:	00 
+  40178c:	48 8b 3d f5 28 20 00 	mov    0x2028f5(%rip),%rdi        # 604088 <__TMC_END__>
+  401793:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  401798:	be 01 00 00 00       	mov    $0x1,%esi
+  40179d:	b8 01 00 00 00       	mov    $0x1,%eax
+  4017a2:	e8 a9 ef ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+  4017a7:	48 8d 65 e0          	lea    -0x20(%rbp),%rsp
+  4017ab:	5b                   	pop    %rbx
+  4017ac:	41 5c                	pop    %r12
+  4017ae:	41 5d                	pop    %r13
+  4017b0:	41 5e                	pop    %r14
+  4017b2:	5d                   	pop    %rbp
+  4017b3:	c3                   	retq   
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+	assert(C);
+  4017b4:	b9 90 2a 40 00       	mov    $0x402a90,%ecx
+  4017b9:	ba 20 00 00 00       	mov    $0x20,%edx
+  4017be:	be 17 28 40 00       	mov    $0x402817,%esi
+  4017c3:	bf 49 28 40 00       	mov    $0x402849,%edi
+  4017c8:	e8 23 ef ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+  4017cd:	b9 90 2a 40 00       	mov    $0x402a90,%ecx
+  4017d2:	ba 1f 00 00 00       	mov    $0x1f,%edx
+  4017d7:	be 17 28 40 00       	mov    $0x402817,%esi
+  4017dc:	bf 47 28 40 00       	mov    $0x402847,%edi
+  4017e1:	e8 0a ef ff ff       	callq  4006f0 <__assert_fail@plt>
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  4017e6:	48 89 c2             	mov    %rax,%rdx
+  4017e9:	83 e0 01             	and    $0x1,%eax
+  4017ec:	48 d1 ea             	shr    %rdx
+  4017ef:	48 09 c2             	or     %rax,%rdx
+  4017f2:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  4017f7:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  4017fb:	eb 87                	jmp    401784 <test_german_conv2+0x264>
+			B[i*incRowB+j] = 0;
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  4017fd:	b9 90 2a 40 00       	mov    $0x402a90,%ecx
+  401802:	ba 30 00 00 00       	mov    $0x30,%edx
+  401807:	be 17 28 40 00       	mov    $0x402817,%esi
+  40180c:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  401811:	e8 da ee ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+  401816:	b9 90 2a 40 00       	mov    $0x402a90,%ecx
+  40181b:	ba 1e 00 00 00       	mov    $0x1e,%edx
+  401820:	be 17 28 40 00       	mov    $0x402817,%esi
+  401825:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  40182a:	e8 c1 ee ff ff       	callq  4006f0 <__assert_fail@plt>
+	int K = 1600;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  40182f:	b9 90 2a 40 00       	mov    $0x402a90,%ecx
+  401834:	ba 1d 00 00 00       	mov    $0x1d,%edx
+  401839:	be 17 28 40 00       	mov    $0x402817,%esi
+  40183e:	bf 18 29 40 00       	mov    $0x402918,%edi
+  401843:	e8 a8 ee ff ff       	callq  4006f0 <__assert_fail@plt>
+  else
+    return NULL;
+  401848:	45 31 ed             	xor    %r13d,%r13d
+  40184b:	e9 53 fd ff ff       	jmpq   4015a3 <test_german_conv2+0x83>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401850:	45 31 f6             	xor    %r14d,%r14d
+    return ptr;
+  else
+    return NULL;
+  401853:	45 31 e4             	xor    %r12d,%r12d
+  401856:	e9 27 fd ff ff       	jmpq   401582 <test_german_conv2+0x62>
+  40185b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000401860 <test_german_conv1>:
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_german_conv1(){
+  401860:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv1_sparse");
+  401861:	bf 61 28 40 00       	mov    $0x402861,%edi
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_german_conv1(){
+  401866:	48 89 e5             	mov    %rsp,%rbp
+  401869:	41 56                	push   %r14
+  40186b:	41 55                	push   %r13
+  40186d:	41 54                	push   %r12
+  40186f:	53                   	push   %rbx
+  401870:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  401874:	48 83 ec 30          	sub    $0x30,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv1_sparse");
+  401878:	e8 f3 ef ff ff       	callq  400870 <init_SparseMatrix>
+  40187d:	48 8b 3d 04 28 20 00 	mov    0x202804(%rip),%rdi        # 604088 <__TMC_END__>
+  401884:	8b 08                	mov    (%rax),%ecx
+  401886:	ba f8 28 40 00       	mov    $0x4028f8,%edx
+  40188b:	be 01 00 00 00       	mov    $0x1,%esi
+  401890:	49 89 c6             	mov    %rax,%r14
+  401893:	31 c0                	xor    %eax,%eax
+  401895:	e8 b6 ee ff ff       	callq  400750 <__fprintf_chk@plt>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  40189a:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  40189f:	ba 80 88 03 00       	mov    $0x38880,%edx
+  4018a4:	be 20 00 00 00       	mov    $0x20,%esi
+  4018a9:	e8 b2 ee ff ff       	callq  400760 <posix_memalign@plt>
+  4018ae:	85 c0                	test   %eax,%eax
+  4018b0:	0f 85 c0 01 00 00    	jne    401a76 <test_german_conv1+0x216>
+    return ptr;
+  4018b6:	4c 8b 6c 24 10       	mov    0x10(%rsp),%r13
+  4018bb:	4c 89 eb             	mov    %r13,%rbx
+  4018be:	83 e3 1f             	and    $0x1f,%ebx
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  4018c1:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  4018c6:	ba 00 16 0d 00       	mov    $0xd1600,%edx
+  4018cb:	be 20 00 00 00       	mov    $0x20,%esi
+  4018d0:	e8 8b ee ff ff       	callq  400760 <posix_memalign@plt>
+  4018d5:	85 c0                	test   %eax,%eax
+  4018d7:	0f 85 91 01 00 00    	jne    401a6e <test_german_conv1+0x20e>
+    return ptr;
+  4018dd:	4c 8b 64 24 10       	mov    0x10(%rsp),%r12
+	int K = 27;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  4018e2:	48 85 db             	test   %rbx,%rbx
+  4018e5:	0f 85 6a 01 00 00    	jne    401a55 <test_german_conv1+0x1f5>
+	assert(((unsigned long)C & 31) == 0);
+  4018eb:	41 f6 c4 1f          	test   $0x1f,%r12b
+  4018ef:	0f 85 47 01 00 00    	jne    401a3c <test_german_conv1+0x1dc>
+	assert(B);
+  4018f5:	4d 85 ed             	test   %r13,%r13
+  4018f8:	0f 84 f5 00 00 00    	je     4019f3 <test_german_conv1+0x193>
+	assert(C);
+  4018fe:	4d 85 e4             	test   %r12,%r12
+  401901:	0f 84 d3 00 00 00    	je     4019da <test_german_conv1+0x17a>
+  401907:	31 db                	xor    %ebx,%ebx
+  401909:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+  401910:	49 8d 3c 1c          	lea    (%r12,%rbx,1),%rdi
+  401914:	31 f6                	xor    %esi,%esi
+  401916:	ba 80 21 00 00       	mov    $0x2180,%edx
+  40191b:	48 81 c3 80 21 00 00 	add    $0x2180,%rbx
+  401922:	e8 d9 ed ff ff       	callq  400700 <memset@plt>
+	
+	for(int i = 0; i < M; i++){
+  401927:	48 81 fb 00 16 0d 00 	cmp    $0xd1600,%rbx
+  40192e:	75 e0                	jne    401910 <test_german_conv1+0xb0>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401930:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401935:	31 f6                	xor    %esi,%esi
+  401937:	e8 a4 ed ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  40193c:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  401941:	48 69 da 40 42 0f 00 	imul   $0xf4240,%rdx,%rbx
+  401948:	48 03 5c 24 18       	add    0x18(%rsp),%rbx
+		}
+	}
+
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  40194d:	41 f6 c5 1f          	test   $0x1f,%r13b
+  401951:	0f 85 cc 00 00 00    	jne    401a23 <test_german_conv1+0x1c3>
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  401957:	41 b9 60 08 00 00    	mov    $0x860,%r9d
+  40195d:	4d 89 e8             	mov    %r13,%r8
+  401960:	4c 89 f1             	mov    %r14,%rcx
+  401963:	ba 1b 00 00 00       	mov    $0x1b,%edx
+  401968:	be 60 08 00 00       	mov    $0x860,%esi
+  40196d:	bf 64 00 00 00       	mov    $0x64,%edi
+  401972:	c7 44 24 08 60 08 00 	movl   $0x860,0x8(%rsp)
+  401979:	00 
+  40197a:	4c 89 24 24          	mov    %r12,(%rsp)
+  40197e:	e8 fd f2 ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401983:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401988:	31 f6                	xor    %esi,%esi
+  40198a:	e8 51 ed ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  40198f:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  401994:	48 69 c0 40 42 0f 00 	imul   $0xf4240,%rax,%rax
+  40199b:	48 03 44 24 18       	add    0x18(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  4019a0:	48 29 d8             	sub    %rbx,%rax
+  4019a3:	78 67                	js     401a0c <test_german_conv1+0x1ac>
+  4019a5:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  4019aa:	c5 fb 5e 05 f6 10 00 	vdivsd 0x10f6(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  4019b1:	00 
+  4019b2:	48 8b 3d cf 26 20 00 	mov    0x2026cf(%rip),%rdi        # 604088 <__TMC_END__>
+  4019b9:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  4019be:	be 01 00 00 00       	mov    $0x1,%esi
+  4019c3:	b8 01 00 00 00       	mov    $0x1,%eax
+  4019c8:	e8 83 ed ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+  4019cd:	48 8d 65 e0          	lea    -0x20(%rbp),%rsp
+  4019d1:	5b                   	pop    %rbx
+  4019d2:	41 5c                	pop    %r12
+  4019d4:	41 5d                	pop    %r13
+  4019d6:	41 5e                	pop    %r14
+  4019d8:	5d                   	pop    %rbp
+  4019d9:	c3                   	retq   
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+	assert(C);
+  4019da:	b9 70 2a 40 00       	mov    $0x402a70,%ecx
+  4019df:	ba 47 00 00 00       	mov    $0x47,%edx
+  4019e4:	be 17 28 40 00       	mov    $0x402817,%esi
+  4019e9:	bf 49 28 40 00       	mov    $0x402849,%edi
+  4019ee:	e8 fd ec ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+  4019f3:	b9 70 2a 40 00       	mov    $0x402a70,%ecx
+  4019f8:	ba 46 00 00 00       	mov    $0x46,%edx
+  4019fd:	be 17 28 40 00       	mov    $0x402817,%esi
+  401a02:	bf 47 28 40 00       	mov    $0x402847,%edi
+  401a07:	e8 e4 ec ff ff       	callq  4006f0 <__assert_fail@plt>
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  401a0c:	48 89 c2             	mov    %rax,%rdx
+  401a0f:	83 e0 01             	and    $0x1,%eax
+  401a12:	48 d1 ea             	shr    %rdx
+  401a15:	48 09 c2             	or     %rax,%rdx
+  401a18:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  401a1d:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  401a21:	eb 87                	jmp    4019aa <test_german_conv1+0x14a>
+		}
+	}
+
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  401a23:	b9 70 2a 40 00       	mov    $0x402a70,%ecx
+  401a28:	ba 52 00 00 00       	mov    $0x52,%edx
+  401a2d:	be 17 28 40 00       	mov    $0x402817,%esi
+  401a32:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  401a37:	e8 b4 ec ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+  401a3c:	b9 70 2a 40 00       	mov    $0x402a70,%ecx
+  401a41:	ba 45 00 00 00       	mov    $0x45,%edx
+  401a46:	be 17 28 40 00       	mov    $0x402817,%esi
+  401a4b:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  401a50:	e8 9b ec ff ff       	callq  4006f0 <__assert_fail@plt>
+	int K = 27;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  401a55:	b9 70 2a 40 00       	mov    $0x402a70,%ecx
+  401a5a:	ba 44 00 00 00       	mov    $0x44,%edx
+  401a5f:	be 17 28 40 00       	mov    $0x402817,%esi
+  401a64:	bf 18 29 40 00       	mov    $0x402918,%edi
+  401a69:	e8 82 ec ff ff       	callq  4006f0 <__assert_fail@plt>
+  else
+    return NULL;
+  401a6e:	45 31 e4             	xor    %r12d,%r12d
+  401a71:	e9 6c fe ff ff       	jmpq   4018e2 <test_german_conv1+0x82>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401a76:	31 db                	xor    %ebx,%ebx
+    return ptr;
+  else
+    return NULL;
+  401a78:	45 31 ed             	xor    %r13d,%r13d
+  401a7b:	e9 41 fe ff ff       	jmpq   4018c1 <test_german_conv1+0x61>
+
+0000000000401a80 <test_german_conv3>:
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_german_conv3(){
+  401a80:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv3_sparse");
+  401a81:	bf 7b 28 40 00       	mov    $0x40287b,%edi
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_german_conv3(){
+  401a86:	48 89 e5             	mov    %rsp,%rbp
+  401a89:	41 56                	push   %r14
+  401a8b:	41 55                	push   %r13
+  401a8d:	41 54                	push   %r12
+  401a8f:	53                   	push   %rbx
+  401a90:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  401a94:	48 83 ec 30          	sub    $0x30,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv3_sparse");
+  401a98:	e8 d3 ed ff ff       	callq  400870 <init_SparseMatrix>
+  401a9d:	48 8b 3d e4 25 20 00 	mov    0x2025e4(%rip),%rdi        # 604088 <__TMC_END__>
+  401aa4:	8b 08                	mov    (%rax),%ecx
+  401aa6:	ba f8 28 40 00       	mov    $0x4028f8,%edx
+  401aab:	be 01 00 00 00       	mov    $0x1,%esi
+  401ab0:	48 89 c3             	mov    %rax,%rbx
+  401ab3:	31 c0                	xor    %eax,%eax
+  401ab5:	e8 96 ec ff ff       	callq  400750 <__fprintf_chk@plt>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401aba:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401abf:	ba 00 46 05 00       	mov    $0x54600,%edx
+  401ac4:	be 20 00 00 00       	mov    $0x20,%esi
+  401ac9:	e8 92 ec ff ff       	callq  400760 <posix_memalign@plt>
+  401ace:	85 c0                	test   %eax,%eax
+  401ad0:	0f 85 a5 01 00 00    	jne    401c7b <test_german_conv3+0x1fb>
+    return ptr;
+  401ad6:	4c 8b 64 24 10       	mov    0x10(%rsp),%r12
+  401adb:	4d 89 e6             	mov    %r12,%r14
+  401ade:	41 83 e6 1f          	and    $0x1f,%r14d
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401ae2:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401ae7:	ba 00 fa 00 00       	mov    $0xfa00,%edx
+  401aec:	be 20 00 00 00       	mov    $0x20,%esi
+  401af1:	e8 6a ec ff ff       	callq  400760 <posix_memalign@plt>
+  401af6:	85 c0                	test   %eax,%eax
+  401af8:	0f 85 1c 02 00 00    	jne    401d1a <test_german_conv3+0x29a>
+    return ptr;
+  401afe:	4c 8b 6c 24 10       	mov    0x10(%rsp),%r13
+	int K = 1350;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  401b03:	4d 85 f6             	test   %r14,%r14
+  401b06:	0f 85 f5 01 00 00    	jne    401d01 <test_german_conv3+0x281>
+	assert(((unsigned long)C & 31) == 0);
+  401b0c:	41 f6 c5 1f          	test   $0x1f,%r13b
+  401b10:	0f 85 d2 01 00 00    	jne    401ce8 <test_german_conv3+0x268>
+	assert(B);
+  401b16:	4d 85 e4             	test   %r12,%r12
+  401b19:	0f 84 b0 01 00 00    	je     401ccf <test_german_conv3+0x24f>
+	assert(C);
+  401b1f:	4d 85 ed             	test   %r13,%r13
+  401b22:	0f 84 8e 01 00 00    	je     401cb6 <test_german_conv3+0x236>
+  401b28:	31 f6                	xor    %esi,%esi
+  401b2a:	31 c0                	xor    %eax,%eax
+  401b2c:	eb 4c                	jmp    401b7a <test_german_conv3+0xfa>
+  401b2e:	66 90                	xchg   %ax,%ax
+  401b30:	40 f6 c7 02          	test   $0x2,%dil
+  401b34:	75 6a                	jne    401ba0 <test_german_conv3+0x120>
+  401b36:	40 f6 c7 04          	test   $0x4,%dil
+  401b3a:	75 7c                	jne    401bb8 <test_german_conv3+0x138>
+  401b3c:	89 d1                	mov    %edx,%ecx
+  401b3e:	c1 e9 03             	shr    $0x3,%ecx
+  401b41:	f6 c2 04             	test   $0x4,%dl
+  401b44:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  401b47:	74 0a                	je     401b53 <test_german_conv3+0xd3>
+  401b49:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  401b4f:	48 83 c7 04          	add    $0x4,%rdi
+  401b53:	f6 c2 02             	test   $0x2,%dl
+  401b56:	74 0a                	je     401b62 <test_german_conv3+0xe2>
+  401b58:	31 c9                	xor    %ecx,%ecx
+  401b5a:	48 83 c7 02          	add    $0x2,%rdi
+  401b5e:	66 89 4f fe          	mov    %cx,-0x2(%rdi)
+  401b62:	83 e2 01             	and    $0x1,%edx
+  401b65:	74 03                	je     401b6a <test_german_conv3+0xea>
+  401b67:	c6 07 00             	movb   $0x0,(%rdi)
+  401b6a:	48 81 c6 00 01 00 00 	add    $0x100,%rsi
+	
+	for(int i = 0; i < M; i++){
+  401b71:	48 81 fe 00 fa 00 00 	cmp    $0xfa00,%rsi
+  401b78:	74 56                	je     401bd0 <test_german_conv3+0x150>
+  401b7a:	49 8d 4c 35 00       	lea    0x0(%r13,%rsi,1),%rcx
+  401b7f:	ba 00 01 00 00       	mov    $0x100,%edx
+  401b84:	f6 c1 01             	test   $0x1,%cl
+  401b87:	48 89 cf             	mov    %rcx,%rdi
+  401b8a:	74 a4                	je     401b30 <test_german_conv3+0xb0>
+  401b8c:	48 83 c7 01          	add    $0x1,%rdi
+  401b90:	c6 01 00             	movb   $0x0,(%rcx)
+  401b93:	66 ba ff 00          	mov    $0xff,%dx
+  401b97:	40 f6 c7 02          	test   $0x2,%dil
+  401b9b:	74 99                	je     401b36 <test_german_conv3+0xb6>
+  401b9d:	0f 1f 00             	nopl   (%rax)
+  401ba0:	45 31 c0             	xor    %r8d,%r8d
+  401ba3:	48 83 c7 02          	add    $0x2,%rdi
+  401ba7:	83 ea 02             	sub    $0x2,%edx
+  401baa:	66 44 89 47 fe       	mov    %r8w,-0x2(%rdi)
+  401baf:	40 f6 c7 04          	test   $0x4,%dil
+  401bb3:	74 87                	je     401b3c <test_german_conv3+0xbc>
+  401bb5:	0f 1f 00             	nopl   (%rax)
+  401bb8:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  401bbe:	83 ea 04             	sub    $0x4,%edx
+  401bc1:	48 83 c7 04          	add    $0x4,%rdi
+  401bc5:	e9 72 ff ff ff       	jmpq   401b3c <test_german_conv3+0xbc>
+  401bca:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401bd0:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401bd5:	66 31 f6             	xor    %si,%si
+  401bd8:	e8 03 eb ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401bdd:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  401be2:	4c 69 f2 40 42 0f 00 	imul   $0xf4240,%rdx,%r14
+  401be9:	4c 03 74 24 18       	add    0x18(%rsp),%r14
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  401bee:	41 f6 c4 1f          	test   $0x1f,%r12b
+  401bf2:	0f 85 a5 00 00 00    	jne    401c9d <test_german_conv3+0x21d>
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  401bf8:	41 b9 40 00 00 00    	mov    $0x40,%r9d
+  401bfe:	4d 89 e0             	mov    %r12,%r8
+  401c01:	48 89 d9             	mov    %rbx,%rcx
+  401c04:	ba 46 05 00 00       	mov    $0x546,%edx
+  401c09:	be 40 00 00 00       	mov    $0x40,%esi
+  401c0e:	bf fa 00 00 00       	mov    $0xfa,%edi
+  401c13:	c7 44 24 08 40 00 00 	movl   $0x40,0x8(%rsp)
+  401c1a:	00 
+  401c1b:	4c 89 2c 24          	mov    %r13,(%rsp)
+  401c1f:	e8 5c f0 ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401c24:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  401c29:	31 f6                	xor    %esi,%esi
+  401c2b:	e8 b0 ea ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401c30:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  401c35:	48 69 c0 40 42 0f 00 	imul   $0xf4240,%rax,%rax
+  401c3c:	48 03 44 24 18       	add    0x18(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  401c41:	4c 29 f0             	sub    %r14,%rax
+  401c44:	78 40                	js     401c86 <test_german_conv3+0x206>
+  401c46:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  401c4b:	c5 fb 5e 05 55 0e 00 	vdivsd 0xe55(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  401c52:	00 
+  401c53:	48 8b 3d 2e 24 20 00 	mov    0x20242e(%rip),%rdi        # 604088 <__TMC_END__>
+  401c5a:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  401c5f:	be 01 00 00 00       	mov    $0x1,%esi
+  401c64:	b8 01 00 00 00       	mov    $0x1,%eax
+  401c69:	e8 e2 ea ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+  401c6e:	48 8d 65 e0          	lea    -0x20(%rbp),%rsp
+  401c72:	5b                   	pop    %rbx
+  401c73:	41 5c                	pop    %r12
+  401c75:	41 5d                	pop    %r13
+  401c77:	41 5e                	pop    %r14
+  401c79:	5d                   	pop    %rbp
+  401c7a:	c3                   	retq   
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401c7b:	45 31 f6             	xor    %r14d,%r14d
+    return ptr;
+  else
+    return NULL;
+  401c7e:	45 31 e4             	xor    %r12d,%r12d
+  401c81:	e9 5c fe ff ff       	jmpq   401ae2 <test_german_conv3+0x62>
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  401c86:	48 89 c2             	mov    %rax,%rdx
+  401c89:	83 e0 01             	and    $0x1,%eax
+  401c8c:	48 d1 ea             	shr    %rdx
+  401c8f:	48 09 c2             	or     %rax,%rdx
+  401c92:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  401c97:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  401c9b:	eb ae                	jmp    401c4b <test_german_conv3+0x1cb>
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  401c9d:	b9 50 2a 40 00       	mov    $0x402a50,%ecx
+  401ca2:	ba 73 00 00 00       	mov    $0x73,%edx
+  401ca7:	be 17 28 40 00       	mov    $0x402817,%esi
+  401cac:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  401cb1:	e8 3a ea ff ff       	callq  4006f0 <__assert_fail@plt>
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+	assert(C);
+  401cb6:	b9 50 2a 40 00       	mov    $0x402a50,%ecx
+  401cbb:	ba 69 00 00 00       	mov    $0x69,%edx
+  401cc0:	be 17 28 40 00       	mov    $0x402817,%esi
+  401cc5:	bf 49 28 40 00       	mov    $0x402849,%edi
+  401cca:	e8 21 ea ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+  401ccf:	b9 50 2a 40 00       	mov    $0x402a50,%ecx
+  401cd4:	ba 68 00 00 00       	mov    $0x68,%edx
+  401cd9:	be 17 28 40 00       	mov    $0x402817,%esi
+  401cde:	bf 47 28 40 00       	mov    $0x402847,%edi
+  401ce3:	e8 08 ea ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+  401ce8:	b9 50 2a 40 00       	mov    $0x402a50,%ecx
+  401ced:	ba 67 00 00 00       	mov    $0x67,%edx
+  401cf2:	be 17 28 40 00       	mov    $0x402817,%esi
+  401cf7:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  401cfc:	e8 ef e9 ff ff       	callq  4006f0 <__assert_fail@plt>
+	int K = 1350;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  401d01:	b9 50 2a 40 00       	mov    $0x402a50,%ecx
+  401d06:	ba 66 00 00 00       	mov    $0x66,%edx
+  401d0b:	be 17 28 40 00       	mov    $0x402817,%esi
+  401d10:	bf 18 29 40 00       	mov    $0x402918,%edi
+  401d15:	e8 d6 e9 ff ff       	callq  4006f0 <__assert_fail@plt>
+  401d1a:	45 31 ed             	xor    %r13d,%r13d
+  401d1d:	e9 e1 fd ff ff       	jmpq   401b03 <test_german_conv3+0x83>
+  401d22:	66 66 66 66 66 2e 0f 	data32 data32 data32 data32 nopw %cs:0x0(%rax,%rax,1)
+  401d29:	1f 84 00 00 00 00 00 
+
+0000000000401d30 <test_cifar_conv1>:
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+
+void test_cifar_conv1(){
+  401d30:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_round2");
+  401d31:	bf 48 29 40 00       	mov    $0x402948,%edi
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+
+void test_cifar_conv1(){
+  401d36:	48 89 e5             	mov    %rsp,%rbp
+  401d39:	41 57                	push   %r15
+  401d3b:	41 56                	push   %r14
+  401d3d:	41 55                	push   %r13
+  401d3f:	41 54                	push   %r12
+  401d41:	53                   	push   %rbx
+  401d42:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  401d46:	48 83 ec 50          	sub    $0x50,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_round2");
+  401d4a:	e8 21 eb ff ff       	callq  400870 <init_SparseMatrix>
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+	assert(matrix);
+  401d4f:	48 85 c0             	test   %rax,%rax
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+
+void test_cifar_conv1(){
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_round2");
+  401d52:	49 89 c5             	mov    %rax,%r13
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+	assert(matrix);
+  401d55:	0f 84 c5 02 00 00    	je     402020 <test_cifar_conv1+0x2f0>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401d5b:	48 8d 7c 24 30       	lea    0x30(%rsp),%rdi
+  401d60:	ba 00 b0 04 00       	mov    $0x4b000,%edx
+  401d65:	be 20 00 00 00       	mov    $0x20,%esi
+  401d6a:	e8 f1 e9 ff ff       	callq  400760 <posix_memalign@plt>
+  401d6f:	85 c0                	test   %eax,%eax
+  401d71:	0f 85 63 02 00 00    	jne    401fda <test_cifar_conv1+0x2aa>
+    return ptr;
+  401d77:	4c 8b 64 24 30       	mov    0x30(%rsp),%r12
+  401d7c:	4d 89 e6             	mov    %r12,%r14
+  401d7f:	41 83 e6 1f          	and    $0x1f,%r14d
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401d83:	48 8d 7c 24 30       	lea    0x30(%rsp),%rdi
+  401d88:	ba 00 00 01 00       	mov    $0x10000,%edx
+  401d8d:	be 20 00 00 00       	mov    $0x20,%esi
+  401d92:	e8 c9 e9 ff ff       	callq  400760 <posix_memalign@plt>
+  401d97:	85 c0                	test   %eax,%eax
+  401d99:	0f 85 5d 02 00 00    	jne    401ffc <test_cifar_conv1+0x2cc>
+	int K = 75;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  401d9f:	4d 85 f6             	test   %r14,%r14
+    return ptr;
+  401da2:	48 8b 5c 24 30       	mov    0x30(%rsp),%rbx
+  401da7:	0f 85 5a 02 00 00    	jne    402007 <test_cifar_conv1+0x2d7>
+	assert(((unsigned long)C & 31) == 0);
+  401dad:	f6 c3 1f             	test   $0x1f,%bl
+  401db0:	0f 85 e7 02 00 00    	jne    40209d <test_cifar_conv1+0x36d>
+	assert(B);
+  401db6:	4d 85 e4             	test   %r12,%r12
+  401db9:	0f 84 f7 02 00 00    	je     4020b6 <test_cifar_conv1+0x386>
+	assert(C);
+  401dbf:	48 85 db             	test   %rbx,%rbx
+  401dc2:	0f 84 71 02 00 00    	je     402039 <test_cifar_conv1+0x309>
+  401dc8:	48 8b 3d b9 22 20 00 	mov    0x2022b9(%rip),%rdi        # 604088 <__TMC_END__>
+  401dcf:	ba 9c 28 40 00       	mov    $0x40289c,%edx
+  401dd4:	be 01 00 00 00       	mov    $0x1,%esi
+  401dd9:	31 c0                	xor    %eax,%eax
+  401ddb:	e8 70 e9 ff ff       	callq  400750 <__fprintf_chk@plt>
+}
+
+static inline void load_matrix(const char* file_name, int M, int N, float* matrix){
+	FILE* fin = fopen(file_name, "r");
+  401de0:	be b4 26 40 00       	mov    $0x4026b4,%esi
+  401de5:	bf b8 28 40 00       	mov    $0x4028b8,%edi
+  401dea:	e8 51 e9 ff ff       	callq  400740 <fopen@plt>
+	assert(fin != NULL);
+  401def:	48 85 c0             	test   %rax,%rax
+  gettimeofday(&tv,NULL);
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+}
+
+static inline void load_matrix(const char* file_name, int M, int N, float* matrix){
+	FILE* fin = fopen(file_name, "r");
+  401df2:	49 89 c7             	mov    %rax,%r15
+	assert(fin != NULL);
+  401df5:	0f 84 57 02 00 00    	je     402052 <test_cifar_conv1+0x322>
+	int M_;
+	int N_;
+	fscanf(fin, "%d %d", &M_, &N_);
+  401dfb:	48 8d 4c 24 10       	lea    0x10(%rsp),%rcx
+  401e00:	48 8d 54 24 2c       	lea    0x2c(%rsp),%rdx
+  401e05:	48 89 c7             	mov    %rax,%rdi
+  401e08:	be dc 26 40 00       	mov    $0x4026dc,%esi
+  401e0d:	31 c0                	xor    %eax,%eax
+  401e0f:	e8 ac e8 ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+	assert(M_ == M);
+  401e14:	83 7c 24 2c 4b       	cmpl   $0x4b,0x2c(%rsp)
+  401e19:	0f 85 4c 02 00 00    	jne    40206b <test_cifar_conv1+0x33b>
+	assert(N_ == N);
+  401e1f:	81 7c 24 10 00 04 00 	cmpl   $0x400,0x10(%rsp)
+  401e26:	00 
+  401e27:	0f 85 57 02 00 00    	jne    402084 <test_cifar_conv1+0x354>
+  401e2d:	48 8b 3d 54 22 20 00 	mov    0x202254(%rip),%rdi        # 604088 <__TMC_END__>
+  401e34:	41 b8 00 04 00 00    	mov    $0x400,%r8d
+  401e3a:	b9 4b 00 00 00       	mov    $0x4b,%ecx
+  401e3f:	ba 70 29 40 00       	mov    $0x402970,%edx
+  401e44:	be 01 00 00 00       	mov    $0x1,%esi
+  401e49:	31 c0                	xor    %eax,%eax
+  401e4b:	45 31 f6             	xor    %r14d,%r14d
+  401e4e:	e8 fd e8 ff ff       	callq  400750 <__fprintf_chk@plt>
+  401e53:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+	fprintf(stderr, "the size of the matrix is %dx%d \n",M, N);
+	
+	for(int i = 0; i < M*N; i++){
+		float temp;
+		fscanf(fin, "%f", &temp);
+  401e58:	48 8d 54 24 30       	lea    0x30(%rsp),%rdx
+  401e5d:	31 c0                	xor    %eax,%eax
+  401e5f:	be f1 28 40 00       	mov    $0x4028f1,%esi
+  401e64:	4c 89 ff             	mov    %r15,%rdi
+  401e67:	e8 54 e8 ff ff       	callq  4006c0 <__isoc99_fscanf@plt>
+		matrix[i] = temp;
+  401e6c:	c5 fa 10 44 24 30    	vmovss 0x30(%rsp),%xmm0
+  401e72:	c4 81 7a 11 04 34    	vmovss %xmm0,(%r12,%r14,1)
+  401e78:	49 83 c6 04          	add    $0x4,%r14
+	fscanf(fin, "%d %d", &M_, &N_);
+	assert(M_ == M);
+	assert(N_ == N);
+	fprintf(stderr, "the size of the matrix is %dx%d \n",M, N);
+	
+	for(int i = 0; i < M*N; i++){
+  401e7c:	49 81 fe 00 b0 04 00 	cmp    $0x4b000,%r14
+  401e83:	75 d3                	jne    401e58 <test_cifar_conv1+0x128>
+		float temp;
+		fscanf(fin, "%f", &temp);
+		matrix[i] = temp;
+	}
+	fclose(fin);
+  401e85:	4c 89 ff             	mov    %r15,%rdi
+  401e88:	e8 43 e8 ff ff       	callq  4006d0 <fclose@plt>
+  401e8d:	31 f6                	xor    %esi,%esi
+  401e8f:	31 c0                	xor    %eax,%eax
+  401e91:	eb 4f                	jmp    401ee2 <test_cifar_conv1+0x1b2>
+  401e93:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+  401e98:	40 f6 c7 02          	test   $0x2,%dil
+  401e9c:	75 6a                	jne    401f08 <test_cifar_conv1+0x1d8>
+  401e9e:	40 f6 c7 04          	test   $0x4,%dil
+  401ea2:	75 7c                	jne    401f20 <test_cifar_conv1+0x1f0>
+  401ea4:	89 d1                	mov    %edx,%ecx
+  401ea6:	c1 e9 03             	shr    $0x3,%ecx
+  401ea9:	f6 c2 04             	test   $0x4,%dl
+  401eac:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  401eaf:	74 0a                	je     401ebb <test_cifar_conv1+0x18b>
+  401eb1:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  401eb7:	48 83 c7 04          	add    $0x4,%rdi
+  401ebb:	f6 c2 02             	test   $0x2,%dl
+  401ebe:	74 0a                	je     401eca <test_cifar_conv1+0x19a>
+  401ec0:	31 c9                	xor    %ecx,%ecx
+  401ec2:	48 83 c7 02          	add    $0x2,%rdi
+  401ec6:	66 89 4f fe          	mov    %cx,-0x2(%rdi)
+  401eca:	83 e2 01             	and    $0x1,%edx
+  401ecd:	74 03                	je     401ed2 <test_cifar_conv1+0x1a2>
+  401ecf:	c6 07 00             	movb   $0x0,(%rdi)
+  401ed2:	48 81 c6 00 10 00 00 	add    $0x1000,%rsi
+	fprintf(stderr, "load the test input image \n");
+	load_matrix("cifar_conv1_test_input.txt", K, N, B);
+	
+	for(int i = 0; i < M; i++){
+  401ed9:	48 81 fe 00 00 01 00 	cmp    $0x10000,%rsi
+  401ee0:	74 56                	je     401f38 <test_cifar_conv1+0x208>
+  401ee2:	48 8d 0c 33          	lea    (%rbx,%rsi,1),%rcx
+  401ee6:	ba 00 10 00 00       	mov    $0x1000,%edx
+  401eeb:	f6 c1 01             	test   $0x1,%cl
+  401eee:	48 89 cf             	mov    %rcx,%rdi
+  401ef1:	74 a5                	je     401e98 <test_cifar_conv1+0x168>
+  401ef3:	48 83 c7 01          	add    $0x1,%rdi
+  401ef7:	c6 01 00             	movb   $0x0,(%rcx)
+  401efa:	66 ba ff 0f          	mov    $0xfff,%dx
+  401efe:	40 f6 c7 02          	test   $0x2,%dil
+  401f02:	74 9a                	je     401e9e <test_cifar_conv1+0x16e>
+  401f04:	0f 1f 40 00          	nopl   0x0(%rax)
+  401f08:	45 31 c0             	xor    %r8d,%r8d
+  401f0b:	48 83 c7 02          	add    $0x2,%rdi
+  401f0f:	83 ea 02             	sub    $0x2,%edx
+  401f12:	66 44 89 47 fe       	mov    %r8w,-0x2(%rdi)
+  401f17:	40 f6 c7 04          	test   $0x4,%dil
+  401f1b:	74 87                	je     401ea4 <test_cifar_conv1+0x174>
+  401f1d:	0f 1f 00             	nopl   (%rax)
+  401f20:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  401f26:	83 ea 04             	sub    $0x4,%edx
+  401f29:	48 83 c7 04          	add    $0x4,%rdi
+  401f2d:	e9 72 ff ff ff       	jmpq   401ea4 <test_cifar_conv1+0x174>
+  401f32:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401f38:	48 8d 7c 24 30       	lea    0x30(%rsp),%rdi
+  401f3d:	31 f6                	xor    %esi,%esi
+  401f3f:	e8 9c e7 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401f44:	48 8b 44 24 30       	mov    0x30(%rsp),%rax
+			C[i*incRowC+j] = 0;		
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  401f49:	ba 4b 00 00 00       	mov    $0x4b,%edx
+  401f4e:	41 b9 00 04 00 00    	mov    $0x400,%r9d
+  401f54:	4d 89 e0             	mov    %r12,%r8
+  401f57:	4c 89 e9             	mov    %r13,%rcx
+  401f5a:	be 00 04 00 00       	mov    $0x400,%esi
+  401f5f:	bf 10 00 00 00       	mov    $0x10,%edi
+  401f64:	c7 44 24 08 00 04 00 	movl   $0x400,0x8(%rsp)
+  401f6b:	00 
+  401f6c:	48 89 1c 24          	mov    %rbx,(%rsp)
+  401f70:	4c 69 f0 40 42 0f 00 	imul   $0xf4240,%rax,%r14
+  401f77:	4c 03 74 24 38       	add    0x38(%rsp),%r14
+  401f7c:	e8 ff ec ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  401f81:	48 8d 7c 24 30       	lea    0x30(%rsp),%rdi
+  401f86:	31 f6                	xor    %esi,%esi
+  401f88:	e8 53 e7 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  401f8d:	48 8b 54 24 30       	mov    0x30(%rsp),%rdx
+  401f92:	48 69 c2 40 42 0f 00 	imul   $0xf4240,%rdx,%rax
+  401f99:	48 03 44 24 38       	add    0x38(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  401f9e:	4c 29 f0             	sub    %r14,%rax
+  401fa1:	78 42                	js     401fe5 <test_cifar_conv1+0x2b5>
+  401fa3:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  401fa8:	c5 fb 5e 05 f8 0a 00 	vdivsd 0xaf8(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  401faf:	00 
+  401fb0:	48 8b 3d d1 20 20 00 	mov    0x2020d1(%rip),%rdi        # 604088 <__TMC_END__>
+  401fb7:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  401fbc:	be 01 00 00 00       	mov    $0x1,%esi
+  401fc1:	b8 01 00 00 00       	mov    $0x1,%eax
+  401fc6:	e8 85 e7 ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+
+}
+  401fcb:	48 8d 65 d8          	lea    -0x28(%rbp),%rsp
+  401fcf:	5b                   	pop    %rbx
+  401fd0:	41 5c                	pop    %r12
+  401fd2:	41 5d                	pop    %r13
+  401fd4:	41 5e                	pop    %r14
+  401fd6:	41 5f                	pop    %r15
+  401fd8:	5d                   	pop    %rbp
+  401fd9:	c3                   	retq   
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  401fda:	45 31 f6             	xor    %r14d,%r14d
+    return ptr;
+  else
+    return NULL;
+  401fdd:	45 31 e4             	xor    %r12d,%r12d
+  401fe0:	e9 9e fd ff ff       	jmpq   401d83 <test_cifar_conv1+0x53>
+	}
+
+	uint64_t start_time = timestamp_us();
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  401fe5:	48 89 c2             	mov    %rax,%rdx
+  401fe8:	83 e0 01             	and    $0x1,%eax
+  401feb:	48 d1 ea             	shr    %rdx
+  401fee:	48 09 c2             	or     %rax,%rdx
+  401ff1:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  401ff6:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  401ffa:	eb ac                	jmp    401fa8 <test_cifar_conv1+0x278>
+  401ffc:	31 db                	xor    %ebx,%ebx
+	int K = 75;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  401ffe:	4d 85 f6             	test   %r14,%r14
+  402001:	0f 84 a6 fd ff ff    	je     401dad <test_cifar_conv1+0x7d>
+  402007:	b9 30 2a 40 00       	mov    $0x402a30,%ecx
+  40200c:	ba 88 00 00 00       	mov    $0x88,%edx
+  402011:	be 17 28 40 00       	mov    $0x402817,%esi
+  402016:	bf 18 29 40 00       	mov    $0x402918,%edi
+  40201b:	e8 d0 e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+
+
+void test_cifar_conv1(){
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_round2");
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+	assert(matrix);
+  402020:	b9 30 2a 40 00       	mov    $0x402a30,%ecx
+  402025:	ba 7e 00 00 00       	mov    $0x7e,%edx
+  40202a:	be 17 28 40 00       	mov    $0x402817,%esi
+  40202f:	bf 95 28 40 00       	mov    $0x402895,%edi
+  402034:	e8 b7 e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+	assert(B);
+	assert(C);
+  402039:	b9 30 2a 40 00       	mov    $0x402a30,%ecx
+  40203e:	ba 8b 00 00 00       	mov    $0x8b,%edx
+  402043:	be 17 28 40 00       	mov    $0x402817,%esi
+  402048:	bf 49 28 40 00       	mov    $0x402849,%edi
+  40204d:	e8 9e e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+}
+
+static inline void load_matrix(const char* file_name, int M, int N, float* matrix){
+	FILE* fin = fopen(file_name, "r");
+	assert(fin != NULL);
+  402052:	b9 21 2a 40 00       	mov    $0x402a21,%ecx
+  402057:	ba 0b 00 00 00       	mov    $0xb,%edx
+  40205c:	be d3 28 40 00       	mov    $0x4028d3,%esi
+  402061:	bf c6 26 40 00       	mov    $0x4026c6,%edi
+  402066:	e8 85 e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+	int M_;
+	int N_;
+	fscanf(fin, "%d %d", &M_, &N_);
+	assert(M_ == M);
+  40206b:	b9 21 2a 40 00       	mov    $0x402a21,%ecx
+  402070:	ba 0f 00 00 00       	mov    $0xf,%edx
+  402075:	be d3 28 40 00       	mov    $0x4028d3,%esi
+  40207a:	bf e1 28 40 00       	mov    $0x4028e1,%edi
+  40207f:	e8 6c e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(N_ == N);
+  402084:	b9 21 2a 40 00       	mov    $0x402a21,%ecx
+  402089:	ba 10 00 00 00       	mov    $0x10,%edx
+  40208e:	be d3 28 40 00       	mov    $0x4028d3,%esi
+  402093:	bf e9 28 40 00       	mov    $0x4028e9,%edi
+  402098:	e8 53 e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+  40209d:	b9 30 2a 40 00       	mov    $0x402a30,%ecx
+  4020a2:	ba 89 00 00 00       	mov    $0x89,%edx
+  4020a7:	be 17 28 40 00       	mov    $0x402817,%esi
+  4020ac:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  4020b1:	e8 3a e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(B);
+  4020b6:	b9 30 2a 40 00       	mov    $0x402a30,%ecx
+  4020bb:	ba 8a 00 00 00       	mov    $0x8a,%edx
+  4020c0:	be 17 28 40 00       	mov    $0x402817,%esi
+  4020c5:	bf 47 28 40 00       	mov    $0x402847,%edi
+  4020ca:	e8 21 e6 ff ff       	callq  4006f0 <__assert_fail@plt>
+  4020cf:	90                   	nop
+
+00000000004020d0 <test_cifar_conv2>:
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+
+}
+
+
+void test_cifar_conv2(){
+  4020d0:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv2_sparse_round2");
+  4020d1:	bf 98 29 40 00       	mov    $0x402998,%edi
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+
+}
+
+
+void test_cifar_conv2(){
+  4020d6:	48 89 e5             	mov    %rsp,%rbp
+  4020d9:	41 56                	push   %r14
+  4020db:	41 55                	push   %r13
+  4020dd:	41 54                	push   %r12
+  4020df:	53                   	push   %rbx
+  4020e0:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  4020e4:	48 83 ec 30          	sub    $0x30,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv2_sparse_round2");
+  4020e8:	e8 83 e7 ff ff       	callq  400870 <init_SparseMatrix>
+  4020ed:	48 8b 3d 94 1f 20 00 	mov    0x201f94(%rip),%rdi        # 604088 <__TMC_END__>
+  4020f4:	8b 08                	mov    (%rax),%ecx
+  4020f6:	ba f8 28 40 00       	mov    $0x4028f8,%edx
+  4020fb:	be 01 00 00 00       	mov    $0x1,%esi
+  402100:	48 89 c3             	mov    %rax,%rbx
+  402103:	31 c0                	xor    %eax,%eax
+  402105:	e8 46 e6 ff ff       	callq  400750 <__fprintf_chk@plt>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  40210a:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  40210f:	ba 00 40 06 00       	mov    $0x64000,%edx
+  402114:	be 20 00 00 00       	mov    $0x20,%esi
+  402119:	e8 42 e6 ff ff       	callq  400760 <posix_memalign@plt>
+  40211e:	85 c0                	test   %eax,%eax
+  402120:	0f 85 a5 01 00 00    	jne    4022cb <test_cifar_conv2+0x1fb>
+    return ptr;
+  402126:	4c 8b 64 24 10       	mov    0x10(%rsp),%r12
+  40212b:	4d 89 e6             	mov    %r12,%r14
+  40212e:	41 83 e6 1f          	and    $0x1f,%r14d
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  402132:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  402137:	ba 00 50 00 00       	mov    $0x5000,%edx
+  40213c:	be 20 00 00 00       	mov    $0x20,%esi
+  402141:	e8 1a e6 ff ff       	callq  400760 <posix_memalign@plt>
+  402146:	85 c0                	test   %eax,%eax
+  402148:	0f 85 9f 01 00 00    	jne    4022ed <test_cifar_conv2+0x21d>
+	int K = 400;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  40214e:	4d 85 f6             	test   %r14,%r14
+    return ptr;
+  402151:	4c 8b 6c 24 10       	mov    0x10(%rsp),%r13
+  402156:	0f 85 9d 01 00 00    	jne    4022f9 <test_cifar_conv2+0x229>
+	assert(((unsigned long)C & 31) == 0);
+  40215c:	41 f6 c5 1f          	test   $0x1f,%r13b
+  402160:	0f 85 ac 01 00 00    	jne    402312 <test_cifar_conv2+0x242>
+	assert(B);
+  402166:	4d 85 e4             	test   %r12,%r12
+  402169:	0f 84 bc 01 00 00    	je     40232b <test_cifar_conv2+0x25b>
+	assert(C);
+  40216f:	4d 85 ed             	test   %r13,%r13
+  402172:	0f 84 cc 01 00 00    	je     402344 <test_cifar_conv2+0x274>
+  402178:	31 f6                	xor    %esi,%esi
+  40217a:	31 c0                	xor    %eax,%eax
+  40217c:	eb 4c                	jmp    4021ca <test_cifar_conv2+0xfa>
+  40217e:	66 90                	xchg   %ax,%ax
+  402180:	40 f6 c7 02          	test   $0x2,%dil
+  402184:	75 6a                	jne    4021f0 <test_cifar_conv2+0x120>
+  402186:	40 f6 c7 04          	test   $0x4,%dil
+  40218a:	75 7c                	jne    402208 <test_cifar_conv2+0x138>
+  40218c:	89 d1                	mov    %edx,%ecx
+  40218e:	c1 e9 03             	shr    $0x3,%ecx
+  402191:	f6 c2 04             	test   $0x4,%dl
+  402194:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  402197:	74 0a                	je     4021a3 <test_cifar_conv2+0xd3>
+  402199:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  40219f:	48 83 c7 04          	add    $0x4,%rdi
+  4021a3:	f6 c2 02             	test   $0x2,%dl
+  4021a6:	74 0a                	je     4021b2 <test_cifar_conv2+0xe2>
+  4021a8:	31 c9                	xor    %ecx,%ecx
+  4021aa:	48 83 c7 02          	add    $0x2,%rdi
+  4021ae:	66 89 4f fe          	mov    %cx,-0x2(%rdi)
+  4021b2:	83 e2 01             	and    $0x1,%edx
+  4021b5:	74 03                	je     4021ba <test_cifar_conv2+0xea>
+  4021b7:	c6 07 00             	movb   $0x0,(%rdi)
+  4021ba:	48 81 c6 00 04 00 00 	add    $0x400,%rsi
+	
+	for(int i = 0; i < M; i++){
+  4021c1:	48 81 fe 00 50 00 00 	cmp    $0x5000,%rsi
+  4021c8:	74 56                	je     402220 <test_cifar_conv2+0x150>
+  4021ca:	49 8d 4c 35 00       	lea    0x0(%r13,%rsi,1),%rcx
+  4021cf:	ba 00 04 00 00       	mov    $0x400,%edx
+  4021d4:	f6 c1 01             	test   $0x1,%cl
+  4021d7:	48 89 cf             	mov    %rcx,%rdi
+  4021da:	74 a4                	je     402180 <test_cifar_conv2+0xb0>
+  4021dc:	48 83 c7 01          	add    $0x1,%rdi
+  4021e0:	c6 01 00             	movb   $0x0,(%rcx)
+  4021e3:	66 ba ff 03          	mov    $0x3ff,%dx
+  4021e7:	40 f6 c7 02          	test   $0x2,%dil
+  4021eb:	74 99                	je     402186 <test_cifar_conv2+0xb6>
+  4021ed:	0f 1f 00             	nopl   (%rax)
+  4021f0:	45 31 c0             	xor    %r8d,%r8d
+  4021f3:	48 83 c7 02          	add    $0x2,%rdi
+  4021f7:	83 ea 02             	sub    $0x2,%edx
+  4021fa:	66 44 89 47 fe       	mov    %r8w,-0x2(%rdi)
+  4021ff:	40 f6 c7 04          	test   $0x4,%dil
+  402203:	74 87                	je     40218c <test_cifar_conv2+0xbc>
+  402205:	0f 1f 00             	nopl   (%rax)
+  402208:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  40220e:	83 ea 04             	sub    $0x4,%edx
+  402211:	48 83 c7 04          	add    $0x4,%rdi
+  402215:	e9 72 ff ff ff       	jmpq   40218c <test_cifar_conv2+0xbc>
+  40221a:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  402220:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  402225:	66 31 f6             	xor    %si,%si
+  402228:	e8 b3 e4 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  40222d:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  402232:	4c 69 f2 40 42 0f 00 	imul   $0xf4240,%rdx,%r14
+  402239:	4c 03 74 24 18       	add    0x18(%rsp),%r14
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  40223e:	41 f6 c4 1f          	test   $0x1f,%r12b
+  402242:	0f 85 15 01 00 00    	jne    40235d <test_cifar_conv2+0x28d>
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  402248:	41 b9 00 01 00 00    	mov    $0x100,%r9d
+  40224e:	4d 89 e0             	mov    %r12,%r8
+  402251:	48 89 d9             	mov    %rbx,%rcx
+  402254:	ba 90 01 00 00       	mov    $0x190,%edx
+  402259:	be 00 01 00 00       	mov    $0x100,%esi
+  40225e:	bf 14 00 00 00       	mov    $0x14,%edi
+  402263:	c7 44 24 08 00 01 00 	movl   $0x100,0x8(%rsp)
+  40226a:	00 
+  40226b:	4c 89 2c 24          	mov    %r13,(%rsp)
+  40226f:	e8 0c ea ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  402274:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  402279:	31 f6                	xor    %esi,%esi
+  40227b:	e8 60 e4 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  402280:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  402285:	48 69 c0 40 42 0f 00 	imul   $0xf4240,%rax,%rax
+  40228c:	48 03 44 24 18       	add    0x18(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  402291:	4c 29 f0             	sub    %r14,%rax
+  402294:	78 40                	js     4022d6 <test_cifar_conv2+0x206>
+  402296:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  40229b:	c5 fb 5e 05 05 08 00 	vdivsd 0x805(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  4022a2:	00 
+  4022a3:	48 8b 3d de 1d 20 00 	mov    0x201dde(%rip),%rdi        # 604088 <__TMC_END__>
+  4022aa:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  4022af:	be 01 00 00 00       	mov    $0x1,%esi
+  4022b4:	b8 01 00 00 00       	mov    $0x1,%eax
+  4022b9:	e8 92 e4 ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+  4022be:	48 8d 65 e0          	lea    -0x20(%rbp),%rsp
+  4022c2:	5b                   	pop    %rbx
+  4022c3:	41 5c                	pop    %r12
+  4022c5:	41 5d                	pop    %r13
+  4022c7:	41 5e                	pop    %r14
+  4022c9:	5d                   	pop    %rbp
+  4022ca:	c3                   	retq   
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  4022cb:	45 31 f6             	xor    %r14d,%r14d
+    return ptr;
+  else
+    return NULL;
+  4022ce:	45 31 e4             	xor    %r12d,%r12d
+  4022d1:	e9 5c fe ff ff       	jmpq   402132 <test_cifar_conv2+0x62>
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  4022d6:	48 89 c2             	mov    %rax,%rdx
+  4022d9:	83 e0 01             	and    $0x1,%eax
+  4022dc:	48 d1 ea             	shr    %rdx
+  4022df:	48 09 c2             	or     %rax,%rdx
+  4022e2:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  4022e7:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  4022eb:	eb ae                	jmp    40229b <test_cifar_conv2+0x1cb>
+  4022ed:	45 31 ed             	xor    %r13d,%r13d
+	int K = 400;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  4022f0:	4d 85 f6             	test   %r14,%r14
+  4022f3:	0f 84 63 fe ff ff    	je     40215c <test_cifar_conv2+0x8c>
+  4022f9:	b9 10 2a 40 00       	mov    $0x402a10,%ecx
+  4022fe:	ba ab 00 00 00       	mov    $0xab,%edx
+  402303:	be 17 28 40 00       	mov    $0x402817,%esi
+  402308:	bf 18 29 40 00       	mov    $0x402918,%edi
+  40230d:	e8 de e3 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(((unsigned long)C & 31) == 0);
+  402312:	b9 10 2a 40 00       	mov    $0x402a10,%ecx
+  402317:	ba ac 00 00 00       	mov    $0xac,%edx
+  40231c:	be 17 28 40 00       	mov    $0x402817,%esi
+  402321:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  402326:	e8 c5 e3 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(B);
+  40232b:	b9 10 2a 40 00       	mov    $0x402a10,%ecx
+  402330:	ba ad 00 00 00       	mov    $0xad,%edx
+  402335:	be 17 28 40 00       	mov    $0x402817,%esi
+  40233a:	bf 47 28 40 00       	mov    $0x402847,%edi
+  40233f:	e8 ac e3 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(C);
+  402344:	b9 10 2a 40 00       	mov    $0x402a10,%ecx
+  402349:	ba ae 00 00 00       	mov    $0xae,%edx
+  40234e:	be 17 28 40 00       	mov    $0x402817,%esi
+  402353:	bf 49 28 40 00       	mov    $0x402849,%edi
+  402358:	e8 93 e3 ff ff       	callq  4006f0 <__assert_fail@plt>
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  40235d:	b9 10 2a 40 00       	mov    $0x402a10,%ecx
+  402362:	ba b8 00 00 00       	mov    $0xb8,%edx
+  402367:	be 17 28 40 00       	mov    $0x402817,%esi
+  40236c:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  402371:	e8 7a e3 ff ff       	callq  4006f0 <__assert_fail@plt>
+  402376:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+  40237d:	00 00 00 
+
+0000000000402380 <test_cifar_conv3>:
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_cifar_conv3(){
+  402380:	55                   	push   %rbp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv3_sparse_round2");
+  402381:	bf c0 29 40 00       	mov    $0x4029c0,%edi
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+
+void test_cifar_conv3(){
+  402386:	48 89 e5             	mov    %rsp,%rbp
+  402389:	41 56                	push   %r14
+  40238b:	41 55                	push   %r13
+  40238d:	41 54                	push   %r12
+  40238f:	53                   	push   %rbx
+  402390:	48 83 e4 e0          	and    $0xffffffffffffffe0,%rsp
+  402394:	48 83 ec 30          	sub    $0x30,%rsp
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv3_sparse_round2");
+  402398:	e8 d3 e4 ff ff       	callq  400870 <init_SparseMatrix>
+  40239d:	48 8b 3d e4 1c 20 00 	mov    0x201ce4(%rip),%rdi        # 604088 <__TMC_END__>
+  4023a4:	8b 08                	mov    (%rax),%ecx
+  4023a6:	ba f8 28 40 00       	mov    $0x4028f8,%edx
+  4023ab:	be 01 00 00 00       	mov    $0x1,%esi
+  4023b0:	48 89 c3             	mov    %rax,%rbx
+  4023b3:	31 c0                	xor    %eax,%eax
+  4023b5:	e8 96 e3 ff ff       	callq  400750 <__fprintf_chk@plt>
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  4023ba:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  4023bf:	ba 00 f4 01 00       	mov    $0x1f400,%edx
+  4023c4:	be 20 00 00 00       	mov    $0x20,%esi
+  4023c9:	e8 92 e3 ff ff       	callq  400760 <posix_memalign@plt>
+  4023ce:	85 c0                	test   %eax,%eax
+  4023d0:	0f 85 ea 01 00 00    	jne    4025c0 <test_cifar_conv3+0x240>
+    return ptr;
+  4023d6:	4c 8b 64 24 10       	mov    0x10(%rsp),%r12
+  4023db:	4d 89 e6             	mov    %r12,%r14
+  4023de:	41 83 e6 1f          	and    $0x1f,%r14d
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  4023e2:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  4023e7:	ba 00 14 00 00       	mov    $0x1400,%edx
+  4023ec:	be 20 00 00 00       	mov    $0x20,%esi
+  4023f1:	e8 6a e3 ff ff       	callq  400760 <posix_memalign@plt>
+  4023f6:	85 c0                	test   %eax,%eax
+  4023f8:	0f 85 99 01 00 00    	jne    402597 <test_cifar_conv3+0x217>
+	int K = 500;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  4023fe:	4d 85 f6             	test   %r14,%r14
+    return ptr;
+  402401:	4c 8b 6c 24 10       	mov    0x10(%rsp),%r13
+  402406:	0f 85 97 01 00 00    	jne    4025a3 <test_cifar_conv3+0x223>
+	assert(((unsigned long)C & 31) == 0);
+  40240c:	41 f6 c5 1f          	test   $0x1f,%r13b
+  402410:	0f 85 ce 01 00 00    	jne    4025e4 <test_cifar_conv3+0x264>
+	assert(B);
+  402416:	4d 85 e4             	test   %r12,%r12
+  402419:	0f 84 de 01 00 00    	je     4025fd <test_cifar_conv3+0x27d>
+	assert(C);
+  40241f:	4d 85 ed             	test   %r13,%r13
+  402422:	0f 84 ee 01 00 00    	je     402616 <test_cifar_conv3+0x296>
+  402428:	31 f6                	xor    %esi,%esi
+  40242a:	31 c0                	xor    %eax,%eax
+  40242c:	eb 4c                	jmp    40247a <test_cifar_conv3+0xfa>
+  40242e:	66 90                	xchg   %ax,%ax
+  402430:	40 f6 c7 02          	test   $0x2,%dil
+  402434:	75 6a                	jne    4024a0 <test_cifar_conv3+0x120>
+  402436:	40 f6 c7 04          	test   $0x4,%dil
+  40243a:	75 7c                	jne    4024b8 <test_cifar_conv3+0x138>
+  40243c:	89 d1                	mov    %edx,%ecx
+  40243e:	c1 e9 03             	shr    $0x3,%ecx
+  402441:	f6 c2 04             	test   $0x4,%dl
+  402444:	f3 48 ab             	rep stos %rax,%es:(%rdi)
+  402447:	74 0a                	je     402453 <test_cifar_conv3+0xd3>
+  402449:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  40244f:	48 83 c7 04          	add    $0x4,%rdi
+  402453:	f6 c2 02             	test   $0x2,%dl
+  402456:	74 0a                	je     402462 <test_cifar_conv3+0xe2>
+  402458:	31 c9                	xor    %ecx,%ecx
+  40245a:	48 83 c7 02          	add    $0x2,%rdi
+  40245e:	66 89 4f fe          	mov    %cx,-0x2(%rdi)
+  402462:	83 e2 01             	and    $0x1,%edx
+  402465:	74 03                	je     40246a <test_cifar_conv3+0xea>
+  402467:	c6 07 00             	movb   $0x0,(%rdi)
+  40246a:	48 81 c6 00 01 00 00 	add    $0x100,%rsi
+	
+	for(int i = 0; i < M; i++){
+  402471:	48 81 fe 00 14 00 00 	cmp    $0x1400,%rsi
+  402478:	74 56                	je     4024d0 <test_cifar_conv3+0x150>
+  40247a:	49 8d 4c 35 00       	lea    0x0(%r13,%rsi,1),%rcx
+  40247f:	ba 00 01 00 00       	mov    $0x100,%edx
+  402484:	f6 c1 01             	test   $0x1,%cl
+  402487:	48 89 cf             	mov    %rcx,%rdi
+  40248a:	74 a4                	je     402430 <test_cifar_conv3+0xb0>
+  40248c:	48 83 c7 01          	add    $0x1,%rdi
+  402490:	c6 01 00             	movb   $0x0,(%rcx)
+  402493:	66 ba ff 00          	mov    $0xff,%dx
+  402497:	40 f6 c7 02          	test   $0x2,%dil
+  40249b:	74 99                	je     402436 <test_cifar_conv3+0xb6>
+  40249d:	0f 1f 00             	nopl   (%rax)
+  4024a0:	45 31 c0             	xor    %r8d,%r8d
+  4024a3:	48 83 c7 02          	add    $0x2,%rdi
+  4024a7:	83 ea 02             	sub    $0x2,%edx
+  4024aa:	66 44 89 47 fe       	mov    %r8w,-0x2(%rdi)
+  4024af:	40 f6 c7 04          	test   $0x4,%dil
+  4024b3:	74 87                	je     40243c <test_cifar_conv3+0xbc>
+  4024b5:	0f 1f 00             	nopl   (%rax)
+  4024b8:	c7 07 00 00 00 00    	movl   $0x0,(%rdi)
+  4024be:	83 ea 04             	sub    $0x4,%edx
+  4024c1:	48 83 c7 04          	add    $0x4,%rdi
+  4024c5:	e9 72 ff ff ff       	jmpq   40243c <test_cifar_conv3+0xbc>
+  4024ca:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  4024d0:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  4024d5:	66 31 f6             	xor    %si,%si
+  4024d8:	e8 03 e2 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  4024dd:	48 8b 54 24 10       	mov    0x10(%rsp),%rdx
+  4024e2:	4c 69 f2 40 42 0f 00 	imul   $0xf4240,%rdx,%r14
+  4024e9:	4c 03 74 24 18       	add    0x18(%rsp),%r14
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  4024ee:	41 f6 c4 1f          	test   $0x1f,%r12b
+  4024f2:	0f 85 d3 00 00 00    	jne    4025cb <test_cifar_conv3+0x24b>
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+  4024f8:	41 b9 40 00 00 00    	mov    $0x40,%r9d
+  4024fe:	4d 89 e0             	mov    %r12,%r8
+  402501:	48 89 d9             	mov    %rbx,%rcx
+  402504:	ba f4 01 00 00       	mov    $0x1f4,%edx
+  402509:	be 40 00 00 00       	mov    $0x40,%esi
+  40250e:	bf 14 00 00 00       	mov    $0x14,%edi
+  402513:	c7 44 24 08 40 00 00 	movl   $0x40,0x8(%rsp)
+  40251a:	00 
+  40251b:	4c 89 2c 24          	mov    %r13,(%rsp)
+  40251f:	e8 5c e7 ff ff       	callq  400c80 <SparseMatrixMultiplication>
+#ifndef SPARSE_MATRIX_UTIL_H
+#define SPARSE_MATRIX_UTIL_H
+static inline uint64_t timestamp_us() {
+  struct timeval tv;
+  gettimeofday(&tv,NULL);
+  402524:	48 8d 7c 24 10       	lea    0x10(%rsp),%rdi
+  402529:	31 f6                	xor    %esi,%esi
+  40252b:	e8 b0 e1 ff ff       	callq  4006e0 <gettimeofday@plt>
+  return 1000000L * tv.tv_sec + tv.tv_usec;
+  402530:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  402535:	48 69 c0 40 42 0f 00 	imul   $0xf4240,%rax,%rax
+  40253c:	48 03 44 24 18       	add    0x18(%rsp),%rax
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  402541:	4c 29 f0             	sub    %r14,%rax
+  402544:	78 3a                	js     402580 <test_cifar_conv3+0x200>
+  402546:	c4 e1 fb 2a c0       	vcvtsi2sd %rax,%xmm0,%xmm0
+  40254b:	c5 fb 5e 05 55 05 00 	vdivsd 0x555(%rip),%xmm0,%xmm0        # 402aa8 <__PRETTY_FUNCTION__.6137+0x18>
+  402552:	00 
+  402553:	48 8b 3d 2e 1b 20 00 	mov    0x201b2e(%rip),%rdi        # 604088 <__TMC_END__>
+  40255a:	ba 4b 28 40 00       	mov    $0x40284b,%edx
+  40255f:	be 01 00 00 00       	mov    $0x1,%esi
+  402564:	b8 01 00 00 00       	mov    $0x1,%eax
+  402569:	e8 e2 e1 ff ff       	callq  400750 <__fprintf_chk@plt>
+	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+}
+  40256e:	48 8d 65 e0          	lea    -0x20(%rbp),%rsp
+  402572:	5b                   	pop    %rbx
+  402573:	41 5c                	pop    %r12
+  402575:	41 5d                	pop    %r13
+  402577:	41 5e                	pop    %r14
+  402579:	5d                   	pop    %rbp
+  40257a:	c3                   	retq   
+  40257b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
+	uint64_t end_time = timestamp_us();
+	double m_second = (double)(end_time-start_time)/1000.0;
+  402580:	48 89 c2             	mov    %rax,%rdx
+  402583:	83 e0 01             	and    $0x1,%eax
+  402586:	48 d1 ea             	shr    %rdx
+  402589:	48 09 c2             	or     %rax,%rdx
+  40258c:	c4 e1 fb 2a c2       	vcvtsi2sd %rdx,%xmm0,%xmm0
+  402591:	c5 fb 58 c0          	vaddsd %xmm0,%xmm0,%xmm0
+  402595:	eb b4                	jmp    40254b <test_cifar_conv3+0x1cb>
+  else
+    return NULL;
+  402597:	45 31 ed             	xor    %r13d,%r13d
+	int K = 500;
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+  40259a:	4d 85 f6             	test   %r14,%r14
+  40259d:	0f 84 69 fe ff ff    	je     40240c <test_cifar_conv3+0x8c>
+  4025a3:	b9 f0 29 40 00       	mov    $0x4029f0,%ecx
+  4025a8:	ba cc 00 00 00       	mov    $0xcc,%edx
+  4025ad:	be 17 28 40 00       	mov    $0x402817,%esi
+  4025b2:	bf 18 29 40 00       	mov    $0x402918,%edi
+  4025b7:	e8 34 e1 ff ff       	callq  4006f0 <__assert_fail@plt>
+  4025bc:	0f 1f 40 00          	nopl   0x0(%rax)
+  void *ptr;
+  if (alignment == 1)
+    return malloc (size);
+  if (alignment == 2 || (sizeof (void *) == 8 && alignment == 4))
+    alignment = sizeof (void *);
+  if (posix_memalign (&ptr, alignment, size) == 0)
+  4025c0:	45 31 f6             	xor    %r14d,%r14d
+    return ptr;
+  else
+    return NULL;
+  4025c3:	45 31 e4             	xor    %r12d,%r12d
+  4025c6:	e9 17 fe ff ff       	jmpq   4023e2 <test_cifar_conv3+0x62>
+			
+		}
+	}
+
+	uint64_t start_time = timestamp_us();
+	assert(((unsigned long)B & 31) == 0);
+  4025cb:	b9 f0 29 40 00       	mov    $0x4029f0,%ecx
+  4025d0:	ba d9 00 00 00       	mov    $0xd9,%edx
+  4025d5:	be 17 28 40 00       	mov    $0x402817,%esi
+  4025da:	bf e8 26 40 00       	mov    $0x4026e8,%edi
+  4025df:	e8 0c e1 ff ff       	callq  4006f0 <__assert_fail@plt>
+	int incRowB = N;
+	int incRowC = N;
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
+	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
+	assert(((unsigned long)C & 31) == 0);
+  4025e4:	b9 f0 29 40 00       	mov    $0x4029f0,%ecx
+  4025e9:	ba cd 00 00 00       	mov    $0xcd,%edx
+  4025ee:	be 17 28 40 00       	mov    $0x402817,%esi
+  4025f3:	bf 2a 28 40 00       	mov    $0x40282a,%edi
+  4025f8:	e8 f3 e0 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(B);
+  4025fd:	b9 f0 29 40 00       	mov    $0x4029f0,%ecx
+  402602:	ba ce 00 00 00       	mov    $0xce,%edx
+  402607:	be 17 28 40 00       	mov    $0x402817,%esi
+  40260c:	bf 47 28 40 00       	mov    $0x402847,%edi
+  402611:	e8 da e0 ff ff       	callq  4006f0 <__assert_fail@plt>
+	assert(C);
+  402616:	b9 f0 29 40 00       	mov    $0x4029f0,%ecx
+  40261b:	ba cf 00 00 00       	mov    $0xcf,%edx
+  402620:	be 17 28 40 00       	mov    $0x402817,%esi
+  402625:	bf 49 28 40 00       	mov    $0x402849,%edi
+  40262a:	e8 c1 e0 ff ff       	callq  4006f0 <__assert_fail@plt>
+  40262f:	90                   	nop
+
+0000000000402630 <__libc_csu_init>:
+  402630:	41 57                	push   %r15
+  402632:	41 89 ff             	mov    %edi,%r15d
+  402635:	41 56                	push   %r14
+  402637:	49 89 f6             	mov    %rsi,%r14
+  40263a:	41 55                	push   %r13
+  40263c:	49 89 d5             	mov    %rdx,%r13
+  40263f:	41 54                	push   %r12
+  402641:	4c 8d 25 c8 17 20 00 	lea    0x2017c8(%rip),%r12        # 603e10 <__frame_dummy_init_array_entry>
+  402648:	55                   	push   %rbp
+  402649:	48 8d 2d c8 17 20 00 	lea    0x2017c8(%rip),%rbp        # 603e18 <__init_array_end>
+  402650:	53                   	push   %rbx
+  402651:	4c 29 e5             	sub    %r12,%rbp
+  402654:	31 db                	xor    %ebx,%ebx
+  402656:	48 c1 fd 03          	sar    $0x3,%rbp
+  40265a:	48 83 ec 08          	sub    $0x8,%rsp
+  40265e:	e8 1d e0 ff ff       	callq  400680 <_init>
+  402663:	48 85 ed             	test   %rbp,%rbp
+  402666:	74 1e                	je     402686 <__libc_csu_init+0x56>
+  402668:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  40266f:	00 
+  402670:	4c 89 ea             	mov    %r13,%rdx
+  402673:	4c 89 f6             	mov    %r14,%rsi
+  402676:	44 89 ff             	mov    %r15d,%edi
+  402679:	41 ff 14 dc          	callq  *(%r12,%rbx,8)
+  40267d:	48 83 c3 01          	add    $0x1,%rbx
+  402681:	48 39 eb             	cmp    %rbp,%rbx
+  402684:	75 ea                	jne    402670 <__libc_csu_init+0x40>
+  402686:	48 83 c4 08          	add    $0x8,%rsp
+  40268a:	5b                   	pop    %rbx
+  40268b:	5d                   	pop    %rbp
+  40268c:	41 5c                	pop    %r12
+  40268e:	41 5d                	pop    %r13
+  402690:	41 5e                	pop    %r14
+  402692:	41 5f                	pop    %r15
+  402694:	c3                   	retq   
+  402695:	66 66 2e 0f 1f 84 00 	data32 nopw %cs:0x0(%rax,%rax,1)
+  40269c:	00 00 00 00 
+
+00000000004026a0 <__libc_csu_fini>:
+  4026a0:	f3 c3                	repz retq 
+
+Disassembly of section .fini:
+
+00000000004026a4 <_fini>:
+  4026a4:	48 83 ec 08          	sub    $0x8,%rsp
+  4026a8:	48 83 c4 08          	add    $0x8,%rsp
+  4026ac:	c3                   	retq   
