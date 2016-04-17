@@ -116,14 +116,24 @@ Scaler* getScalers(SparseMatrix* m){
 	return m->scalers;
 }
 
-void scaleRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
+void scaleAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
 	__m256 scalar_ = _mm256_set1_ps(scaler);
 	for(int i = 0; i < n; i+=8){
 		__m256 As = _mm256_load_ps(A+i);
 		__m256 Bs = _mm256_load_ps(B+i);
-		__m256 Ms = _mm256_mul_ps(As, scalar_);
-		Ms += Bs;
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
 		_mm256_store_ps(B+i, Ms);
+	}
+	return;
+}
+
+void scaleUnAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
+	__m256 scalar_ = _mm256_set1_ps(scaler);
+	for(int i = 0; i < n; i+=8){
+		__m256 As = _mm256_load_ps(A+i);
+		__m256 Bs = _mm256_loadu_ps(B+i);
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
+		_mm256_storeu_ps(B+i, Ms);
 	}
 	return;
 }
@@ -162,17 +172,28 @@ void add_row_to_rows(const i_j_pairs pairs, Dtype* buffer, Dtype* matrix_buffer,
 	}
 }
 
-void scale_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
+void scale_aligned_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
 
 	assert(scaling_factor != 0);
 	for(int i = 0; i < num_rows_write_to; i++){
 		int row_n = i_values[i];
 		Dtype* source_row = &matrix_buffer[row_n*incRowC];
 		Dtype* destination_row = &C[row_n*incRowC];
-		scaleRow(incRowC, scaling_factor, source_row, destination_row);
+		scaleAlignedRow(incRowC, scaling_factor, source_row, destination_row);
 	}
 }
 
+
+void scale_unaligned_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
+
+	assert(scaling_factor != 0);
+	for(int i = 0; i < num_rows_write_to; i++){
+		int row_n = i_values[i];
+		Dtype* source_row = &matrix_buffer[row_n*incRowC];
+		Dtype* destination_row = &C[row_n*incRowC];
+		scaleUnAlignedRow(incRowC, scaling_factor, source_row, destination_row);
+	}
+}
 
 void ScaleMatrixTo(Scaler s,
 				   Dtype* B, int nrow, int ncol, int incRowB,
@@ -194,16 +215,17 @@ void ScaleMatrixTo(Scaler s,
 	for(int i = 0; i < s.num_pairs; i++){
 		i_j_pairs p = pairs[i];
 		accumulate_rows(p, B, ncol, incRowB, buffer);
-		// add_row_to_rows(p, buffer, matrix_buffer, incRowB);
+		add_row_to_rows(p, buffer, matrix_buffer, incRowB);
 	}
 
 	// scaling
 	Dtype scaling_factor = s.value;
-	// scale_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
-	// free the column buffer
-	// _mm_free(buffer);
-	// free the matrix buffer
-	// _mm_free(matrix_buffer);
+	if(incRowC % 8 == 0){
+		scale_aligned_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
+	}
+	else{
+		scale_unaligned_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
+	}
 }
 
 void SparseMatrixMultiplication(int M, int N, int K,
