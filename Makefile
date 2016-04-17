@@ -6,7 +6,7 @@ accumulate_row.o: accumulate_row.c
 	gcc -std=c99 -O3 -msse -mavx -w -c -o $@ $< -lm
 
 sparse.o: sparse_matrix.c sparse_matrix.h
-	gcc -std=c99 -O3 -msse -mavx -w -c -o $@ $< -lm  
+	gcc -std=c99 -O3 -mfma -mavx -w -c -o $@ $< -lm  
 
 sparse.s: sparse_matrix.c sparse_matrix.h
 	gcc -std=c99 -g -msse -mavx -S sparse_matrix.c

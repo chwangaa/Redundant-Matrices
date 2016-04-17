@@ -86,14 +86,24 @@ Scaler* getScalers(SparseMatrix* m){
 	return m->scalers;
 }
 
-void scaleRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
+void scaleAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
 	__m256 scalar_ = _mm256_set1_ps(scaler);
 	for(int i = 0; i < n; i+=8){
 		__m256 As = _mm256_load_ps(A+i);
 		__m256 Bs = _mm256_load_ps(B+i);
-		__m256 Ms = _mm256_mul_ps(As, scalar_);
-		Ms += Bs;
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
 		_mm256_store_ps(B+i, Ms);
+	}
+	return;
+}
+
+void scaleUnAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
+	__m256 scalar_ = _mm256_set1_ps(scaler);
+	for(int i = 0; i < n; i+=8){
+		__m256 As = _mm256_load_ps(A+i);
+		__m256 Bs = _mm256_loadu_ps(B+i);
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
+		_mm256_storeu_ps(B+i, Ms);
 	}
 	return;
 }
@@ -112,7 +122,13 @@ void ScaleMatrixTo(Scaler s,
 		int destination_row_number = p.i_value;
 		Dtype* destination_row = &C[destination_row_number*incRowC];
 		accumulate_rows(p, B, ncol, incRowB, buffer);
-		scaleRow(ncol, scaling_factor, buffer, destination_row);
+		
+		if(ncol % 8 == 0)
+			scaleAlignedRow(ncol, scaling_factor, buffer, destination_row);
+		else{
+			scaleUnAlignedRow(ncol, scaling_factor, buffer, destination_row);
+		}
+	
 	}
 	_mm_free(buffer);
 }
@@ -122,11 +138,14 @@ void SparseMatrixMultiplication(int M, int N, int K,
 			  Dtype* B, int incRowB,
 			  Dtype* C, int incRowC){
 	assert(((unsigned long)B & 31) == 0);
+	assert(incRowB % 8 == 0);
 	assert(M == getNumberOfRow(A));
 	assert(K == getNumberOfCol(A));
 
+
 	int rank = getNumberOfDistinctElement(A);
 	Scaler* scalers = getScalers(A);
+
 	for(int i = 0; i < rank; i++){
 		Scaler s = scalers[i];
 		if(s.value < 0.0001 && s.value > -0.0001){

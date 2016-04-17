@@ -54,25 +54,31 @@ void test_german_conv2(){
 
 void test_german_conv1(){
 	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv1_sparse");
-	fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
 	// fprintf(stderr, "the number of distinct values are %d \n", matrix->rank);
 	int M = 100;
-	int N = 2144;
+	int N = 2116;
 	int K = 27;
-	int incRowB = N;
+	int incRowB = 2120;
 	int incRowC = N;
-	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*incRowB,32);
 	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
 	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
 	assert(((unsigned long)C & 31) == 0);
 	assert(B);
 	assert(C);
-	
 	for(int i = 0; i < M; i++){
 		for(int j = 0; j < N; j++){
 			C[i*incRowC+j] = 0;
+			
+		}
+	}
+
+	for(int i = 0; i < K; i++){
+		for(int j = 0; j < N; j++){
+			B[i*incRowB+j] = 0;
 			
 		}
 	}
@@ -222,5 +228,5 @@ void test_cifar_conv3(){
 }
 
 int main(int argc, char** argv){
-	test_german_conv2();
+	test_german_conv1();
 }
