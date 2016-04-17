@@ -40,8 +40,10 @@ void SparseMatrixMultiplication(int M, int N, int K,
 			  Dtype* B, int incRowB,
 			  Dtype* C, int incRowC);
 
-void accumulate_rows(const i_j_pairs pairs,
+void accumulate_rows_to_destination(const i_j_pairs pairs,
 					 Dtype* B, int ncol, int incRowB,
-					 Dtype* buffer);
+					 Dtype* buffer,
+					 Dtype* destination,
+					 Dtype scaling_factor);
 
 #endif

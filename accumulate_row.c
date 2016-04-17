@@ -22,154 +22,20 @@ static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	Dtype* B7_row = &B[r7*incRowB];
 	Dtype* B8_row = &B[r8*incRowB];		
 
-	int j = 0;
-	int ncol_to_parralelize = ncol - ncol % 32;
-	if(ncol_to_parralelize > 0){
-	  __asm__ __volatile__
-	  (
-	  	"movq %0, %%r15 \n\t" // r15 correspond to row_1
-	    "movq %1, %%r14 \n\t" // r14 correspond to row_2
-	    "movq %2, %%r13 \n\t" // r13 correspond to row_3
-	    "movq %3, %%r12 \n\t" // r12 correspond to row_4
-	    "movq %4, %%r11 \n\t" // r11 correspond to row_4
-	    "movq %5, %%r10 \n\t" // r10 correspond to row_4
-	    "movq %6, %%r9 \n\t" // r9 correspond to row_4
-	    "movq %7, %%r8 \n\t" // r8 correspond to row_4
-	    "movq %8, %%rdi \n\t" // rdi stores the buffer address
-	    "movq $0, %%rsi \n\t" // rsi counts the current offset
-	    
 
-
-	    "loop:"
-
-	    // "movq %%rbx, %%r15 \n\t"
-	    "vmovaps (%%r15, %%rsi, 4), %%ymm0 \n\t"
-	    "vmovaps (%%r14, %%rsi, 4), %%ymm1 \n\t"
-	    "vmovaps (%%r13, %%rsi, 4), %%ymm2 \n\t"
-	    "vmovaps (%%r12, %%rsi, 4), %%ymm3 \n\t"
-	    "vmovaps (%%r11, %%rsi, 4), %%ymm4 \n\t"
-	    "vmovaps (%%r10, %%rsi, 4), %%ymm5 \n\t"
-	    "vmovaps (%%r9, %%rsi, 4), %%ymm6 \n\t"
-	    "vmovaps (%%r8, %%rsi, 4), %%ymm7 \n\t"
-	    "vmovaps (%%rdi, %%rsi, 4), %%ymm8 \n\t"
-
-	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm2, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm3, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm4, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm5, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm6, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm7, %%ymm0 \n\t"
-
-	    "vaddps %%ymm0, %%ymm8, %%ymm0 \n\t"
-	    
-	    "vmovaps %%ymm0, (%%rdi, %%rsi, 4) \n\t"
-	    // "addq      $32,     %%r15    \n\t"  // B1_row += 8;
-
-
-	    "vmovaps 32(%%r15, %%rsi, 4), %%ymm0 \n\t"
-	    "vmovaps 32(%%r14, %%rsi, 4), %%ymm1 \n\t"
-	    "vmovaps 32(%%r13, %%rsi, 4), %%ymm2 \n\t"
-	    "vmovaps 32(%%r12, %%rsi, 4), %%ymm3 \n\t"
-	    "vmovaps 32(%%r11, %%rsi, 4), %%ymm4 \n\t"
-	    "vmovaps 32(%%r10, %%rsi, 4), %%ymm5 \n\t"
-	    "vmovaps 32(%%r9, %%rsi, 4), %%ymm6 \n\t"
-	    "vmovaps 32(%%r8, %%rsi, 4), %%ymm7 \n\t"
-	    "vmovaps 32(%%rdi, %%rsi, 4), %%ymm8 \n\t"
-
-	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm2, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm3, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm4, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm5, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm6, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm7, %%ymm0 \n\t"
-
-	    "vaddps %%ymm0, %%ymm8, %%ymm0 \n\t"
-	    
-	    "vmovaps %%ymm0, 32(%%rdi, %%rsi, 4) \n\t"
-
-
-	    "vmovaps 64(%%r15, %%rsi, 4), %%ymm0 \n\t"
-	    "vmovaps 64(%%r14, %%rsi, 4), %%ymm1 \n\t"
-	    "vmovaps 64(%%r13, %%rsi, 4), %%ymm2 \n\t"
-	    "vmovaps 64(%%r12, %%rsi, 4), %%ymm3 \n\t"
-	    "vmovaps 64(%%r11, %%rsi, 4), %%ymm4 \n\t"
-	    "vmovaps 64(%%r10, %%rsi, 4), %%ymm5 \n\t"
-	    "vmovaps 64(%%r9, %%rsi, 4), %%ymm6 \n\t"
-	    "vmovaps 64(%%r8, %%rsi, 4), %%ymm7 \n\t"
-	    "vmovaps 64(%%rdi, %%rsi, 4), %%ymm8 \n\t"
-
-	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm2, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm3, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm4, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm5, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm6, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm7, %%ymm0 \n\t"
-
-	    "vaddps %%ymm0, %%ymm8, %%ymm0 \n\t"
-	    
-	    "vmovaps %%ymm0, 64(%%rdi, %%rsi, 4) \n\t"
-
-
-
-	    "vmovaps 96(%%r15, %%rsi, 4), %%ymm0 \n\t"
-	    "vmovaps 96(%%r14, %%rsi, 4), %%ymm1 \n\t"
-	    "vmovaps 96(%%r13, %%rsi, 4), %%ymm2 \n\t"
-	    "vmovaps 96(%%r12, %%rsi, 4), %%ymm3 \n\t"
-	    "vmovaps 96(%%r11, %%rsi, 4), %%ymm4 \n\t"
-	    "vmovaps 96(%%r10, %%rsi, 4), %%ymm5 \n\t"
-	    "vmovaps 96(%%r9, %%rsi, 4), %%ymm6 \n\t"
-	    "vmovaps 96(%%r8, %%rsi, 4), %%ymm7 \n\t"
-	    "vmovaps 96(%%rdi, %%rsi, 4), %%ymm8 \n\t"
-
-	    "vaddps %%ymm0, %%ymm1, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm2, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm3, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm4, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm5, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm6, %%ymm0 \n\t"
-	    "vaddps %%ymm0, %%ymm7, %%ymm0 \n\t"
-
-	    "vaddps %%ymm0, %%ymm8, %%ymm0 \n\t"
-	    
-	    "vmovaps %%ymm0, 96(%%rdi, %%rsi, 4) \n\t"
-
-
-	    // "addq      $32,     %%r15    \n\t"  // B1_row += 8;
-	    "addq      $32,     %%rsi \n\t"
-
-
-	    "cmpq %%rsi, %%rax;"
-	    "jg loop;"
-	    : // no output
-	    : "m" (B1_row),
-	      "m" (B2_row), 
-	      "m" (B3_row),
-	      "m" (B4_row),
-	      "m" (B5_row),
-	      "m" (B6_row),
-	      "m" (B7_row),
-	      "m" (B8_row),
-	      "m" (buffer),
-	      "a" (ncol_to_parralelize)
-	      // "d" (SOME_VALUE)
-	    : "rdi", "rsi","r15", "r14", "r13", "r12", "r11", "r10", "r9", "r8"
-	  );
-	}
-
-	for(int j = ncol_to_parralelize; j < ncol; j+=8){
-		__m256 r1 = _mm256_load_ps(B1_row+j);
-		__m256 r2 = _mm256_load_ps(B2_row+j);
-		__m256 r3 = _mm256_load_ps(B3_row+j);
-		__m256 r4 = _mm256_load_ps(B4_row+j);
-		__m256 r5 = _mm256_load_ps(B5_row+j);
-		__m256 r6 = _mm256_load_ps(B6_row+j);
-		__m256 r7 = _mm256_load_ps(B7_row+j);
-		__m256 r8 = _mm256_load_ps(B8_row+j);
+#pragma GCC ivdep
+	for(int j = 0; j < ncol; j+=8){
+		const __m256 r1 = _mm256_load_ps(B1_row+j);
+		const __m256 r2 = _mm256_load_ps(B2_row+j);
+		const __m256 r3 = _mm256_load_ps(B3_row+j);
+		const __m256 r4 = _mm256_load_ps(B4_row+j);
+		const __m256 r5 = _mm256_load_ps(B5_row+j);
+		const __m256 r6 = _mm256_load_ps(B6_row+j);
+		const __m256 r7 = _mm256_load_ps(B7_row+j);
+		const __m256 r8 = _mm256_load_ps(B8_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
+		#pragma offload
 		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;			
 		_mm256_store_ps(&buffer[j], temp);
 	}
@@ -191,6 +57,8 @@ static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B5_row = &B[r5*incRowB];
 	register Dtype* B6_row = &B[r6*incRowB];
 	register Dtype* B7_row = &B[r7*incRowB];
+	
+#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -219,6 +87,8 @@ static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B4_row = &B[r4*incRowB];
 	register Dtype* B5_row = &B[r5*incRowB];
 	register Dtype* B6_row = &B[r6*incRowB];
+	
+#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -244,6 +114,8 @@ static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B3_row = &B[r3*incRowB];
 	register Dtype* B4_row = &B[r4*incRowB];
 	register Dtype* B5_row = &B[r5*incRowB];
+	
+	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -266,6 +138,8 @@ static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B2_row = &B[r2*incRowB];
 	register Dtype* B3_row = &B[r3*incRowB];
 	register Dtype* B4_row = &B[r4*incRowB];
+	
+	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -285,6 +159,8 @@ static void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B1_row = &B[r1*incRowB];
 	register Dtype* B2_row = &B[r2*incRowB];
 	register Dtype* B3_row = &B[r3*incRowB];
+	
+	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -301,6 +177,7 @@ static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	int r2 = js[1];
 	register Dtype* B1_row = &B[r1*incRowB];
 	register Dtype* B2_row = &B[r2*incRowB];
+	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -313,7 +190,9 @@ static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 static void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
 	int r1 = js[0];
 	register Dtype* B1_row = &B[r1*incRowB];
+	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
+		// _mm_prefetch(B1_row+j+8, _MM_HINT_T0);
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 temp = _mm256_load_ps(&buffer[j]);
 		temp += r1;			
@@ -349,21 +228,58 @@ static void accumulate_rows_small_number(const int num_rows, const int* js, Dtyp
 	}
 }
 
-void accumulate_rows(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+
+void scale_and_copy_to_row(int n, Dtype scaler, Dtype* A, Dtype* B){
+	__m256 scalar_ = _mm256_set1_ps(scaler);
+	#pragma GCC ivdep
+	for(int i = 0; i < n; i+=8){
+		_mm_prefetch(B+i, _MM_HINT_NTA);
+		__m256 As = _mm256_load_ps(A+i);
+		__m256 Bs = _mm256_load_ps(B+i);
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
+		_mm256_store_ps(B+i, Ms);
+	}
+	return;
+}
+
+void scale_and_copy_to_2row(int n, Dtype scaler, Dtype* buffer, Dtype* B1, Dtype* B2){
+	__m256 scalar_ = _mm256_set1_ps(scaler);
+	for(int i = 0; i < n; i+=8){
+		// fprintf(stderr, "%d ", i);
+		__m256 As = _mm256_load_ps(buffer+i);
+		__m256 B1s = _mm256_load_ps(B1+i);
+		__m256 B2s = _mm256_load_ps(B2+i);
+		
+		__m256 multiplied = As * scaler;
+		__m256 B1s_updated = B1s + multiplied;
+		__m256 B2s_updated = B2s + multiplied;
+
+		_mm256_store_ps(B1+i, B1s_updated);
+		_mm256_store_ps(B2+i, B2s_updated);
+	}
+	return;	
+}
+
+void accumulate_rows_to_destination(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype* C, Dtype scaling_factor){
 	int num_j = pairs.num_j_values;
 	
 	// js stores the row numbers
 	int* js = pairs.j_values;
 	// initialize a buffer
-	for(int i = 0; i < ncol; i++){
-		buffer[i] = 0;
-	}
+	__m256 zero = _mm256_set1_ps(0);
 
-	int i = 0;
+	int num_i = pairs.num_i_values;
+
+	int* is = pairs.i_values;
 	
+	for(int i = 0; i < ncol; i+=8){
+		_mm256_store_ps(buffer+i, zero);
+	}
 	// unrolling factor of 8, each time, accumulate 8 rows	
 	int remaining_rows = num_j % 8;
 	int num_accumulated_rows = num_j - remaining_rows;
+
+	int i = 0;
 	for(; i < num_accumulated_rows; i+=8){
 		accumulate_8_row(&js[i], B, ncol, incRowB, buffer);
 	}
@@ -372,4 +288,22 @@ void accumulate_rows(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dty
 	if(remaining_rows)
 		accumulate_rows_small_number(remaining_rows, &js[i], B, ncol, incRowB, buffer);
 
+	// fprintf(stderr, "switching on %d \n", num_i);
+	switch(num_i){
+		case 1:
+			scale_and_copy_to_row(incRowB, scaling_factor, buffer, &C[is[0]*incRowB]);
+			break;
+		case 2:
+			// fprintf(stderr, "the rows are %d %d \n", is[0], is[1]);
+			scale_and_copy_to_2row(incRowB, scaling_factor, buffer, &C[is[0]*incRowB], &C[is[1]*incRowB]);
+			break;
+		case 0:
+			assert(0);
+			break;
+		default:
+			// fprintf(stderr, "default called \n");
+			for(int i = 0; i < num_i; i++){
+				scale_and_copy_to_row(incRowB, scaling_factor, buffer, &C[is[i]*incRowB]);
+			}
+		}
 }

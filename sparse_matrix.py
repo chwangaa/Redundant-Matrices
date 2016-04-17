@@ -88,6 +88,8 @@ class smatrix:
 			fw.write("%d %d %d\n"%(row, col, rank))
 
 			for v in matrix.keys():
+				if v == 0:
+					continue
 				i_j_set_list = self.get_optimized_i_j_set(v, num)
 				num_i_j_set = len(i_j_set_list)
 				fw.write("%f %d \n"%(v, num_i_j_set))
@@ -149,9 +151,12 @@ class smatrix:
 		for i, j in i_j_set.iteritems():
 			i_j_list.append((set([i]), j))
 		
+		from random import shuffle
+
 		# iteratively merge the redundancies
 		while True:
 			stop_iteration = True
+			shuffle(i_j_list)
 			for (ai, aj), (bi, bj) in combinations(i_j_list, 2):
 				similar_values = aj.intersection(bj)
 				

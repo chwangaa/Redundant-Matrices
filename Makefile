@@ -3,7 +3,7 @@ SPARSE_INC = -I$(HOME)/Documents/codings/
 TEST_CC = gcc -std=c99 -O3 -g $(SPARSE_INC) $^ -o $@ -lm -mavx
 
 accumulate_row.o: accumulate_row.c
-	gcc -std=c99 -O3 -msse -mavx -c -o $@ $< -lm
+	gcc -std=c99 -O3 -mfma -mavx -c -o $@ $< -lm
 
 sparse.o: sparse_matrix.c sparse_matrix.h
 	gcc -std=c99 -w -O3 -mfma -mavx -c -o $@ $< -lm

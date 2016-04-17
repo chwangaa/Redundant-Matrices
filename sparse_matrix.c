@@ -5,7 +5,6 @@
 #include <immintrin.h>
 #include "sparse_matrix.h"
 
-static Dtype matrix_buffer[400*1600] __attribute__((aligned(0x1000)));
 static Dtype buffer[2400] __attribute__((aligned(0x1000)));
 
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
@@ -18,7 +17,11 @@ static void readInNewPair(FILE* fin, i_j_pairs* pair){
 	for(int i = 0; i < num_i_values; i++){
 		int temp;
 		fscanf(fin, "%d", &temp);
+		if(temp >= 150){
+			fprintf(stderr, "temp is %d \n", temp);
+		}
 		i_values[i] = temp;
+
 	}
 
 
@@ -116,84 +119,8 @@ Scaler* getScalers(SparseMatrix* m){
 	return m->scalers;
 }
 
-void scaleAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
-	__m256 scalar_ = _mm256_set1_ps(scaler);
-	for(int i = 0; i < n; i+=8){
-		__m256 As = _mm256_load_ps(A+i);
-		__m256 Bs = _mm256_load_ps(B+i);
-		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
-		_mm256_store_ps(B+i, Ms);
-	}
-	return;
-}
-
-void scaleUnAlignedRow(int n, Dtype scaler, Dtype* A, const Dtype* B){
-	__m256 scalar_ = _mm256_set1_ps(scaler);
-	for(int i = 0; i < n; i+=8){
-		__m256 As = _mm256_load_ps(A+i);
-		__m256 Bs = _mm256_loadu_ps(B+i);
-		__m256 Ms = _mm256_fmadd_ps(As, scalar_, Bs);
-		_mm256_storeu_ps(B+i, Ms);
-	}
-	return;
-}
-
-void set_row_to_zero(Dtype* row, int length){
-	__m256 zeros_ = _mm256_set1_ps(0);
-	for(int i = 0; i < length; i+=8){
-		_mm256_store_ps(&row[i], zeros_);
-	}
-}
-
-void initialize_matrix_buffer(Dtype* buffer, int num_rows_to_set, int* rows_to_set, int incRow){
-	for(int i = 0; i < num_rows_to_set; i++){
-		int row_number = rows_to_set[i];
-		Dtype* row = &buffer[row_number*incRow];
-		set_row_to_zero(row, incRow);
-	}
-}
-
-void add_row_to_row(Dtype* source, Dtype* destination, int length){
-	for(int i = 0; i < length; i+=8){
-		__m256 r1 = _mm256_load_ps(source+i);
-		__m256 r2 = _mm256_load_ps(destination+i);
-		r1 = r1 + r2;			
-		_mm256_store_ps(&destination[i], r1);
-	}
-}
-
-void add_row_to_rows(const i_j_pairs pairs, Dtype* buffer, Dtype* matrix_buffer, int incRow){
-	int num_i = pairs.num_i_values;
-	int* is = pairs.i_values;
-	for(int i = 0; i < num_i; i++){
-		int r1 = is[i];
-		Dtype* destination_row = &matrix_buffer[r1*incRow];
-		add_row_to_row(buffer, destination_row, incRow);
-	}
-}
-
-void scale_aligned_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
-
-	assert(scaling_factor != 0);
-	for(int i = 0; i < num_rows_write_to; i++){
-		int row_n = i_values[i];
-		Dtype* source_row = &matrix_buffer[row_n*incRowC];
-		Dtype* destination_row = &C[row_n*incRowC];
-		scaleAlignedRow(incRowC, scaling_factor, source_row, destination_row);
-	}
-}
 
 
-void scale_unaligned_matrix(Dtype scaling_factor, Dtype* matrix_buffer, int num_rows_write_to, int* i_values, Dtype* C, int incRowC){
-
-	assert(scaling_factor != 0);
-	for(int i = 0; i < num_rows_write_to; i++){
-		int row_n = i_values[i];
-		Dtype* source_row = &matrix_buffer[row_n*incRowC];
-		Dtype* destination_row = &C[row_n*incRowC];
-		scaleUnAlignedRow(incRowC, scaling_factor, source_row, destination_row);
-	}
-}
 
 void ScaleMatrixTo(Scaler s,
 				   Dtype* B, int nrow, int ncol, int incRowB,
@@ -201,30 +128,17 @@ void ScaleMatrixTo(Scaler s,
 
 	
 
-	// initialize a matrix buffer
-	// assert(incRowB == N);
-	// Dtype* matrix_buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N, 32);
+
 	int* i_values = s.i_values;
 	int num_rows_write_to = s.num_rows_write_to;
-	initialize_matrix_buffer(matrix_buffer, num_rows_write_to, i_values, incRowB);
 
-	// initialize a column buffer
-	// Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
+
 	i_j_pairs* pairs = s.pairs;
 	// accumulate rows
+	Dtype scaling_factor = s.value;
 	for(int i = 0; i < s.num_pairs; i++){
 		i_j_pairs p = pairs[i];
-		accumulate_rows(p, B, ncol, incRowB, buffer);
-		add_row_to_rows(p, buffer, matrix_buffer, incRowB);
-	}
-
-	// scaling
-	Dtype scaling_factor = s.value;
-	if(incRowC % 8 == 0){
-		scale_aligned_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
-	}
-	else{
-		scale_unaligned_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
+		accumulate_rows_to_destination(p, B, ncol, incRowB, buffer, C, scaling_factor);
 	}
 }
 

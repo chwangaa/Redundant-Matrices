@@ -250,9 +250,9 @@ double test_cifar_conv3(){
 
 int main(int argc, char** argv){
 	double accum = 0;
-	for(int i = 0; i < 10; i++){
-		accum += test_german_conv1();
+	for(int i = 0; i < 1; i++){
+		accum += test_german_conv2();
 	}
-	fprintf(stderr, "time elapsed is %lf \n", accum / 10);
+	fprintf(stderr, "time elapsed is %lf \n", accum / 1);
 	// test_cifar_conv1();
 }
