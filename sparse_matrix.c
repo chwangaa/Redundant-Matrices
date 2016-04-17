@@ -6,7 +6,7 @@
 #include "sparse_matrix.h"
 
 static Dtype matrix_buffer[400*1600] __attribute__((aligned(0x1000)));
-static Dtype buffer[1600] __attribute__((aligned(0x1000)));
+static Dtype buffer[2400] __attribute__((aligned(0x1000)));
 
 static void readInNewPair(FILE* fin, i_j_pairs* pair){
 	assert(fin != NULL);
@@ -181,11 +181,11 @@ void ScaleMatrixTo(Scaler s,
 	
 
 	// initialize a matrix buffer
-	assert(incRowB == N);
+	// assert(incRowB == N);
 	// Dtype* matrix_buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N, 32);
 	int* i_values = s.i_values;
 	int num_rows_write_to = s.num_rows_write_to;
-	initialize_matrix_buffer(matrix_buffer, num_rows_write_to, i_values, N);
+	initialize_matrix_buffer(matrix_buffer, num_rows_write_to, i_values, incRowB);
 
 	// initialize a column buffer
 	// Dtype* buffer = (Dtype*)_mm_malloc(sizeof(Dtype)*ncol,32);
@@ -194,12 +194,12 @@ void ScaleMatrixTo(Scaler s,
 	for(int i = 0; i < s.num_pairs; i++){
 		i_j_pairs p = pairs[i];
 		accumulate_rows(p, B, ncol, incRowB, buffer);
-		add_row_to_rows(p, buffer, matrix_buffer, incRowB);
+		// add_row_to_rows(p, buffer, matrix_buffer, incRowB);
 	}
 
 	// scaling
 	Dtype scaling_factor = s.value;
-	scale_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
+	// scale_matrix(scaling_factor, matrix_buffer, num_rows_write_to, i_values, C, incRowC);
 	// free the column buffer
 	// _mm_free(buffer);
 	// free the matrix buffer
@@ -211,6 +211,7 @@ void SparseMatrixMultiplication(int M, int N, int K,
 			  Dtype* B, int incRowB,
 			  Dtype* C, int incRowC){
 	assert(((unsigned long)B & 31) == 0);
+	assert(incRowB % 8 ==0 );
 	assert(M == getNumberOfRow(A));
 	assert(K == getNumberOfCol(A));
 

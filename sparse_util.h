@@ -14,7 +14,7 @@ static inline void load_matrix(const char* file_name, int M, int N, float* matri
 	fscanf(fin, "%d %d", &M_, &N_);
 	assert(M_ == M);
 	assert(N_ == N);
-	fprintf(stderr, "the size of the matrix is %dx%d \n",M, N);
+	// fprintf(stderr, "the size of the matrix is %dx%d \n",M, N);
 	
 	for(int i = 0; i < M*N; i++){
 		float temp;

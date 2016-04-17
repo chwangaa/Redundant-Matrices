@@ -53,18 +53,18 @@ double test_german_conv2(){
 	//fprintf(stderr, "time elapsed is %lf \n", m_second);	
 }
 
-void test_german_conv1(){
-	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv1_sparse");
+double test_german_conv1(){
+	SparseMatrix* matrix = init_SparseMatrix("models/gtsrb/conv1_sparse_reuse");
 	fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
 	// fprintf(stderr, "the number of distinct values are %d \n", matrix->rank);
 	int M = 100;
-	int N = 2144;
+	int N = 2116;
 	int K = 27;
-	int incRowB = N;
+	int incRowB = 2120;
 	int incRowC = N;
-	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*N,32);
+	Dtype* B = (Dtype*)_mm_malloc(sizeof(Dtype)*K*incRowB,32);
 	Dtype* C = (Dtype*)_mm_malloc(sizeof(Dtype)*M*N,32);
 	assert(((unsigned long)&B[4*incRowB] & 31) == 0);
 	assert(((unsigned long)C & 31) == 0);
@@ -78,12 +78,19 @@ void test_german_conv1(){
 		}
 	}
 
+	for(int i = 0; i < K; i++){
+		for(int j = 0; j < N; j++){
+			B[i*incRowB+j] = (float)rand() / rand();
+		}
+	}
+
 	uint64_t start_time = timestamp_us();
 	assert(((unsigned long)B & 31) == 0);
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
 	uint64_t end_time = timestamp_us();
 	double m_second = (double)(end_time-start_time)/1000.0;
 	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+	return m_second;
 }
 
 void test_german_conv3(){
@@ -120,8 +127,8 @@ void test_german_conv3(){
 }
 
 
-void test_cifar_conv1(){
-	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse");
+double test_cifar_conv1(){
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv1_sparse_reuse");
 	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
@@ -137,27 +144,33 @@ void test_cifar_conv1(){
 	assert(((unsigned long)C & 31) == 0);
 	assert(B);
 	assert(C);
-	fprintf(stderr, "load the test input image \n");
-	load_matrix("test_inputs/cifar_conv1_test_input.txt", K, N, B);
+	// load_matrix("test_inputs/cifar_conv1_test_input.txt", K, N, B);
 	
-	for(int i = 0; i < M; i++){
-		for(int j = 0; j < N; j++){
-			C[i*incRowC+j] = 0;		
-		}
-	}
+	// for(int i = 0; i < M; i++){
+	// 	for(int j = 0; j < N; j++){
+	// 		C[i*incRowC+j] = 0;		
+	// 	}
+	// }
+
+	// for(int i = 0; i < K; i++){
+	// 	for(int j = 0; j < N; j++){
+	// 		B[i*incRowB+j] = (float)rand() / rand();
+	// 	}
+	// }
+
+
 
 	uint64_t start_time = timestamp_us();
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
 	uint64_t end_time = timestamp_us();
 	double m_second = (double)(end_time-start_time)/1000.0;
-	fprintf(stderr, "time elapsed is %lf \n", m_second);	
-
+	return m_second;
 }
 
 
-void test_cifar_conv2(){
-	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv2_sparse_round2");
-	fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+double test_cifar_conv2(){
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv2_sparse_reuse");
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
 	// fprintf(stderr, "the number of distinct values are %d \n", matrix->rank);
@@ -180,17 +193,24 @@ void test_cifar_conv2(){
 		}
 	}
 
+	for(int i = 0; i < K; i++){
+		for(int j = 0; j < N; j++){
+			B[i*incRowB+j] = (float)rand() / rand();
+		}
+	}
+
 	uint64_t start_time = timestamp_us();
 	assert(((unsigned long)B & 31) == 0);
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
 	uint64_t end_time = timestamp_us();
 	double m_second = (double)(end_time-start_time)/1000.0;
-	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+	// fprintf(stderr, "time elapsed is %lf \n", m_second);	
+	return m_second;
 }
 
-void test_cifar_conv3(){
-	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv3_sparse_round2");
-	fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
+double test_cifar_conv3(){
+	SparseMatrix* matrix = init_SparseMatrix("models/cifar/conv3_sparse_reuse");
+	// fprintf(stderr, "the rank of the matrix is %d \n", matrix->rank);
 	assert(matrix);
 	// return;
 	// fprintf(stderr, "the number of distinct values are %d \n", matrix->rank);
@@ -213,19 +233,26 @@ void test_cifar_conv3(){
 		}
 	}
 
+	for(int i = 0; i < K; i++){
+		for(int j = 0; j < N; j++){
+			B[i*incRowB+j] = (float)rand() / rand();
+		}
+	}
+
 	uint64_t start_time = timestamp_us();
 	assert(((unsigned long)B & 31) == 0);
 	SparseMatrixMultiplication(M, N, K, matrix, B, incRowB, C, incRowC);	
 	uint64_t end_time = timestamp_us();
 	double m_second = (double)(end_time-start_time)/1000.0;
-	fprintf(stderr, "time elapsed is %lf \n", m_second);	
+	return m_second;
+	// fprintf(stderr, "time elapsed is %lf \n", m_second);	
 }
 
 int main(int argc, char** argv){
 	double accum = 0;
-	for(int i = 0; i < 1; i++){
-		accum += test_german_conv2();
+	for(int i = 0; i < 10; i++){
+		accum += test_german_conv1();
 	}
-	// fprintf(stderr, "time elapsed is %lf \n", accum / 100);
+	fprintf(stderr, "time elapsed is %lf \n", accum / 10);
 	// test_cifar_conv1();
 }

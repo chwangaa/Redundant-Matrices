@@ -355,12 +355,12 @@ void accumulate_rows(const i_j_pairs pairs, Dtype* B, int ncol, int incRowB, Dty
 	// js stores the row numbers
 	int* js = pairs.j_values;
 	// initialize a buffer
-	__m256 zeros_ = _mm256_set1_ps(0);
-	for(int i = 0; i < ncol; i+=8){
-		_mm256_store_ps(&buffer[i], zeros_);
+	for(int i = 0; i < ncol; i++){
+		buffer[i] = 0;
 	}
 
 	int i = 0;
+	
 	// unrolling factor of 8, each time, accumulate 8 rows	
 	int remaining_rows = num_j % 8;
 	int num_accumulated_rows = num_j - remaining_rows;
