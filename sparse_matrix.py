@@ -79,7 +79,7 @@ class smatrix:
 				scale_row(B_row, v, B_row)
 				add_row(B_row, C[i], C[i])
 
-	def serializeToFile(self, file_name, num=4):
+	def serializeToFile(self, file_name, sizes = [20, 8]):
 		row = self.num_rows
 		col = self.num_cols
 		rank = self.rank
@@ -88,9 +88,7 @@ class smatrix:
 			fw.write("%d %d %d\n"%(row, col, rank))
 
 			for v in matrix.keys():
-				if v == 0:
-					continue
-				i_j_set_list = self.get_optimized_i_j_set(v, num)
+				i_j_set_list = self.get_optimized_i_j_set(v, sizes)
 				num_i_j_set = len(i_j_set_list)
 				fw.write("%f %d \n"%(v, num_i_j_set))
 				# construct the union of all i set
@@ -99,19 +97,27 @@ class smatrix:
 					i_set = i_set.union(i_j_set[0])
 				
 				fw.write("%d "%len(i_set))
-				for i in i_set:
+				i_set_list = list(i_set)
+				i_set_list.sort()
+				for i in i_set_list:
 					fw.write("%d "%i)
 				fw.write("\n")
 				
+				i_j_set_list.sort(key=lambda x: len(x[1]))
+				i_j_set_list.reverse()
 				for i_j_set in i_j_set_list:
 					
 					fw.write("%d "%len(i_j_set[0]))
-					for i in i_j_set[0]:
+					i_j_set_i_list = list(i_j_set[0])
+					i_j_set_i_list.sort()
+					for i in i_j_set_i_list:
 						fw.write("%d "%i)
 					fw.write("\n")
 					
 					fw.write("%d "%len(i_j_set[1]))
-					for j in i_j_set[1]:
+					i_j_set_j_list = list(i_j_set[1])
+					i_j_set_j_list.sort()
+					for j in i_j_set_j_list:
 						fw.write("%d "%j)
 					fw.write("\n")
 			
@@ -135,7 +141,7 @@ class smatrix:
 			i_j_set[i].add(j)
 		return i_j_set 
 
-	def get_optimized_i_j_set(self, value, min):
+	def get_optimized_i_j_set(self, value, sizes):
 		"""
 		>>> m = [[1,2,1,1,1,1], [2,2,1,1,1,1], [1,2,2,2,2,2]]
 		>>> s = smatrix(m)
@@ -152,39 +158,41 @@ class smatrix:
 			i_j_list.append((set([i]), j))
 		
 		from random import shuffle
+		sizes.sort()
+		sizes.reverse()
+		for num in sizes:
+			while True:
+				stop_iteration = True
+				shuffle(i_j_list)
+				for (ai, aj), (bi, bj) in combinations(i_j_list, 2):
+					similar_values = aj.intersection(bj)
+					
+					if len(similar_values) == len(aj) and len(similar_values) == len(bj):
+						i_j_list.remove((ai, aj))
+						i_j_list.remove((bi, bj))
+						i_j_list.append((ai.union(bi), aj))
+						stop_iteration = False
+						break
 
-		# iteratively merge the redundancies
-		while True:
-			stop_iteration = True
-			shuffle(i_j_list)
-			for (ai, aj), (bi, bj) in combinations(i_j_list, 2):
-				similar_values = aj.intersection(bj)
-				
-				if len(similar_values) == len(aj) and len(similar_values) == len(bj):
-					i_j_list.remove((ai, aj))
-					i_j_list.remove((bi, bj))
-					i_j_list.append((ai.union(bi), aj))
-					stop_iteration = False
-					break
-
-				if len(similar_values) >= min:
-					stop_iteration = False	# some change is still taken place, proceed to next iteration
-					i_j_list.remove((ai, aj))
-					i_j_list.remove((bi, bj))
-					new_aj = aj.difference(similar_values)
-					new_bj = bj.difference(similar_values)
-					if new_aj:
-						i_j_list.append((ai, new_aj))
-					if new_bj:
-						i_j_list.append((bi, new_bj))
-					i_j_list.append((ai.union(bi), similar_values))
+					if len(similar_values) >= num:
+						stop_iteration = False	# some change is still taken place, proceed to next iteration
+						i_j_list.remove((ai, aj))
+						i_j_list.remove((bi, bj))
+						new_aj = aj.difference(similar_values)
+						new_bj = bj.difference(similar_values)
+						if new_aj:
+							i_j_list.append((ai, new_aj))
+						if new_bj:
+							i_j_list.append((bi, new_bj))
+						i_j_list.append((ai.union(bi), similar_values))
+						break
+					else:
+						continue
+				if stop_iteration:
 					break
 				else:
 					continue
-			if stop_iteration:
-				break
-			else:
-				continue
+
 		return i_j_list
 
 

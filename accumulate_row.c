@@ -4,7 +4,7 @@
 #include "sparse_matrix.h"
 
 
-static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -23,7 +23,6 @@ static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	Dtype* B8_row = &B[r8*incRowB];		
 
 
-#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		const __m256 r1 = _mm256_load_ps(B1_row+j);
 		const __m256 r2 = _mm256_load_ps(B2_row+j);
@@ -35,14 +34,17 @@ static void accumulate_8_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 		const __m256 r8 = _mm256_load_ps(B8_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		#pragma offload
-		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;			
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		
+		__m256 sum = r1 + r2 + r3 + r4 + r5 + r6 + r7 + r8;			
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 
 }
 
-static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -58,7 +60,6 @@ static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B6_row = &B[r6*incRowB];
 	register Dtype* B7_row = &B[r7*incRowB];
 	
-#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -69,12 +70,16 @@ static void accumulate_7_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 		__m256 r7 = _mm256_load_ps(B7_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2 + r3 + r4 + r5 + r6 + r7;			
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		
+		__m256 sum = r1 + r2 + r3 + r4 + r5 + r6 + r7;
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -88,7 +93,6 @@ static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B5_row = &B[r5*incRowB];
 	register Dtype* B6_row = &B[r6*incRowB];
 	
-#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -98,12 +102,16 @@ static void accumulate_6_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 		__m256 r6 = _mm256_load_ps(B6_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2 + r3 + r4 + r5 + r6;			
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		
+		__m256 sum = r1 + r2 + r3 + r4 + r5 + r6;	
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -115,7 +123,6 @@ static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B4_row = &B[r4*incRowB];
 	register Dtype* B5_row = &B[r5*incRowB];
 	
-	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -124,12 +131,15 @@ static void accumulate_5_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 		__m256 r5 = _mm256_load_ps(B5_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2 + r3 + r4 + r5;			
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		__m256 sum = r1 + r2 + r3 + r4 + r5;	
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
@@ -139,7 +149,6 @@ static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 	register Dtype* B3_row = &B[r3*incRowB];
 	register Dtype* B4_row = &B[r4*incRowB];
 	
-	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
@@ -147,81 +156,91 @@ static void accumulate_4_row(const int* js, Dtype* B, int ncol, int incRowB, Dty
 		__m256 r4 = _mm256_load_ps(B4_row+j);
 
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2 + r3 + r4;			
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		
+		__m256 sum = r1 + r2 + r3 + r4;			
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_3_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	int r3 = js[2];
 	register Dtype* B1_row = &B[r1*incRowB];
 	register Dtype* B2_row = &B[r2*incRowB];
 	register Dtype* B3_row = &B[r3*incRowB];
+	register __m256 scalar_v = _mm256_set1_ps(scaler_);
 	
-	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
 		__m256 r3 = _mm256_load_ps(B3_row+j);
-
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2 + r3;			
+		
+		
+		__m256 sum = r1 + r2 + r3;	
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_2_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	int r2 = js[1];
 	register Dtype* B1_row = &B[r1*incRowB];
 	register Dtype* B2_row = &B[r2*incRowB];
-	#pragma GCC ivdep
+	register __m256 scalar_v = _mm256_set1_ps(scaler_);
 	for(int j = 0; j < ncol; j+=8){
 		__m256 r1 = _mm256_load_ps(B1_row+j);
 		__m256 r2 = _mm256_load_ps(B2_row+j);
 		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1 + r2;			
+		
+		__m256 sum = r1 + r2;
+
+		temp = _mm256_fmadd_ps(sum, scalar_v, temp);		
 		_mm256_store_ps(&buffer[j], temp);
 	}
 }
 
-static void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_1_row(const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaler_){
 	int r1 = js[0];
 	register Dtype* B1_row = &B[r1*incRowB];
-	#pragma GCC ivdep
 	for(int j = 0; j < ncol; j+=8){
-		// _mm_prefetch(B1_row+j+8, _MM_HINT_T0);
-		__m256 r1 = _mm256_load_ps(B1_row+j);
-		__m256 temp = _mm256_load_ps(&buffer[j]);
-		temp += r1;			
-		_mm256_store_ps(&buffer[j], temp);
+
+		__m256 scalar_v = _mm256_set1_ps(scaler_);
+		__m256 As = _mm256_load_ps(B1_row+j);
+		__m256 Bs = _mm256_load_ps(buffer+j);
+		__m256 Ms = _mm256_fmadd_ps(As, scalar_v, Bs);
+		_mm256_store_ps(buffer+j, Ms);
 	}
 }
 
-static void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer){
+static void accumulate_rows_small_number(const int num_rows, const int* js, Dtype* B, int ncol, int incRowB, Dtype* buffer, Dtype scaling_factor){
 	switch(num_rows){
 		case 7:
-			accumulate_7_row(js, B, ncol, incRowB, buffer);
+			accumulate_7_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 6:
-			accumulate_6_row(js, B, ncol, incRowB, buffer);
+			accumulate_6_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 5:
-			accumulate_5_row(js, B, ncol, incRowB, buffer);
+			accumulate_5_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 4:
-			accumulate_4_row(js, B, ncol, incRowB, buffer);
+			accumulate_4_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 3:
-			accumulate_3_row(js, B, ncol, incRowB, buffer);
+			accumulate_3_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 2:
-			accumulate_2_row(js, B, ncol, incRowB, buffer);
+			accumulate_2_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		case 1:
-			accumulate_1_row(js, B, ncol, incRowB, buffer);
+			accumulate_1_row(js, B, ncol, incRowB, buffer, scaling_factor);
 			break;
 		default:
 			assert(0);
@@ -229,9 +248,8 @@ static void accumulate_rows_small_number(const int num_rows, const int* js, Dtyp
 }
 
 
-void scale_and_copy_to_row(int n, Dtype scaler, Dtype* A, Dtype* B){
+void scale_and_copy_to_row(int n, Dtype scaler, Dtype* restrict A, Dtype* restrict B){
 	__m256 scalar_ = _mm256_set1_ps(scaler);
-	#pragma GCC ivdep
 	for(int i = 0; i < n; i+=8){
 		_mm_prefetch(B+i, _MM_HINT_NTA);
 		__m256 As = _mm256_load_ps(A+i);
@@ -266,29 +284,40 @@ void accumulate_rows_to_destination(const i_j_pairs pairs, Dtype* B, int ncol, i
 	// js stores the row numbers
 	int* js = pairs.j_values;
 	// initialize a buffer
-	__m256 zero = _mm256_set1_ps(0);
-
 	int num_i = pairs.num_i_values;
 
 	int* is = pairs.i_values;
+
+
+	// if one row to one row mapping, do it directly
+	int remaining_rows = num_j % 8;
+	int num_accumulated_rows = num_j - remaining_rows;
+	int i = 0;
 	
+	if(num_i == 1){
+		for(; i < num_accumulated_rows; i+=8){
+			accumulate_8_row(&js[i], B, ncol, incRowB, &C[is[0]*incRowB], scaling_factor);
+		}
+		if(remaining_rows){
+			accumulate_rows_small_number(remaining_rows, &js[i], B, ncol, incRowB, &C[is[0]*incRowB], scaling_factor);
+		}
+		return;
+	}
+
+	__m256 zero = _mm256_set1_ps(0);
 	for(int i = 0; i < ncol; i+=8){
 		_mm256_store_ps(buffer+i, zero);
 	}
-	// unrolling factor of 8, each time, accumulate 8 rows	
-	int remaining_rows = num_j % 8;
-	int num_accumulated_rows = num_j - remaining_rows;
 
-	int i = 0;
 	for(; i < num_accumulated_rows; i+=8){
-		accumulate_8_row(&js[i], B, ncol, incRowB, buffer);
+		accumulate_8_row(&js[i], B, ncol, incRowB, buffer, 1);
 	}
+
 
 	// accumulate the other rows
 	if(remaining_rows)
-		accumulate_rows_small_number(remaining_rows, &js[i], B, ncol, incRowB, buffer);
+		accumulate_rows_small_number(remaining_rows, &js[i], B, ncol, incRowB, buffer, 1);
 
-	// fprintf(stderr, "switching on %d \n", num_i);
 	switch(num_i){
 		case 1:
 			scale_and_copy_to_row(incRowB, scaling_factor, buffer, &C[is[0]*incRowB]);
